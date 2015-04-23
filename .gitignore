@@ -10,7 +10,6 @@ dist
 build
 eggs
 parts
-bin
 var
 sdist
 develop-eggs
@@ -21,7 +20,6 @@ __pycache__
 
 # Other generated files
 */version.py
-hpsspy/hpsspy.cfg
 
 # Sphinx
 _build
