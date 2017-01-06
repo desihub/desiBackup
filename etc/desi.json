@@ -21,7 +21,7 @@
         "exclude":[]
     },
     "spectro":{
-        "exclude":[],
+        "exclude":["README.html"],
         "data":{
         },
         "redux":{

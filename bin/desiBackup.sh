@@ -4,7 +4,7 @@ function usage() {
     (
     echo "${execName} [-h] [-v] DIR"
     echo ""
-    echo "Install desiUtil on a bare system."
+    echo "Backup DESI files to HPSS."
     echo ""
     echo "   DIR = Top-level directory to examine for backups."
     echo "    -h = Print this message and exit."
@@ -24,13 +24,20 @@ while getopts hv argname; do
 done
 shift $((OPTIND-1))
 #
-#
+# Check for a top-level directory, like "spectro".
 #
 if [[ $# < 1 ]]; then
     echo "You must specify a top-level directory!" >&2
     exit 1
 fi
 #
+# missing_from_hpss is a little sensitive about its inputs, at least
+# as of version 0.2.1.
 #
-#
-missing_from_hpss ${verbose} ${DESIBACKUP}/desi.json $1
+if [[ ! -d ${HOME}/scratch ]]; then
+    echo "Creating directory ${HOME}/scratch to hold backup cache files." >&2
+    [[ -n "${verbose}" ]] && echo mkdir -p ${HOME}/scratch
+    mkdir -p ${HOME}/scratch
+fi
+cd ${DESIBACKUP}/etc
+missing_from_hpss ${verbose} desi $1
