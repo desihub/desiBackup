@@ -11,11 +11,17 @@
             "dc2/([^/]+\\.txt)":"dc2/\\1"
         }
     },
+    "external":{
+        "exclude":[]
+    },
     "imaging":{
         "exclude":[]
     },
     "mocks":{
         "exclude":[]
+    },
+    "protodesi":{
+        "exclude":["README.html"]
     },
     "release":{
         "exclude":[]
@@ -39,7 +45,10 @@
         "teststand":{
         }
     },
-    "target":{
+    "survey":{
         "exclude":[]
+    },
+    "target":{
+        "exclude":["README.html"]
     }
 }

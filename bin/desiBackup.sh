@@ -40,4 +40,4 @@ if [[ ! -d ${HOME}/scratch ]]; then
     mkdir -p ${HOME}/scratch
 fi
 cd ${DESIBACKUP}/etc
-missing_from_hpss ${verbose} desi $1
+missing_from_hpss ${verbose} --process desi $1
