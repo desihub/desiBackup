@@ -24,6 +24,10 @@
         "exclude":["README.html"],
         "data":{
         },
+        "exposures":{
+        },
+        "quickcat":{
+        },
         "redux":{
             "redux/sjb/dogwood/.*$":"redux/sjb/dogwood.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
@@ -31,6 +35,8 @@
         "sim":{
         },
         "templates":{
+        },
+        "teststand":{
         }
     },
     "target":{
