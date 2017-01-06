@@ -25,7 +25,8 @@
         "data":{
         },
         "redux":{
-            "redux/sjb/dogwood/.*$":"redux/sjb/dogwood.tar"
+            "redux/sjb/dogwood/.*$":"redux/sjb/dogwood.tar",
+            "redux/oak1/.*$":"redux/oak1.tar"
         },
         "sim":{
         },
