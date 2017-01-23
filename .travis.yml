@@ -1,0 +1,30 @@
+#
+# IMPORTANT.  OS X support is so experimental that you have to specifically
+# request to have it enabled, on a per-repository basis.  See
+# http://docs.travis-ci.com/user/multi-os/#Manual-intervention-required
+#
+# This file will still work, without OS X enabled, it just won't run those
+# tests.
+#
+language: python
+
+os:
+    - linux
+    # - osx
+
+# Setting sudo to false opts in to Travis-CI container-based builds.
+sudo: false
+
+python:
+    - 2.7
+    - 3.5
+    - 3.6
+
+env:
+    global:
+        - MAIN_CMD='python -c'
+    matrix:
+        - SETUP_CMD='import json; j = open("etc/desi.json"); data = json.load(j); j.close()'
+
+script:
+    - $MAIN_CMD "${SETUP_CMD}"
