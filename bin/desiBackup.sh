@@ -1,24 +1,42 @@
 #!/bin/bash
+#
+# Help message.
+#
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-h] [-v] DIR"
+    echo "${execName} [-h] [-v] [-V] DIR"
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
     echo "   DIR = Top-level directory to examine for backups."
     echo "    -h = Print this message and exit."
     echo "    -v = Verbose mode. Print lots of extra information."
+    echo "    -V = Version.  Print a version string and exit."
     ) >&2
 }
 #
-# Get options
+# Version string.
+#
+function version() {
+    local execName=$(basename $0)
+    (
+    cd ${DESIBACKUP}
+    local tags=$(git describe --tags --dirty --always | cut -d- -f1)
+    local revs=$(git rev-list --count HEAD)
+    echo "${execName} version: ${tags}.dev${revs}"
+    # missing_from_hpss --version
+    ) >&2
+}
+#
+# Get options.
 #
 verbose=''
-while getopts hv argname; do
+while getopts hvV argname; do
     case ${argname} in
         h) usage; exit 0 ;;
         v) verbose='-v' ;;
+        V) version; exit 0 ;;
         *) usage; exit 1 ;;
     esac
 done
@@ -31,13 +49,14 @@ if [[ $# < 1 ]]; then
     exit 1
 fi
 #
-# missing_from_hpss is a little sensitive about its inputs, at least
-# as of version 0.2.1.
+# Make sure cache directory exists.
 #
 if [[ ! -d ${HOME}/scratch ]]; then
     echo "Creating directory ${HOME}/scratch to hold backup cache files." >&2
     [[ -n "${verbose}" ]] && echo mkdir -p ${HOME}/scratch
     mkdir -p ${HOME}/scratch
 fi
-cd ${DESIBACKUP}/etc
-missing_from_hpss ${verbose} --process desi $1
+#
+# Pass options to
+#
+missing_from_hpss ${verbose} --process ${DESIBACKUP}/etc/desi.json $1
