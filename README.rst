@@ -50,7 +50,12 @@ For additional detail or debugging you can add the ``-v`` option.
 Change Log
 ----------
 
-0.1.0 (unreleased)
+0.1.1 (unreleased)
+~~~~~~~~~~~~~~~~~~
+
+* No changes yet.
+
+0.1.0 (2017-01-23)
 ~~~~~~~~~~~~~~~~~~
 
 * Initial reference tag.  Should be used with `HPSSPy`_ version 0.3.0.
