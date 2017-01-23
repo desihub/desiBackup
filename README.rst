@@ -47,13 +47,28 @@ is set up to properly map to an HPSS file (see above), then run::
 
 For additional detail or debugging you can add the ``-v`` option.
 
+Testing desiBackup
+------------------
+
+.. image:: https://img.shields.io/travis/desihub/desiBackup.svg
+    :target: https://travis-ci.org/desihub/desiBackup
+    :alt: Travis Build Status
+
+Currently, desiBackup is tested by ensuring that the file ``etc/desi.json`` is
+valid.  Specifically this command is run::
+
+    python -c 'import json; j = open("etc/desi.json"); data = json.load(j); j.close()'
+
+If the file is valid, this command will produce no output.  Invalid files will
+raise an exception.
+
 Change Log
 ----------
 
 0.1.1 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Added Travis test.
 
 0.1.0 (2017-01-23)
 ~~~~~~~~~~~~~~~~~~
