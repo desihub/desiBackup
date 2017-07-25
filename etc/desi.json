@@ -6,6 +6,23 @@
     },
     "datachallenge":{
         "exclude":[],
+        "dc17a-twopct":{
+            "dc17a-twopct/[README|twopct.ecsv|dc17a-lite.tar.gz]":"dc17a-twopct/toplevel.tar",
+            "dc17a-twopct/batch/.*":"dc17a-twopct/batch.tar",
+            "dc17a-twopct/fiberassign/.*":"dc17a-twopct/fiberassign.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/exposures/201908.*":"dc17a-twopct/spectro/redux/dc17a2/exposures/201908nn.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/exposures/2019090.*":"dc17a-twopct/spectro/redux/dc17a2/exposures/2019090n.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/exposures/2019091.*":"dc17a-twopct/spectro/redux/dc17a2/exposures/2019091n.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/exposures/2019092.*":"dc17a-twopct/spectro/redux/dc17a2/exposures/2019092n.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/spectra-64/.*":"dc17a-twopct/spectro/redux/dc17a2/spectra-64.tar",
+            "dc17a-twopct/spectro/redux/dc17a2/[calib2d|plan|run|zcat|setup].*":"dc17a-twopct/spectro/redux/dc17a2/misc.tar",
+            "dc17a-twopct/spectro/sim/.*":"dc17a-twopct/spectro/sim.tar",
+            "dc17a-twopct/targets/.*\\.fits":"dc17a-twopct/targets/catalogs.tar",
+            "dc17a-twopct/targets/0.*":"dc17a-twopct/targets/pix-0.tar",
+            "dc17a-twopct/targets/1.*":"dc17a-twopct/targets/pix-1.tar",
+            "dc17a-twopct/targets/2.*":"dc17a-twopct/targets/pix-2.tar",
+            "dc17a-twopct/targets/3.*":"dc17a-twopct/targets/pix-3.tar"
+        },
         "dc2":{
             "dc2/(batch)/.*$":"dc2/\\1.tar",
             "dc2/templates/[^/]+$":"dc2/templates/templates_files.tar",
