@@ -7,15 +7,15 @@
     "datachallenge":{
         "exclude":[],
         "dc17a-twopct":{
-            "dc17a-twopct/[^/]+$":"dc17a-twopct/toplevel.tar",
-            "dc17a-twopct/batch/.*$":"dc17a-twopct/batch.tar",
-            "dc17a-twopct/fiberassign/.*$":"dc17a-twopct/fiberassign.tar",
-            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_\\-]+)/exposures/([0-9]){8}/.*$":"dc17a-twopct/spectro/redux/\\1/exposures/\\2.tar",
-            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_\\-]+)/spectra-([0-9]+)/([0-9]+)/.*$":"dc17a-twopct/spectro/redux/\\1/spectra-\\2/\\3.tar",
-            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_\\-]+)/(calib2d|plan|run|zcat|setup).*$":"dc17a-twopct/spectro/redux/\\1/misc.tar",
-            "dc17a-twopct/spectro/sim/.*$":"dc17a-twopct/spectro/sim.tar",
-            "dc17a-twopct/targets/[^/]+\\.fits$":"dc17a-twopct/targets/catalogs.tar",
-            "dc17a-twopct/targets/([0-9]+)/.*$":"dc17a-twopct/targets/pixgroup-\\1.tar"
+            "dc17a-twopct/[^/]+$":"dc17a-twopct/dc17a-twopct_files.tar",
+            "dc17a-twopct/(batch|fiberassign)/.*$":"dc17a-twopct/dc17a-twopct_\\1.tar",
+            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/[^/]+$":"dc17a-twopct/spectro/redux/\\1/\\1_files.tar",
+            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/(calib2d|plan|run)/.*$":"dc17a-twopct/spectro/redux/\\1/\\1_\\2.tar",
+            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/exposures/([0-9]{8})/.*$":"dc17a-twopct/spectro/redux/\\1/exposures/\\1_exposures_\\2.tar",
+            "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/spectra-([0-9]+)/([0-9]+)/.*$":"dc17a-twopct/spectro/redux/\\1/spectra-\\2/\\1_spectra-\\2_\\3.tar",
+            "dc17a-twopct/spectro/sim/([0-9a-zA-Z_-]+)/([0-9]{8})/.*$":"dc17a-twopct/spectro/sim/\\1/sim_\\1_\\2.tar",
+            "dc17a-twopct/targets/[^/]+$":"dc17a-twopct/targets/dc17a-twopct_targets_files.tar",
+            "dc17a-twopct/targets/([0-9]+)/.*$":"dc17a-twopct/targets/dc17a-twopct_targets_\\1.tar"
         },
         "dc2":{
             "dc2/(batch)/.*$":"dc2/\\1.tar",
