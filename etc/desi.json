@@ -6,6 +6,10 @@
     },
     "datachallenge":{
         "exclude":[],
+        "Argonne2015":{},
+        "LSScat":{},
+        "OSU2016":{},
+        "boss2desi":{},
         "dc17a-twopct":{
             "dc17a-twopct/[^/]+$":"dc17a-twopct/dc17a-twopct_files.tar",
             "dc17a-twopct/(batch|fiberassign)/.*$":"dc17a-twopct/dc17a-twopct_\\1.tar",
@@ -21,7 +25,14 @@
             "dc2/(batch)/.*$":"dc2/\\1.tar",
             "dc2/templates/[^/]+$":"dc2/templates/templates_files.tar",
             "dc2/([^/]+\\.txt)$":"dc2/\\1"
-        }
+        },
+        "dc3":{},
+        "e2e1":{},
+        "fullsurvey2017":{},
+        "quicksurvey2016":{},
+        "quicksurvey2017":{},
+        "zdc1":{},
+        "zdc2":{}
     },
     "external":{
         "exclude":[]
