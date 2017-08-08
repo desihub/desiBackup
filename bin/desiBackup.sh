@@ -11,6 +11,7 @@ function usage() {
     echo ""
     echo "   DIR = Top-level directory to examine for backups."
     echo "    -h = Print this message and exit."
+    echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information."
     echo "    -V = Version.  Print a version string and exit."
     ) >&2
@@ -31,10 +32,12 @@ function version() {
 #
 # Get options.
 #
+testMode=''
 verbose=''
-while getopts hvV argname; do
+while getopts htvV argname; do
     case ${argname} in
         h) usage; exit 0 ;;
+        t) testMode='-t' ;;
         v) verbose='-v' ;;
         V) version; exit 0 ;;
         *) usage; exit 1 ;;
@@ -59,4 +62,8 @@ fi
 #
 # Pass options to
 #
-missing_from_hpss ${verbose} --process ${DESIBACKUP}/etc/desi.json $1
+if [[ -n "${testMode}" ]]; then
+    missing_from_hpss ${testMode} ${DESIBACKUP}/etc/desi.json $1
+else
+    missing_from_hpss ${verbose} --process ${DESIBACKUP}/etc/desi.json $1
+fi
