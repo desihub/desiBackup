@@ -19,7 +19,7 @@
             "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/spectra-([0-9]+)/([0-9]+)/.*$":"dc17a-twopct/spectro/redux/\\1/spectra-\\2/\\1_spectra-\\2_\\3.tar",
             "dc17a-twopct/spectro/sim/([0-9a-zA-Z_-]+)/([0-9]{8})/.*$":"dc17a-twopct/spectro/sim/\\1/sim_\\1_\\2.tar",
             "dc17a-twopct/targets/[^/]+$":"dc17a-twopct/targets/dc17a-twopct_targets_files.tar",
-            "dc17a-twopct/targets/([0-9])([0-9][0-9])/.*$":"dc17a-twopct/targets/dc17a-twopct_targets_\\1XX.tar"
+            "dc17a-twopct/targets/([0-9][0-9])([0-9])/.*$":"dc17a-twopct/targets/dc17a-twopct_targets_\\1X.tar"
         },
         "dc2":{
             "dc2/(batch)/.*$":"dc2/\\1.tar",
