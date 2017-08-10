@@ -5,14 +5,17 @@
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-h] [-v] [-V] DIR"
+    echo "${execName} [-c DIR] [-h] [-t] [-v] [-V] DIR"
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
-    echo "   DIR = Top-level directory to examine for backups."
+    echo "-c DIR = Set the location of the cache directory (default ${HOME}/scratch)." 
     echo "    -h = Print this message and exit."
-    echo "    -v = Verbose mode. Print lots of extra information."
+    echo "    -t = Test mode. Used to verify backup configuration."
+    echo "    -v = Verbose mode. Print lots of extra information. LOTS."
     echo "    -V = Version.  Print a version string and exit."
+    echo ""
+    echo "   DIR = Top-level directory to examine for backups."
     ) >&2
 }
 #
@@ -25,17 +28,21 @@ function version() {
     local tags=$(git describe --tags --dirty --always | cut -d- -f1)
     local revs=$(git rev-list --count HEAD)
     echo "${execName} version: ${tags}.dev${revs}"
-    # missing_from_hpss --version
+    echo "HPSSPy version:" $(missing_from_hpss --version)
     ) >&2
 }
 #
 # Get options.
 #
+cacheDir=${HOME}/scratch
+testMode='--process'
 verbose=''
-while getopts hvV argname; do
+while getopts c:htvV argname; do
     case ${argname} in
+        c) cacheDir=${OPTARG} ;;
         h) usage; exit 0 ;;
-        v) verbose='-v' ;;
+        t) testMode='--test' ;;
+        v) verbose='--verbose' ;;
         V) version; exit 0 ;;
         *) usage; exit 1 ;;
     esac
@@ -51,12 +58,13 @@ fi
 #
 # Make sure cache directory exists.
 #
-if [[ ! -d ${HOME}/scratch ]]; then
-    echo "Creating directory ${HOME}/scratch to hold backup cache files." >&2
-    [[ -n "${verbose}" ]] && echo mkdir -p ${HOME}/scratch
-    mkdir -p ${HOME}/scratch
+if [[ ! -d ${cacheDir} ]]; then
+    echo "Creating directory ${cacheDir} to hold backup cache files." >&2
+    [[ -n "${verbose}" ]] && echo mkdir -p ${cacheDir}
+    mkdir -p ${cacheDir}
 fi
 #
 # Pass options to
 #
-missing_from_hpss ${verbose} --process ${DESIBACKUP}/etc/desi.json $1
+[[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
+missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
