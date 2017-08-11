@@ -14,7 +14,7 @@ Configuring desiBackup
 
 desiBackup configuration is provided by the file ``etc/desi.json``.  
 This file is fully described in the
-`HPSSPy configuration document <http://hpsspy.readthedocs.io/en/latest/configuration.html`.
+`HPSSPy configuration document <http://hpsspy.readthedocs.io/en/latest/configuration.html>`_.
 Please be sure to read that document before editing the configuration file.
 If you need additional help with the configuration, please contact the
 DESI Data Systems mailing list.
