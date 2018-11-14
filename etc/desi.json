@@ -13,6 +13,7 @@
         "dc17a-twopct":{
             "dc17a-twopct/[^/]+$":"dc17a-twopct/dc17a-twopct_files.tar",
             "dc17a-twopct/(batch|fiberassign)/.*$":"dc17a-twopct/dc17a-twopct_\\1.tar",
+            "dc17a-twopct/spectro/redux/[^/]+$":"dc17a-twopct/spectro/redux/dc17a-twopct_spectro_redux_files.tar",
             "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/[^/]+$":"dc17a-twopct/spectro/redux/\\1/\\1_files.tar",
             "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/(QA|calib2d|plan|py|run)/.*$":"dc17a-twopct/spectro/redux/\\1/\\1_\\2.tar",
             "dc17a-twopct/spectro/redux/([0-9a-zA-Z_-]+)/exposures/([0-9]{8})/.*$":"dc17a-twopct/spectro/redux/\\1/exposures/\\1_exposures_\\2.tar",
