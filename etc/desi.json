@@ -31,6 +31,11 @@
         "fullsurvey2017":{},
         "quicksurvey2016":{},
         "quicksurvey2017":{},
+        "reference_runs":{
+            "reference_runs/([0-9.]a?|cptest)/[^/]+$":"reference_runs/\\1/reference_runs_\\1_files.tar",
+            "reference_runs/([0-9.]a?|cptest)/(fiberassign|survey|targets)/.*$":"reference_runs/\\1/reference_runs_\\1_\\2.tar",
+            "reference_runs/([0-9.]a?|cptest)/spectro/(redux|sim)/.*$":"reference_runs/\\1/reference_runs_\\1_spectro_\\2.tar"
+        },
         "zdc1":{},
         "zdc2":{}
     },
