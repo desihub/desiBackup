@@ -30,13 +30,29 @@
             "dc17a-twopct/targets/[^/]+$":"dc17a-twopct/targets/dc17a-twopct_targets_files.tar",
             "dc17a-twopct/targets/([0-9][0-9][0-9])/.*$":"dc17a-twopct/targets/dc17a-twopct_targets_\\1.tar"
         },
-        "dc17b":{},
+        "dc17b":{
+            "dc17b/[^/]+$":"dc17b/dc17b_files.tar",
+            "dc17b/(fiberassign|survey)/.*$":"dc17b/dc17b_\\1.tar",
+            "dc17b/spectro/redux/dc17b/[^/]+$":"dc17b/spectro/redux/dc17b/dc17b_spectro_redux_dc17b_files.tar",
+            "dc17b/spectro/redux/dc17b/(calib2d|plan|qa|run)/.*$":"dc17b/spectro/redux/dc17b/dc17b_spectro_redux_dc17b_\\1.tar",
+            "dc17b/spectro/redux/dc17b/exposures/([0-9]{8})/.*$":"dc17b/spectro/redux/dc17b/exposures/dc17b_spectro_redux_dc17b_exposures_\\1.tar",
+            "dc17b/spectro/redux/dc17b/spectra-64/([0-9]+)/.*$":"dc17b/spectro/redux/dc17b/spectra-64/dc17b_spectro_redux_dc17b_spectra-64_\\1.tar",
+            "dc17b/spectro/sim/dc17b/([0-9]{8})/.*$":"dc17b/spectro/sim/dc17b/dc17b_spectro_sim_dc17b_\\1.tar",
+            "dc17b/targets/[^/]+$":"dc17b/targets/dc17b_targets_files.tar",
+            "dc17b/targets/([0-9]+)/.*$":"dc17b/targets/dc17b_targets_\\1.tar"
+        },
         "dc2":{
             "dc2/(batch)/.*$":"dc2/\\1.tar",
             "dc2/templates/[^/]+$":"dc2/templates/templates_files.tar",
             "dc2/([^/]+\\.txt)$":"dc2/\\1"
         },
-        "dr5fiberassign":{},
+        "dr5fiberassign":{
+            "dr5fiberassign/[^/]+$":"dr5fiberassign/dr5fiberassign_files.tar",
+            "dr5fiberassign/single_epoch/.*$":"dr5fiberassign/dr5fiberassign_single_epoch.tar",
+            "dr5fiberassign/multiepoch/(fiberassign|scripts|survey|targets)/.*$":"dr5fiberassign/multiepoch/dr5fiberassign_multiepoch_\\1.tar",
+            "dr5fiberassign/multiepoch/zcat/[^/]+$":"dr5fiberassign/multiepoch/zcat/dr5fiberassign_multiepoch_zcat_files.tar",
+            "dr5fiberassign/multiepoch/zcat/([0-9]+)/.*$":"dr5fiberassign/multiepoch/zcat/dr5fiberassign_multiepoch_zcat_\\1.tar"
+        },
         "mockobs-18.6":{
             "mockobs-18.6/.*$":"mockobs-18.6.tar"
         },
@@ -59,7 +75,11 @@
         "redwood":{
             "redwood/(fiberassign|survey)/.*$":"redwood/redwood_\\1.tar",
             "redwood/targets/[^/]+$":"redwood/targets/redwood_targets_files.tar",
-            "redwood/targets/([0-9]+)/.*$":"redwood/targets/redwood_targets_\\1.tar"
+            "redwood/targets/([0-9]+)/.*$":"redwood/targets/redwood_targets_\\1.tar",
+            "redwood/spectro/redux/redwood/[^/]+$":"redwood/targets/redwood_spectro_redux_redwood_files.tar",
+            "redwood/spectro/redux/redwood/(exposures|preproc)/([0-9]{8})/([0-9]{8})/.*$":"redwood/spectro/redux/\\1/\\2/redwood_spectro_redux_redwood_\\1_\\2_\\3.tar",
+            "redwood/spectro/redux/redwood/(calibnight|run|spectra-64)/.*$":"redwood/spectro/redux/redwood_spectro_redux_redwood_\\1.tar",
+            "redwood/spectro/sim/.*$":"redwood/spectro/sim/redwood_spectro_sim.tar"
         },
         "reference_runs":{
             "reference_runs/([0-9.a]+|cptest)/[^/]+$":"reference_runs/\\1/reference_runs_\\1_files.tar",
@@ -80,7 +100,7 @@
         },
         "zdc2":{
             "zdc2/results/.*$":"zdc2/zdc2_results.tar",
-            "zdc2/samples/boss-(elg|gal|qso)/.*$":"zdc2/samples/zdc2_samples_boss-\\1.tar",
+            "zdc2/samples/boss-(elg|gal|qso)/.*$":"zdc2/samples/zdc2_samples_boss-\\1.tar"
         }
     },
     "external":{
@@ -95,7 +115,7 @@
     "protodesi":{
         "exclude":["README.html"],
         "images":{
-            "images/(fits|fpc|fpc_engineering_data|gfa|sti)/.*$":"images/protodesi_images_\\1.tar",
+            "images/(fits|fpc|fpc_engineering_data|fvc|gfa|sti)/.*$":"images/protodesi_images_\\1.tar",
             "images/fpc_analysis/([0-9a-zA-Z_-]+)/.*$":"images/fpc_analysis/protodesi_images_fpc_analysis_\\1.tar"
         },
         "logs":{
