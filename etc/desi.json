@@ -6,10 +6,18 @@
     },
     "datachallenge":{
         "exclude":[],
-        "Argonne2015":{},
-        "LSScat":{},
-        "OSU2016":{},
-        "boss2desi":{},
+        "Argonne2015":{
+            "Argonne2015/.*$":"Argonne2015.tar"
+        },
+        "LSScat":{
+            "LSScat/.*$":"LSScat.tar"
+        },
+        "OSU2016":{
+            "OSU2016/.*$":"OSU2016.tar"
+        },
+        "dc17a-lite":{
+            "dc17a-lite/.*$":"dc17a-lite.tar"
+        },
         "dc17a-twopct":{
             "dc17a-twopct/[^/]+$":"dc17a-twopct/dc17a-twopct_files.tar",
             "dc17a-twopct/(batch|fiberassign)/.*$":"dc17a-twopct/dc17a-twopct_\\1.tar",
@@ -22,23 +30,58 @@
             "dc17a-twopct/targets/[^/]+$":"dc17a-twopct/targets/dc17a-twopct_targets_files.tar",
             "dc17a-twopct/targets/([0-9][0-9][0-9])/.*$":"dc17a-twopct/targets/dc17a-twopct_targets_\\1.tar"
         },
+        "dc17b":{},
         "dc2":{
             "dc2/(batch)/.*$":"dc2/\\1.tar",
             "dc2/templates/[^/]+$":"dc2/templates/templates_files.tar",
             "dc2/([^/]+\\.txt)$":"dc2/\\1"
         },
-        "dc3":{},
-        "e2e1":{},
-        "fullsurvey2017":{},
-        "quicksurvey2016":{},
-        "quicksurvey2017":{},
+        "dr5fiberassign":{},
+        "mockobs-18.6":{
+            "mockobs-18.6/.*$":"mockobs-18.6.tar"
+        },
+        "quicksurvey2016":{
+            "quicksurvey2016/[^/]+$":"quicksurvey2016/quicksurvey2016_files.tar",
+            "quicksurvey2016/(input|output|plots|surveysim)/.*$":"quicksurvey2016/quicksurvey2016_\\1.tar"
+        },
+        "quicksurvey2017":{
+            "quicksurvey2017/[^/]+$":"quicksurvey2017/quicksurvey2017_files.tar",
+            "quicksurvey2017/(input|output|plots|surveysim)/.*$":"quicksurvey2017/quicksurvey2017_\\1.tar"
+        },
+        "quicksurvey2017b":{
+            "quicksurvey2017b/[^/]+$":"quicksurvey2017b/quicksurvey2017b_files.tar",
+            "quicksurvey2017b/(fiberassign|scripts|survey|targets|zcat)/.*$":"quicksurvey2017b/quicksurvey2017b_\\1.tar"
+        },
+        "quicksurvey2017c":{
+            "quicksurvey2017c/[^/]+$":"quicksurvey2017c/quicksurvey2017c_files.tar",
+            "quicksurvey2017c/(fiberassign|survey|targets|zcat)/.*$":"quicksurvey2017c/quicksurvey2017c_\\1.tar"
+        },
+        "redwood":{
+            "redwood/(fiberassign|survey)/.*$":"redwood/redwood_\\1.tar",
+            "redwood/targets/[^/]+$":"redwood/targets/redwood_targets_files.tar",
+            "redwood/targets/([0-9]+)/.*$":"redwood/targets/redwood_targets_\\1.tar"
+        },
         "reference_runs":{
             "reference_runs/([0-9.a]+|cptest)/[^/]+$":"reference_runs/\\1/reference_runs_\\1_files.tar",
             "reference_runs/([0-9.a]+|cptest)/(fiberassign|survey|targets)/.*$":"reference_runs/\\1/reference_runs_\\1_\\2.tar",
             "reference_runs/([0-9.a]+|cptest)/spectro/(redux|sim)/.*$":"reference_runs/\\1/spectro/reference_runs_\\1_spectro_\\2.tar"
         },
-        "zdc1":{},
-        "zdc2":{}
+        "surveysim2017":{
+            "surveysim2017/.*$":"surveysim2017.tar"
+        },
+        "surveysim2018":{
+            "surveysim2018/.*$":"surveysim2018.tar"
+        },
+        "svdc-summer2018":{
+            "svdc-summer2018/.*$":"svdc-summer2018.tar"
+        },
+        "zdc1":{
+            "zdc1/.*$":"zdc1.tar"
+        },
+        "zdc2":{
+            "zdc2/results/.*$":"zdc2/zdc2_results.tar",
+            "zdc2/samples/boss-(elg|gal|qso)/.*$":"zdc2/samples/zdc2_samples_boss-\\1.tar",
+        }
     },
     "external":{
         "exclude":[]
@@ -50,7 +93,14 @@
         "exclude":[]
     },
     "protodesi":{
-        "exclude":["README.html"]
+        "exclude":["README.html"],
+        "images":{
+            "images/(fits|fpc|fpc_engineering_data|gfa|sti)/.*$":"images/protodesi_images_\\1.tar",
+            "images/fpc_analysis/([0-9a-zA-Z_-]+)/.*$":"images/fpc_analysis/protodesi_images_fpc_analysis_\\1.tar"
+        },
+        "logs":{
+            "logs/.*$":"protodesi_logs.tar"
+        }
     },
     "release":{
         "exclude":[]
