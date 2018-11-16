@@ -76,6 +76,7 @@
             "redwood/(fiberassign|survey)/.*$":"redwood/redwood_\\1.tar",
             "redwood/targets/[^/]+$":"redwood/targets/redwood_targets_files.tar",
             "redwood/targets/([0-9]+)/.*$":"redwood/targets/redwood_targets_\\1.tar",
+            "redwood/targets/qa/.*$":"redwood/targets/redwood_targets_qa.tar",
             "redwood/spectro/redux/redwood/[^/]+$":"redwood/targets/redwood_spectro_redux_redwood_files.tar",
             "redwood/spectro/redux/redwood/(exposures|preproc)/([0-9]{8})/([0-9]{8})/.*$":"redwood/spectro/redux/\\1/\\2/redwood_spectro_redux_redwood_\\1_\\2_\\3.tar",
             "redwood/spectro/redux/redwood/(calibnight|run|spectra-64)/.*$":"redwood/spectro/redux/redwood_spectro_redux_redwood_\\1.tar",
@@ -110,7 +111,42 @@
         "exclude":[]
     },
     "mocks":{
-        "exclude":[]
+        "exclude":[],
+        "DarkSky":{
+            "DarkSky/.*$":"DarkSky.tar"
+        },
+        "EZmock":{
+            "EZmock/.*$":"EZmock.tar"
+        },
+        "GaussianRandomField":{
+            "GaussianRandomField/.*$":"GaussianRandomField.tar"
+        },
+        "LGal_spectra":{
+            "LGal_spectra/.*$":"LGal_spectra.tar"
+        },
+        "aemulus":{},
+        "bgs":{
+            "bgs/.*$":"bgs.tar"
+        },
+        "buzzard":{},
+        "desiqa":{},
+        "earlyQPM":{
+            "earlyQPM/.*$":"earlyQPM.tar"
+        },
+        "lightcone_galform":{
+            "lightcone_galform/.*$":"lightcone_galform.tar"
+        },
+        "lya_forest":{},
+        "mws":{},
+        "preliminary":{
+            "preliminary/.*$":"preliminary.tar"
+        },
+        "qso_v1.0":{
+            "qso_v1.0/.*$":"qso_v1.0.tar"
+        },
+        "uniformsky":{
+            "uniformsky/.*$":"uniformsky.tar"
+        }
     },
     "protodesi":{
         "exclude":["README.html"],
