@@ -77,9 +77,9 @@
             "redwood/targets/[^/]+$":"redwood/targets/redwood_targets_files.tar",
             "redwood/targets/([0-9]+)/.*$":"redwood/targets/redwood_targets_\\1.tar",
             "redwood/targets/qa/.*$":"redwood/targets/redwood_targets_qa.tar",
-            "redwood/spectro/redux/redwood/[^/]+$":"redwood/targets/redwood_spectro_redux_redwood_files.tar",
-            "redwood/spectro/redux/redwood/(exposures|preproc)/([0-9]{8})/([0-9]{8})/.*$":"redwood/spectro/redux/\\1/\\2/redwood_spectro_redux_redwood_\\1_\\2_\\3.tar",
-            "redwood/spectro/redux/redwood/(calibnight|run|spectra-64)/.*$":"redwood/spectro/redux/redwood_spectro_redux_redwood_\\1.tar",
+            "redwood/spectro/redux/redwood/[^/]+$":"redwood/spectro/redux/redwood/redwood_spectro_redux_redwood_files.tar",
+            "redwood/spectro/redux/redwood/(exposures|preproc)/([0-9]{8})/([0-9]{8})/.*$":"redwood/spectro/redux/redwood/\\1/\\2/redwood_spectro_redux_redwood_\\1_\\2_\\3.tar",
+            "redwood/spectro/redux/redwood/(calibnight|run|spectra-64)/.*$":"redwood/spectro/redux/redwood/redwood_spectro_redux_redwood_\\1.tar",
             "redwood/spectro/sim/.*$":"redwood/spectro/sim/redwood_spectro_sim.tar"
         },
         "reference_runs":{
