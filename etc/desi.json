@@ -124,12 +124,13 @@
         "LGal_spectra":{
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
-        "aemulus":{},
         "bgs":{
             "bgs/.*$":"bgs.tar"
         },
         "buzzard":{},
-        "desiqa":{},
+        "desiqa":{
+            "desiqa/.*$":"desiqa.tar"
+        },
         "earlyQPM":{
             "earlyQPM/.*$":"earlyQPM.tar"
         },
@@ -137,7 +138,10 @@
             "lightcone_galform/.*$":"lightcone_galform.tar"
         },
         "lya_forest":{},
-        "mws":{},
+        "mws":{
+            "mws/(100pc|gaiaDR1quick|small_galaxia|wd|wd100pc)/.*$":"mws/mws_\\1.tar",
+            "mws/galaxia/alpha/(v0.0.6|v0.0.6_superfaint)/healpix/([0-9])/([0-9])/.*$":"mws/galaxia/alpha/\\1/healpix/\\2/mws_galaxia_alpha_\\1_healpix_\\2_\\3.tar"
+        },
         "preliminary":{
             "preliminary/.*$":"preliminary.tar"
         },
