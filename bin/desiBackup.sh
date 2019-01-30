@@ -9,7 +9,7 @@ function usage() {
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
-    echo "-c DIR = Set the location of the cache directory (default ${HOME}/scratch)." 
+    echo "-c DIR = Set the location of the cache directory (default ${HOME}/cache)."
     echo "    -h = Print this message and exit."
     echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information. LOTS."
@@ -34,7 +34,7 @@ function version() {
 #
 # Get options.
 #
-cacheDir=${HOME}/scratch
+cacheDir=${HOME}/cache
 testMode='--process'
 verbose=''
 while getopts c:htvV argname; do
