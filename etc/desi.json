@@ -193,6 +193,10 @@
         "exclude":[]
     },
     "target":{
-        "exclude":["README.html"]
+        "exclude":["README.html"],
+        "cmx_files":{
+            "cmx_files/.*$":"cmx_files.tar"
+        },
+        "secondary":{}
     }
 }
