@@ -64,7 +64,19 @@ if [[ ! -d ${cacheDir} ]]; then
     mkdir -p ${cacheDir}
 fi
 #
-# Pass options to
+# All directories?
 #
-[[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
-missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
+if [[ "$1" == "ALL" ]]; then
+    sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
+               sed -r 's/^    "([^"]+)":\{/\1/' | \
+               grep -v config)
+else
+    sections=$1
+fi
+#
+# Run on directory.
+#
+for d in sections; do
+    [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+    missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+done
