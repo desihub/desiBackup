@@ -76,7 +76,7 @@ fi
 #
 # Run on directory.
 #
-for d in sections; do
+for d in ${sections}; do
     [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
     missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
 done
