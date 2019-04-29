@@ -4,6 +4,12 @@
         "hpss_root":"/nersc/projects/desi",
         "physical_disks":["desi"]
     },
+    "cmx":{
+        "exclude":[]
+    },
+    "cosmosim":{
+        "exclude":[]
+    },
     "datachallenge":{
         "exclude":[],
         "Argonne2015":{
@@ -104,10 +110,16 @@
             "zdc2/samples/boss-(elg|gal|qso)/.*$":"zdc2/samples/zdc2_samples_boss-\\1.tar"
         }
     },
+    "engineering":{
+        "exclude":[]
+    },
     "external":{
         "exclude":[]
     },
     "imaging":{
+        "exclude":[]
+    },
+    "metadata":{
         "exclude":[]
     },
     "mocks":{
@@ -170,6 +182,12 @@
     "release":{
         "exclude":[]
     },
+    "science":{
+        "exclude":[]
+    },
+    "software":{
+        "exclude":[]
+    },
     "spectro":{
         "exclude":["README.html"],
         "data":{
@@ -198,5 +216,11 @@
             "cmx_files/.*$":"cmx_files.tar"
         },
         "secondary":{}
+    },
+    "users":{
+        "exclude":[]
+    },
+    "www":{
+        "exclude":[]
     }
 }
