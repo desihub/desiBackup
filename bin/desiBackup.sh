@@ -5,13 +5,13 @@
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-c DIR] [-h] [-p] [-t] [-v] [-V] DIR"
+    echo "${execName} [-c DIR] [-h] [-P] [-t] [-v] [-V] DIR"
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
     echo "-c DIR = Set the location of the cache directory (default ${HOME}/cache)."
     echo "    -h = Print this message and exit."
-    echo "    -p = Process. Issue hsi/htar commands to actually perform backups."
+    echo "    -P = Do NOT issue hsi/htar commands to actually perform backups."
     echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information. LOTS."
     echo "    -V = Version.  Print a version string and exit."
@@ -37,13 +37,13 @@ function version() {
 #
 cacheDir=${HOME}/cache
 testMode=''
-process=''
+process='--process'
 verbose=''
-while getopts c:hptvV argname; do
+while getopts c:hPtvV argname; do
     case ${argname} in
         c) cacheDir=${OPTARG} ;;
         h) usage; exit 0 ;;
-        p) process='--process' ;;
+        P) process='' ;;
         t) testMode='--test' ;;
         v) verbose='--verbose' ;;
         V) version; exit 0 ;;
