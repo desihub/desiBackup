@@ -5,10 +5,16 @@
         "physical_disks":["desi"]
     },
     "cmx":{
-        "exclude":[]
+        "exclude":["README"],
+        "ci":{
+        }
     },
     "cosmosim":{
-        "exclude":[]
+        "exclude":[],
+        "ELG_HOD":{
+        },
+        "proto_sim":{
+        }
     },
     "datachallenge":{
         "exclude":[],
@@ -62,6 +68,8 @@
         "mockobs-18.6":{
             "mockobs-18.6/.*$":"mockobs-18.6.tar"
         },
+        "quicklook":{
+        },
         "quicksurvey2016":{
             "quicksurvey2016/[^/]+$":"quicksurvey2016/quicksurvey2016_files.tar",
             "quicksurvey2016/(input|output|plots|surveysim)/.*$":"quicksurvey2016/quicksurvey2016_\\1.tar"
@@ -93,6 +101,8 @@
             "reference_runs/([0-9.a]+|cptest)/(fiberassign|survey|targets)/.*$":"reference_runs/\\1/reference_runs_\\1_\\2.tar",
             "reference_runs/([0-9.a]+|cptest)/spectro/(redux|sim)/.*$":"reference_runs/\\1/spectro/reference_runs_\\1_spectro_\\2.tar"
         },
+        "staging":{
+        },
         "surveysim2017":{
             "surveysim2017/.*$":"surveysim2017.tar"
         },
@@ -111,16 +121,25 @@
         }
     },
     "engineering":{
-        "exclude":[]
+        "exclude":[],
+        "focalplane":{
+        },
+        "gfa":{
+        },
+        "pfa":{
+        },
+        "pfa2positioner":{
+        },
+        "spectrograph":{
+        },
+        "svn_export_focalplane_12302018":{
+        }
     },
     "external":{
-        "exclude":[]
-    },
-    "imaging":{
-        "exclude":[]
+        "exclude":["README"]
     },
     "metadata":{
-        "exclude":[]
+        "exclude":["README.html","scan_README.txt"]
     },
     "mocks":{
         "exclude":[],
@@ -153,7 +172,8 @@
         "lightcone_galform":{
             "lightcone_galform/.*$":"lightcone_galform.tar"
         },
-        "lya_forest":{},
+        "lya_forest":{
+        },
         "mws":{
             "mws/(100pc|gaiaDR1quick|small_galaxia|wd|wd100pc)/.*$":"mws/mws_\\1.tar",
             "mws/galaxia/alpha/v0.0.6/READ_ME":"mws/galaxia/alpha/v0.0.6/READ_ME",
@@ -183,18 +203,41 @@
         "exclude":[]
     },
     "science":{
-        "exclude":[]
+        "exclude":["README"],
+        "bgs":{
+        },
+        "c3":{
+        },
+        "gqc":{
+        },
+        "lya":{
+        },
+        "mws":{
+        }
     },
     "software":{
         "exclude":[]
     },
     "spectro":{
         "exclude":["README.html"],
-        "data":{
+        "StrayLight":{
         },
-        "exposures":{
+        "ZemaxSimulation":{
+        },
+        "calib":{
+        },
+        "ccd_calibration_data":{
+        },
+        "data":{
+            "data/([0-9]+)/.*$":"data/desi_spectro_data_\\1.tar"
+        },
+        "desi_spectro_calib":{
+        },
+        "ql_calib":{
         },
         "quickcat":{
+        },
+        "quicklook":{
         },
         "redux":{
             "redux/sjb/dogwood/.*$":"redux/sjb/dogwood.tar",
@@ -202,20 +245,49 @@
         },
         "sim":{
         },
+        "staging":{
+        },
         "templates":{
+        },
+        "testdata":{
         },
         "teststand":{
         }
     },
     "survey":{
-        "exclude":[]
+        "exclude":[],
+        "planning":{
+        },
+        "sims":{
+        }
     },
     "target":{
         "exclude":["README.html"],
+        "RF_files":{
+        },
+        "analysis":{
+        },
+        "catalogs":{
+        },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
         },
-        "secondary":{}
+        "elg_targets_dr3":{
+        },
+        "fiberassign":{
+        },
+        "gaia_dr2":{
+        },
+        "gaia_dr2_match_dr6":{
+        },
+        "qso_targets_dr3":{
+        },
+        "qso_training":{
+        },
+        "secondary":{
+        },
+        "stripe82-dr2":{
+        }
     },
     "users":{
         "exclude":[]

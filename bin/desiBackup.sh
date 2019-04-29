@@ -5,12 +5,13 @@
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-c DIR] [-h] [-t] [-v] [-V] DIR"
+    echo "${execName} [-c DIR] [-h] [-p] [-t] [-v] [-V] DIR"
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
     echo "-c DIR = Set the location of the cache directory (default ${HOME}/cache)."
     echo "    -h = Print this message and exit."
+    echo "    -p = Process. Issue hsi/htar commands to actually perform backups."
     echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information. LOTS."
     echo "    -V = Version.  Print a version string and exit."
@@ -35,12 +36,14 @@ function version() {
 # Get options.
 #
 cacheDir=${HOME}/cache
-testMode='--process'
+testMode=''
+process=''
 verbose=''
-while getopts c:htvV argname; do
+while getopts c:hptvV argname; do
     case ${argname} in
         c) cacheDir=${OPTARG} ;;
         h) usage; exit 0 ;;
+        p) process='--process' ;;
         t) testMode='--test' ;;
         v) verbose='--verbose' ;;
         V) version; exit 0 ;;
@@ -77,6 +80,6 @@ fi
 # Run on directory.
 #
 for d in ${sections}; do
-    [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
-    missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+    [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} ${process} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+    missing_from_hpss ${verbose} ${testMode} ${process} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
 done
