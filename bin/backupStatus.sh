@@ -110,11 +110,12 @@ fi
 #
 # Start the HTML table.
 #
-[[ -f ${cacheDir}/index.html ]] && /bin/rm -f ${cacheDir}/index.html
+o=${cacheDir}/index.html.tmp
+[[ -f ${o} ]] && rm -f ${o}
 timestamp=$(date '+%Y-%m-%d %H:%M:%S %Z')
 cutLine=$(grep --line-number "INSERT CONTENT HERE" ${DESIBACKUP}/etc/backupStatus.html | cut -d: -f1)
 head -$((cutLine - 1)) ${DESIBACKUP}/etc/backupStatus.html | \
-    sed "s%<caption>Last Update: DATE</caption>%<caption>Last Update: ${timestamp}</caption>%" > ${cacheDir}/index.html
+    sed "s%<caption>Last Update: DATE</caption>%<caption>Last Update: ${timestamp}</caption>%" > ${o}
 #
 # Check all sections in desi.json.
 #
@@ -130,15 +131,15 @@ COMMENTS
 )
 for d in ${sections}; do
     if [[ "${d}" == "external" ]]; then
-        row ${d} COMPLETE False 'Deprecated, empty directory.' ${cacheDir}/index.html
+        row ${d} COMPLETE False 'Deprecated, empty directory.' ${o}
     elif [[ "${d}" == "release" ]]; then
-        row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${cacheDir}/index.html
+        row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
     elif [[ "${d}" == "software" ]]; then
-        row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${cacheDir}/index.html
+        row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${o}
     elif [[ "${d}" == "users" ]]; then
-        row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.' ${cacheDir}/index.html
+        row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.' ${o}
     else
-        [[ -f ${cacheDir}/missing_files_${d}.log ]] && /bin/rm -f ${cacheDir}/missing_files_${d}.log
+        [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
         [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
         missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
         hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
@@ -147,21 +148,24 @@ for d in ${sections}; do
         comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
         if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='Not configured for backup.'
-            row ${d} 'NO CONFIGURATION' True "${comment}" ${cacheDir}/index.html
+            row ${d} 'NO CONFIGURATION' True "${comment}" ${o}
         elif [[ -n "${hpss_files}" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='No missing files found.'
-            row ${d} COMPLETE True "${comment}" ${cacheDir}/index.html
+            row ${d} COMPLETE True "${comment}" ${o}
         else
             [[ -z "${comment}" ]] && comment='In progress.'
-            row ${d} 'IN PROGRESS' True "${comment}" ${cacheDir}/index.html
+            row ${d} 'IN PROGRESS' True "${comment}" ${o}
         fi
     fi
 done
 #
 # Finish the HTML table.
 #
-tail -n +$((cutLine - 1)) ${DESIBACKUP}/etc/backupStatus.html >> ${cacheDir}/index.html
+tail -n +$((cutLine + 1)) ${DESIBACKUP}/etc/backupStatus.html >> ${o}
+[[ -n "${verbose}" ]] && echo mv -f ${o} ${cacheDir}/index.html >&2
+mv -f ${o} ${cacheDir}/index.html
 #
 # Make sure the files are readable.
 #
+[[ -n "${verbose}" ]] && echo "chmod o+r ${cacheDir}/*" >&2
 chmod o+r ${cacheDir}/*

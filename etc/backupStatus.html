@@ -12,7 +12,7 @@
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript" src="desiBackup.js"></script> -->
+    <!-- <script type="text/javascript" src="backupStatus.js"></script> -->
     <style type="text/css">
     html { overflow-y: scroll; }
     </style>
@@ -21,14 +21,41 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h1>DESI Backup Status</h1>
+                <h1 id="Top">DESI Backup Status</h1>
             </div><!-- end class="col-12" -->
         </div><!-- end class="row" -->
         <div id="content">
             <div class="row">
                 <div class="col-12">
-                    <h2>Backup Status Table</h2>
-                    <p>Documentation</p>
+                    <h2 id="status">Backup Status Table</h2>
+                    <p>This page describes the state of backups of DESI data to
+                        <a href="https://www.nersc.gov/systems/hpss-data-archive/">HPSS</a>.
+                        Each row in the table below corresponds to a top-level directory in
+                        <code>/global/project/projectdirs/desi</code>.
+                        On HPSS, the top-level DESI directory is <code>/nersc/projects/desi</code>.
+                        Backup files and directories below are relative to this directory.
+                        See <a href="https://desi.lbl.gov/trac/wiki/Pipeline/Backups">DESI Trac Wiki</a>
+                        for more details.
+                    </p>
+                    <p>The "Status" column below is set according to these definitions:</p>
+                    <dl class="row">
+                        <dt class="col-sm-2 table-danger">NO CONFIGURATION</dt>
+                        <dd class="col-sm-10">The Data Management team needs to
+                            examine the contents of this directory and determine
+                            the best configuration for backups.  In some cases,
+                            the backups will be automated; in other cases, the
+                            backups will be one-off, "by-hand" backups.</dd>
+                        <dt class="col-sm-2 table-warning">IN PROGRESS</dt>
+                        <dd class="col-sm-10">The directory is at least partially
+                            backed up, through automation or otherwise.
+                            Some subdirectories might not be configured for backup.</dd>
+                        <dt class="col-sm-2 table-success">COMPLETE</dt>
+                        <dd class="col-sm-10">All files on disk are backed up.  In some cases this indicates a completely static data set.</dd>
+                        <dt class="col-sm-2 table-info">NO BACKUP/DATA</dt>
+                        <dd class="col-sm-10">A directory is deliberately not
+                            backed up for a specific reason, or it is an
+                            empty placeholder that may contain data in the future.</dd>
+                    </dl>
                     <table class="table table-bordered">
                         <caption>Last Update: DATE</caption>
                         <thead>
@@ -36,150 +63,6 @@
                         </thead>
                         <tbody>
                             <!-- INSERT CONTENT HERE -->
-                            <tr>
-                                <td>cmx/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_cmx.csv" title="disk_files_cmx.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_cmx.txt" title="hpss_files_cmx.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cmx.json" title="missing_files_cmx.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cmx.log" title="missing_files_cmx.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>cosmosim/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_cosmosim.csv" title="disk_files_cosmosim.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_cosmosim.txt" title="hpss_files_cosmosim.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cosmosim.json" title="missing_files_cosmosim.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cosmosim.log" title="missing_files_cosmosim.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>datachallenge/</td>
-                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_datachallenge.csv" title="disk_files_datachallenge.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_datachallenge.txt" title="hpss_files_datachallenge.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_datachallenge.json" title="missing_files_datachallenge.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_datachallenge.log" title="missing_files_datachallenge.log">LOG</a></td>
-                                <td><code>quicklook</code> is missing.</td>
-                            </tr>
-                            <tr>
-                                <td>engineering/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_engineering.csv" title="disk_files_engineering.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_engineering.txt" title="hpss_files_engineering.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_engineering.json" title="missing_files_engineering.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_engineering.log" title="missing_files_engineering.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>external/</td>
-                                <td class="table-success"><strong>COMPLETE</strong></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
-                                <td>Deprecated, empty directory.</td>
-                            </tr>
-                            <tr>
-                                <td>metadata/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_metadata.csv" title="disk_files_metadata.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_metadata.txt" title="hpss_files_metadata.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_metadata.json" title="missing_files_metadata.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_metadata.log" title="missing_files_metadata.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>mocks/</td>
-                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_mocks.csv" title="disk_files_mocks.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_mocks.txt" title="hpss_files_mocks.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_mocks.json" title="missing_files_mocks.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_mocks.log" title="missing_files_mocks.log">LOG</a></td>
-                                <td><code>lya_forest</code> is missing.</td>
-                            </tr>
-                            <tr>
-                                <td>protodesi/</td>
-                                <td class="table-success"><strong>COMPLETE</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_protodesi.csv" title="disk_files_protodesi.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_protodesi.txt" title="hpss_files_protodesi.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_protodesi.json" title="missing_files_protodesi.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_protodesi.log" title="missing_files_protodesi.log">LOG</a></td>
-                                <td>No missing files found.</td>
-                            </tr>
-                            <tr>
-                                <td>release/</td>
-                                <td class="table-info"><strong>NO DATA</strong></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
-                                <td>Empty directory, no results yet!</td>
-                            </tr>
-                            <tr>
-                                <td>science/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_science.csv" title="disk_files_science.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_science.txt" title="hpss_files_science.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_science.json" title="missing_files_science.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_science.log" title="missing_files_science.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>software/</td>
-                                <td class="table-info"><strong>NO BACKUP</strong></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
-                                <td>Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.</td>
-                            </tr>
-                            <tr>
-                                <td>spectro/</td>
-                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_spectro.csv" title="disk_files_spectro.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_spectro.txt" title="hpss_files_spectro.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_spectro.json" title="missing_files_spectro.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_spectro.log" title="missing_files_spectro.log">LOG</a></td>
-                                <td>Only partially configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>survey/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_survey.csv" title="disk_files_survey.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_survey.txt" title="hpss_files_survey.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_survey.json" title="missing_files_survey.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_survey.log" title="missing_files_survey.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>target/</td>
-                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_target.csv" title="disk_files_target.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_target.txt" title="hpss_files_target.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_target.json" title="missing_files_target.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_target.log" title="missing_files_target.log">LOG</a></td>
-                                <td>Only <code>cmx_files</code> is configured for backup.</td>
-                            </tr>
-                            <tr>
-                                <td>users/</td>
-                                <td class="table-info"><strong>NO BACKUP</strong></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
-                                <td>The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.</td>
-                            </tr>
-                            <tr>
-                                <td>www/</td>
-                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_www.csv" title="disk_files_www.csv">CSV</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_www.txt" title="hpss_files_www.txt">TXT</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_www.json" title="missing_files_www.json">JSON</a></td>
-                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_www.log" title="missing_files_www.log">LOG</a></td>
-                                <td>Not configured for backup.</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div><!-- end class="col-12" -->
@@ -187,7 +70,7 @@
         </div><!-- end id="content" -->
         <div class="row">
             <div class="col-12">
-                <h2>Other Backups</h2>
+                <h2 id="status">Other Backups</h2>
                 <p>These backups <em>no longer</em> correspond to any top-level data directory at NERSC.</p>
                 <ul>
                     <li>bigboss/
