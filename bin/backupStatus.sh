@@ -155,3 +155,8 @@ done
 # Make sure the files are readable.
 #
 chmod o+r ${cacheDir}/*
+#
+#
+#
+timestamp=$(date '+%Y-%m-%d %H:%M:%S %Z')
+sed "s%<caption>Last Update: DATE</caption>%<caption>Last Update: ${timestamp}</caption>" ${DESIBACKUP}/etc/backupStatus.html > ${cacheDir}/index.html
