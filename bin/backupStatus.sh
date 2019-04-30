@@ -7,19 +7,15 @@ function usage() {
     local c=$1
     local execName=$(basename $0)
     (
-    # echo "${execName} [-c DIR] [-h] [-P] [-t] [-v] [-V] DIR"
-    echo "${execName} [-c DIR] [-h] [-v] [-V]"
+    echo "${execName} [-c DIR] [-f] [-h] [-v] [-V]"
     echo ""
     echo "Report status of DESI backups on HPSS."
     echo ""
     echo "-c DIR = Set the location of the cache directory (default ${c})."
+    echo "    -f = Fast mode.  Regenerate status based on existing cache files."
     echo "    -h = Print this message and exit."
-    # echo "    -P = Do NOT issue hsi/htar commands to actually perform backups."
-    # echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information. LOTS."
     echo "    -V = Version.  Print a version string and exit."
-    # echo ""
-    # echo "   DIR = Top-level directory to examine for backups."
     ) >&2
 }
 #
@@ -81,16 +77,13 @@ function row() {
 # Get options.
 #
 cacheDir=/global/project/projectdirs/desi/www/collab/backups
-# testMode=''
-# process='--process'
+fastMode=''
 verbose=''
-# while getopts c:hPtvV argname; do
-while getopts c:hvV argname; do
+while getopts c:fhvV argname; do
     case ${argname} in
         c) cacheDir=${OPTARG} ;;
+        f) fastMode=True ;;
         h) usage ${cacheDir}; exit 0 ;;
-        # P) process='' ;;
-        # t) testMode='--test' ;;
         v) verbose='--verbose' ;;
         V) version; exit 0 ;;
         *) usage ${cacheDir}; exit 1 ;;
@@ -140,8 +133,10 @@ for d in ${sections}; do
         row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.' ${o}
     else
         [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
-        [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
-        missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
+        if [[ -n "${fastMode}" ]]; then
+            [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
+            missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
+        fi
         hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(<${cacheDir}/missing_files_${d}.log)
