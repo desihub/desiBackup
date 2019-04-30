@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" type="text/css"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" title="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="dts_status.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="dts_status.css" title="dts_status.css" /> -->
     <script type="text/javascript"
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <h1>DESI Backup Status</h1>
@@ -33,25 +33,153 @@
                     <table class="table table-bordered">
                         <caption>Backup Status Table</caption>
                         <thead>
-                            <tr><th>Directory</th><th>Status</th><th>Comments</th></tr>
+                            <tr><th>Directory</th><th>Status</th><th>Files on Disk</th><th>Files on HPSS</th><th>Potential Backups</th><th>Log</th><th>Comments</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>cmx/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>cosmosim/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>datachallenge/</td><td class="table-warning"><strong>IN PROGRESS</strong></td><td><code>quicklook</code> is missing.</td></tr>
-                            <tr><td>engineering/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>external/</td><td class="table-success"><strong>COMPLETE</strong></td><td>Deprecated, empty directory.</td></tr>
-                            <tr><td>metadata/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>mocks/</td><td class="table-warning"><strong>IN PROGRESS</strong></td><td><code>lya_forest</code> is missing.</td></tr>
-                            <tr><td>protodesi/</td><td class="table-success"><strong>COMPLETE</strong></td><td>No missing files found.</td></tr>
-                            <tr><td>release/</td><td class="table-info"><strong>NO DATA</strong></td><td>Empty directory, no results yet!</td></tr>
-                            <tr><td>science/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>software/</td><td class="table-info"><strong>NO BACKUP</strong></td><td>Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.</td></tr>
-                            <tr><td>spectro/</td><td class="table-warning"><strong>IN PROGRESS</strong></td><td>Only partially configured for backup.</td></tr>
-                            <tr><td>survey/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
-                            <tr><td>target/</td><td class="table-warning"><strong>IN PROGRESS</strong></td><td>Only <code>cmx_files</code> is configured for backup.</td></tr>
-                            <tr><td>users/</td><td class="table-info"><strong>NO BACKUP</strong></td><td>The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.</td></tr>
-                            <tr><td>www/</td><td class="table-danger"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>
+                            <tr>
+                                <td>cmx/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_cmx.csv" title="disk_files_cmx.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_cmx.txt" title="hpss_files_cmx.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cmx.json" title="missing_files_cmx.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cmx.log" title="missing_files_cmx.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>cosmosim/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_cosmosim.csv" title="disk_files_cosmosim.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_cosmosim.txt" title="hpss_files_cosmosim.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cosmosim.json" title="missing_files_cosmosim.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_cosmosim.log" title="missing_files_cosmosim.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>datachallenge/</td>
+                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_datachallenge.csv" title="disk_files_datachallenge.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_datachallenge.txt" title="hpss_files_datachallenge.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_datachallenge.json" title="missing_files_datachallenge.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_datachallenge.log" title="missing_files_datachallenge.log">LOG</a></td>
+                                <td><code>quicklook</code> is missing.</td>
+                            </tr>
+                            <tr>
+                                <td>engineering/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_engineering.csv" title="disk_files_engineering.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_engineering.txt" title="hpss_files_engineering.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_engineering.json" title="missing_files_engineering.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_engineering.log" title="missing_files_engineering.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>external/</td>
+                                <td class="table-success"><strong>COMPLETE</strong></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
+                                <td>Deprecated, empty directory.</td>
+                            </tr>
+                            <tr>
+                                <td>metadata/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_metadata.csv" title="disk_files_metadata.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_metadata.txt" title="hpss_files_metadata.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_metadata.json" title="missing_files_metadata.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_metadata.log" title="missing_files_metadata.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>mocks/</td>
+                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_mocks.csv" title="disk_files_mocks.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_mocks.txt" title="hpss_files_mocks.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_mocks.json" title="missing_files_mocks.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_mocks.log" title="missing_files_mocks.log">LOG</a></td>
+                                <td><code>lya_forest</code> is missing.</td>
+                            </tr>
+                            <tr>
+                                <td>protodesi/</td>
+                                <td class="table-success"><strong>COMPLETE</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_protodesi.csv" title="disk_files_protodesi.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_protodesi.txt" title="hpss_files_protodesi.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_protodesi.json" title="missing_files_protodesi.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_protodesi.log" title="missing_files_protodesi.log">LOG</a></td>
+                                <td>No missing files found.</td>
+                            </tr>
+                            <tr>
+                                <td>release/</td>
+                                <td class="table-info"><strong>NO DATA</strong></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
+                                <td>Empty directory, no results yet!</td>
+                            </tr>
+                            <tr>
+                                <td>science/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_science.csv" title="disk_files_science.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_science.txt" title="hpss_files_science.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_science.json" title="missing_files_science.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_science.log" title="missing_files_science.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>software/</td>
+                                <td class="table-info"><strong>NO BACKUP</strong></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
+                                <td>Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.</td>
+                            </tr>
+                            <tr>
+                                <td>spectro/</td>
+                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_spectro.csv" title="disk_files_spectro.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_spectro.txt" title="hpss_files_spectro.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_spectro.json" title="missing_files_spectro.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_spectro.log" title="missing_files_spectro.log">LOG</a></td>
+                                <td>Only partially configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>survey/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_survey.csv" title="disk_files_survey.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_survey.txt" title="hpss_files_survey.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_survey.json" title="missing_files_survey.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_survey.log" title="missing_files_survey.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>target/</td>
+                                <td class="table-warning"><strong>IN PROGRESS</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_target.csv" title="disk_files_target.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_target.txt" title="hpss_files_target.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_target.json" title="missing_files_target.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_target.log" title="missing_files_target.log">LOG</a></td>
+                                <td>Only <code>cmx_files</code> is configured for backup.</td>
+                            </tr>
+                            <tr>
+                                <td>users/</td>
+                                <td class="table-info"><strong>NO BACKUP</strong></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-light" role="button" href="#" title="Status not run.">LOG</a></td>
+                                <td>The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.</td>
+                            </tr>
+                            <tr>
+                                <td>www/</td>
+                                <td class="table-danger"><strong>NO CONFIGURATION</strong></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="disk_files_www.csv" title="disk_files_www.csv">CSV</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="hpss_files_www.txt" title="hpss_files_www.txt">TXT</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_www.json" title="missing_files_www.json">JSON</a></td>
+                                <td><a class="btn btn-sm btn-outline-primary" role="button" href="missing_files_www.log" title="missing_files_www.log">LOG</a></td>
+                                <td>Not configured for backup.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div><!-- end class="col-12" -->

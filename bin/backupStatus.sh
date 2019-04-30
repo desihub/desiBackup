@@ -35,9 +35,50 @@ function version() {
     ) >&2
 }
 #
+# Table formatting.
+#
+function row() {
+    local d=$1
+    local s=$2
+    local n=$3
+    local c=$4
+    local space='                            '
+    local tcls=''
+    if [[ "${s}" == "COMPLETE" ]]; then
+        tcls='success'
+    elif [[ "${s}" == "NO DATA" ]]; then
+        tcls='info'
+    elif [[ "${s}" == "NO BACKUP" ]]; then
+        tcls='info'
+    elif [[ "${s}" == "IN PROGRESS" ]]; then
+        tcls='warning'
+    elif [[ "${s}" == "NO CONFIGURATION" ]]; then
+        tcls='danger'
+    else
+        echo 'Unknown status!'
+        return
+    fi
+    echo "${space}<tr>"
+    echo "${space}    <td>${d}/</td>"
+    echo "${space}    <td class=\"table-${tcls}\"><strong>${s}</strong></td>"
+    if [[ "${n}" == "False" ]]; then
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">CSV</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">TXT</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">JSON</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">LOG</a></td>"
+    else
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"disk_files_${d}.csv\" title=\"disk_files_${d}.csv\">CSV</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.txt\" title=\"hpss_files_${d}.txt\">TXT</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.json\" title=\"missing_files_${d}.json\">JSON</a></td>"
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.log\" title=\"missing_files_${d}.log\">LOG</a></td>"
+    fi
+    echo "${space}    <td>${c}</td>"
+    echo "${space}</tr>"
+}
+#
 # Get options.
 #
-cacheDir=${HOME}/cache
+cacheDir=/global/project/projectdirs/desi/www/collab/backups
 # testMode=''
 # process='--process'
 verbose=''
@@ -61,6 +102,7 @@ if [[ ! -d ${cacheDir} ]]; then
     echo "Creating directory ${cacheDir} to hold backup cache files." >&2
     [[ -n "${verbose}" ]] && echo mkdir -p ${cacheDir}
     mkdir -p ${cacheDir}
+    chmod o+rx ${cacheDir}
 fi
 #
 # Check all sections in desi.json.
@@ -68,26 +110,6 @@ fi
 sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            sed -r 's/^    "([^"]+)":\{/\1/' | \
            grep -v config)
-space='                            '
-for d in ${sections}; do
-    if [[ "${d}" == "external" ]]; then
-        echo "${space}<tr><td>${d}/</td><td class=\"table-success\"><strong>COMPLETE</strong></td><td>Deprecated, empty directory.</td></tr>"
-    elif [[ "${d}" == "release" ]]; then
-        echo "${space}<tr><td>${d}/</td><td class=\"table-info\"><strong>NO DATA</strong></td><td>Empty directory, no results yet!</td></tr>"
-    elif [[ "${d}" == "software" ]]; then
-        echo "${space}<tr><td>${d}/</td><td class=\"table-info\"><strong>NO BACKUP</strong></td><td>Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.</td></tr>"
-    elif [[ "${d}" == "users" ]]; then
-        echo "${space}<tr><td>${d}/</td><td class=\"table-info\"><strong>NO BACKUP</strong></td><td>The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.</td></tr>"
-    else
-        [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
-        log=$(missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d})
-        hpss_files=$(<${HOME}/cache/hpss_files_${d}.txt)
-        missing_files=$(<${HOME}/cache/hpss_files_${d}.txt)
-        if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
-            echo "${space}<tr><td>${d}/</td><td class=\"table-danger\"><strong>NO CONFIGURATION</strong></td><td>Not configured for backup.</td></tr>"
-        fi
-    fi
-done
 # cmx: not configured for backup
 # cosmosim: not configured for backup
 # datachallenge:  AUTOFILL
@@ -104,3 +126,32 @@ done
 # target: AUTOFILL
 # users: deliberately excluded from backup.
 # www: not configured for backup
+for d in ${sections}; do
+    if [[ "${d}" == "external" ]]; then
+        row ${d} COMPLETE False 'Deprecated, empty directory.'
+    elif [[ "${d}" == "release" ]]; then
+        row ${d} 'NO DATA' False 'Empty directory, no results yet!'
+    elif [[ "${d}" == "software" ]]; then
+        row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.'
+    elif [[ "${d}" == "users" ]]; then
+        row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.'
+    else
+        [[ -f ${cacheDir}/missing_files_${d}.log ]] && /bin/rm -f ${cacheDir}/missing_files_${d}.log
+        [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+        missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
+        hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
+        missing_files=$(<${cacheDir}/missing_files_${d}.json)
+        missing_log=$(<${cacheDir}/missing_files_${d}.log)
+        if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
+            row ${d} 'NO CONFIGURATION' True 'Not configured for backup.'
+        elif [[ -n "${hpss_files}" && "${missing_files}" == "{}" ]]; then
+            row ${d} COMPLETE True 'No missing files found.'
+        else
+            row ${d} 'IN PROGRESS' True 'In progress.'
+        fi
+    fi
+done
+#
+# Make sure the files are readable.
+#
+chmod o+r ${cacheDir}/*
