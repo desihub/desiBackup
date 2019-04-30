@@ -139,7 +139,7 @@ for d in ${sections}; do
         fi
         hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
-        missing_log=$(<${cacheDir}/missing_files_${d}.log)
+        missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
         comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
         if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='Not configured for backup.'
