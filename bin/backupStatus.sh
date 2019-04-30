@@ -114,7 +114,7 @@ fi
 timestamp=$(date '+%Y-%m-%d %H:%M:%S %Z')
 cutLine=$(grep --line-number "INSERT CONTENT HERE" ${DESIBACKUP}/etc/backupStatus.html | cut -d: -f1)
 head -$((cutLine - 1)) ${DESIBACKUP}/etc/backupStatus.html | \
-    sed "s%<caption>Last Update: DATE</caption>%<caption>Last Update: ${timestamp}</caption>" > ${cacheDir}/index.html
+    sed "s%<caption>Last Update: DATE</caption>%<caption>Last Update: ${timestamp}</caption>%" > ${cacheDir}/index.html
 #
 # Check all sections in desi.json.
 #
