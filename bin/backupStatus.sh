@@ -123,8 +123,8 @@ target:Only <code>cmx_files</code> is configured for backup.
 COMMENTS
 )
 for d in ${sections}; do
-    if [[ "${d}" == "external" ]]; then
-        row ${d} COMPLETE False 'Deprecated, empty directory.' ${o}
+    if [[ "${d}" == "metadata" ]]; then
+        row ${d} 'NO BACKUP' False 'Directory tree scans provided by NERSC. It is more useful to have these backed up off-site.' ${o}
     elif [[ "${d}" == "release" ]]; then
         row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
     elif [[ "${d}" == "software" ]]; then

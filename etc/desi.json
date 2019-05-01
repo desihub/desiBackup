@@ -135,9 +135,6 @@
         "svn_export_focalplane_12302018":{
         }
     },
-    "external":{
-        "exclude":["README"]
-    },
     "metadata":{
         "exclude":["README.html","scan_README.txt"]
     },
