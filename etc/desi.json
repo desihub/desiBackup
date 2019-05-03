@@ -172,7 +172,9 @@
         "lya_forest":{
             "lya_forest/london/v4\\.2\\.0/[^/]+$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_files.tar",
             "lya_forest/london/v4\\.2\\.0/([0-9]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_\\1.tar",
-            "lya_forest/london/v4\\.2\\.0/quick-([0-9.]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_quick-\\1.tar"
+            "lya_forest/london/v4\\.2\\.0/quick-([0-9.]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_quick-\\1.tar",
+            "lya_forest/saclay/v4\\.2/.*$":"lya_forest/saclay/lya_forest_saclay_v4.2.tar",
+            "lya_forest/saclay/v4\\.4/v4\\.4\\.([0-9]+)/.*$":"lya_forest/saclay/v4.4/lya_forest_saclay_v4.4_v4.4.\\1.tar"
         },
         "mws":{
             "mws/(100pc|gaiaDR1quick|small_galaxia|wd|wd100pc)/.*$":"mws/mws_\\1.tar",
