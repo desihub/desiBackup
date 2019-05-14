@@ -1,16 +1,18 @@
 #!/bin/bash
+# Licensed under a 3-clause BSD style license - see LICENSE.rst.
 #
 # Help message.
 #
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-c DIR] [-h] [-t] [-v] [-V] DIR"
+    echo "${execName} [-c DIR] [-h] [-P] [-t] [-v] [-V] DIR"
     echo ""
     echo "Backup DESI files to HPSS."
     echo ""
     echo "-c DIR = Set the location of the cache directory (default ${HOME}/cache)."
     echo "    -h = Print this message and exit."
+    echo "    -P = Do NOT issue hsi/htar commands to actually perform backups."
     echo "    -t = Test mode. Used to verify backup configuration."
     echo "    -v = Verbose mode. Print lots of extra information. LOTS."
     echo "    -V = Version.  Print a version string and exit."
@@ -35,12 +37,14 @@ function version() {
 # Get options.
 #
 cacheDir=${HOME}/cache
-testMode='--process'
+testMode=''
+process='--process'
 verbose=''
-while getopts c:htvV argname; do
+while getopts c:hPtvV argname; do
     case ${argname} in
         c) cacheDir=${OPTARG} ;;
         h) usage; exit 0 ;;
+        P) process='' ;;
         t) testMode='--test' ;;
         v) verbose='--verbose' ;;
         V) version; exit 0 ;;
@@ -64,7 +68,19 @@ if [[ ! -d ${cacheDir} ]]; then
     mkdir -p ${cacheDir}
 fi
 #
-# Pass options to
+# All directories?
 #
-[[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
-missing_from_hpss ${verbose} ${testMode} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json $1
+if [[ "$1" == "ALL" ]]; then
+    sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
+               sed -r 's/^    "([^"]+)":\{/\1/' | \
+               grep -v config)
+else
+    sections=$1
+fi
+#
+# Run on directory.
+#
+for d in ${sections}; do
+    [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} ${testMode} ${process} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+    missing_from_hpss ${verbose} ${testMode} ${process} -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d}
+done

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DESI Backup Status</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" title="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous" />
+    <script type="text/javascript"
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="backupStatus.js"></script> -->
+    <style type="text/css">
+    html { overflow-y: scroll; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 id="Top">DESI Backup Status</h1>
+            </div><!-- end class="col-12" -->
+        </div><!-- end class="row" -->
+        <div id="content">
+            <div class="row">
+                <div class="col-12">
+                    <h2 id="status">Backup Status Table</h2>
+                    <p>This page describes the state of backups of DESI data to
+                        <a href="https://www.nersc.gov/systems/hpss-data-archive/">HPSS</a>.
+                        Each row in the table below corresponds to a top-level directory in
+                        <code>/global/project/projectdirs/desi</code>.
+                        On HPSS, the top-level DESI directory is <code>/nersc/projects/desi</code>.
+                        Backup files and directories below are relative to this directory.
+                        See <a href="https://desi.lbl.gov/trac/wiki/Pipeline/Backups">DESI Trac Wiki</a>
+                        for more details.
+                    </p>
+                    <p>The "Status" column below is set according to these definitions:</p>
+                    <dl class="row">
+                        <dt class="col-sm-2 table-danger">NO CONFIGURATION</dt>
+                        <dd class="col-sm-10">The Data Management team needs to
+                            examine the contents of this directory and determine
+                            the best configuration for backups.  In some cases,
+                            the backups will be automated; in other cases, the
+                            backups will be one-off, "by-hand" backups.</dd>
+                        <dt class="col-sm-2 table-warning">IN PROGRESS</dt>
+                        <dd class="col-sm-10">The directory is at least partially
+                            backed up, through automation or otherwise.
+                            Some subdirectories might not be configured for backup.</dd>
+                        <dt class="col-sm-2 table-success">COMPLETE</dt>
+                        <dd class="col-sm-10">All files on disk are backed up.  In some cases this indicates a completely static data set.</dd>
+                        <dt class="col-sm-2 table-info">NO BACKUP/DATA</dt>
+                        <dd class="col-sm-10">A directory is deliberately not
+                            backed up for a specific reason, or it is an
+                            empty placeholder that may contain data in the future.</dd>
+                    </dl>
+                    <table class="table table-bordered">
+                        <caption>Last Update: DATE</caption>
+                        <thead>
+                            <tr><th>Directory</th><th>Status</th><th>Files on Disk</th><th>Files on HPSS</th><th>Potential Backups</th><th>Log</th><th>Comments</th></tr>
+                        </thead>
+                        <tbody>
+                            <!-- INSERT CONTENT HERE -->
+                        </tbody>
+                    </table>
+                </div><!-- end class="col-12" -->
+            </div><!-- end class="row" -->
+        </div><!-- end id="content" -->
+        <div class="row">
+            <div class="col-12">
+                <h2 id="status">Other Backups</h2>
+                <p>These backups <em>no longer</em> correspond to any top-level data directory at NERSC.
+                    <em>Exception</em>: the 'external' directory still exists but is empty.</p>
+                <ul>
+                    <li>bigboss/
+                        <ul>
+                            <li><code>bbspecsim.tar</code></li>
+                            <li>data/
+                                <ul>
+                                    <li>ctio/
+                                        <ul>
+                                            <li>Stripe82/
+                                                <ul>
+                                                    <li><code>Stripe82_od.tar</code></li>
+                                                    <li><code>Stripe82_oi.tar</code></li>
+                                                    <li><code>Stripe82_ow.tar</code></li>
+                                                    <li><code>Stripe82_rd.tar</code></li>
+                                                    <li><code>Stripe82_ri.tar</code></li>
+                                                    <li><code>Stripe82_rw.tar</code></li>
+                                                    <li><code>Stripe82_sd.tar</code></li>
+                                                    <li><code>Stripe82_se.tar</code></li>
+                                                    <li><code>Stripe82_sw.tar</code></li>
+                                                    <li><code>Stripe82_si.tar</code></li>
+                                                    <li><code>Stripe82_sw.tar</code></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>ptf/
+                                        <ul>
+                                            <li>cfht-w4/
+                                                <ul>
+                                                    <li><code>biases.tar</code></li>
+                                                    <li><code>catalogs.tar</code></li>
+                                                    <li><code>flats.tar</code></li>
+                                                    <li><code>images-original.tar</code></li>
+                                                    <li><code>masks-original.tar</code></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>results/
+                                <ul>
+                                    <li><code>ptfpipeline.tar</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><code>cosmos_nvo.tar</code></li>
+                    <li>external/
+                        <ul>
+                            <li>spectest/
+                                <ul>
+                                    <li>boss/
+                                        <ul>
+                                            <li>3647/
+                                                <ul>
+                                                    <li><code>spectest_boss_3647_3647.tar</code></li>
+                                                    <li><code>spectest_boss_3647_files.tar</code></li>
+                                                    <li><code>spectest_boss_3647_jguy.tar</code></li>
+                                                    <li><code>spectest_boss_3647_preproc.tar</code></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>imaging/
+                        <ul>
+                            <li>cats/
+                                <ul>
+                                    <li><code>imaging_cats_gaia_decals.tar</code></li>
+                                    <li><code>imaging_cats_sdss.tar</code></li>
+                                </ul>
+                            </li>
+                            <li>data/
+                                <ul>
+                                    <li><code>wiyn.tar</code></li>
+                                </ul>
+                            </li>
+                            <li>db/
+                                <ul>
+                                    <li>backup/
+                                        <ul>
+                                            <li><code>desi_dump.20150511.db</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- end class="col-12" -->
+        </div><!-- end class="row" -->
+    </div><!-- end class="container" -->
+</body>
+</html>
