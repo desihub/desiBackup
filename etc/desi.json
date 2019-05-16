@@ -148,7 +148,12 @@
         }
     },
     "mocks":{
-        "__exclude__":["lya_forest/README.html","lya_forest/london/README","lya_forest/saclay/README","lya_forest/saclay/README~"],
+        "__exclude__":["lya_forest/README.html",
+            "lya_forest/london/README",
+            "lya_forest/london/lyasim.log",
+            "lya_forest/saclay/README",
+            "lya_forest/saclay/README~"
+        ],
         "DarkSky":{
             "DarkSky/.*$":"DarkSky.tar"
         },
@@ -183,7 +188,7 @@
             "lya_forest/dr11/.*$":"EXCLUDE",
             "lya_forest/london/(colore_raw|tests|tools)/.*$":"EXCLUDE",
             "lya_forest/london/v[23567]\\.[0-9](\\.[0-9]|)/.*$":"EXCLUDE",
-            "lya_forest/london/v4\\.0\\.[0-9]/.*$":"EXCLUDE",
+            "lya_forest/london/v4\\.0(\\.[0-9]|)/.*$":"EXCLUDE",
             "lya_forest/london/v4\\.2\\.0/[^/]+$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_files.tar",
             "lya_forest/london/v4\\.2\\.0/([0-9]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_\\1.tar",
             "lya_forest/london/v4\\.2\\.0/quick-([0-9.]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_quick-\\1.tar",
