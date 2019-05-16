@@ -116,16 +116,15 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            sed -r 's/^    "([^"]+)":\{/\1/' | \
            grep -v config)
 comments=$(cat <<COMMENTS
-datachallenge:<code>quicklook</code> is missing.
 mocks:<code>lya_forest</code> is missing.
 spectro:Only partially configured for backup.
 target:Only <code>cmx_files</code> is configured for backup.
 COMMENTS
 )
 for d in ${sections}; do
-    if [[ "${d}" == "metadata" ]]; then
-        row ${d} 'NO BACKUP' False 'Directory tree scans provided by NERSC. It is more useful to have these backed up off-site.' ${o}
-    elif [[ "${d}" == "release" ]]; then
+    if [[ "${d}" == "gsharing" ]]; then
+        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data is stored elsewhere.' ${0}
+    if [[ "${d}" == "release" ]]; then
         row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
     elif [[ "${d}" == "software" ]]; then
         row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${o}
