@@ -61,12 +61,12 @@ function row() {
     echo "${space}    <td class=\"table-${tcls}\"><strong>${s}</strong></td>" >> ${o}
     if [[ "${n}" == "False" ]]; then
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">CSV</a></td>" >> ${o}
-        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">TXT</a></td>" >> ${o}
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">JSON</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">LOG</a></td>" >> ${o}
     else
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"disk_files_${d}.csv\" title=\"disk_files_${d}.csv\">CSV</a></td>" >> ${o}
-        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.txt\" title=\"hpss_files_${d}.txt\">TXT</a></td>" >> ${o}
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.csv\" title=\"hpss_files_${d}.csv\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.json\" title=\"missing_files_${d}.json\">JSON</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.log\" title=\"missing_files_${d}.log\">LOG</a></td>" >> ${o}
     fi
@@ -136,14 +136,14 @@ for d in ${sections}; do
             [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
             missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
         fi
-        hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
+        hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
         comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
-        if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
+        if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='Not configured for backup.'
             row ${d} 'NO CONFIGURATION' True "${comment}" ${o}
-        elif [[ -n "${hpss_files}" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
+        elif [[ "${hpss_files}" > "1" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='No missing files found.'
             row ${d} COMPLETE True "${comment}" ${o}
         else
