@@ -123,8 +123,8 @@ COMMENTS
 )
 for d in ${sections}; do
     if [[ "${d}" == "gsharing" ]]; then
-        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data is stored elsewhere.' ${0}
-    if [[ "${d}" == "release" ]]; then
+        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data is stored elsewhere.' ${o}
+    elif [[ "${d}" == "release" ]]; then
         row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
     elif [[ "${d}" == "software" ]]; then
         row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${o}
