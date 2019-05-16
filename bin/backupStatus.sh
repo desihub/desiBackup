@@ -116,20 +116,24 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            sed -r 's/^    "([^"]+)":\{/\1/' | \
            grep -v config)
 comments=$(cat <<COMMENTS
+gsharing:Share data via Globus. The actual data are stored elsewhere.
 mocks:<code>lya_forest</code> is missing.
+release:Empty directory, no results yet!
+software:Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.
 spectro:Only partially configured for backup.
 target:Only <code>cmx_files</code> is configured for backup.
+users:The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.
 COMMENTS
 )
 for d in ${sections}; do
-    if [[ "${d}" == "gsharing" ]]; then
-        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data are stored elsewhere.' ${o}
-    elif [[ "${d}" == "release" ]]; then
-        row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
-    elif [[ "${d}" == "software" ]]; then
-        row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${o}
-    elif [[ "${d}" == "users" ]]; then
-        row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.' ${o}
+    comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
+    if [[ "${d}" == "gsharing" || \
+          "${d}" == "release" || \
+          "${d}" == "software" || \
+          "${d}" == "users" ]]; then
+        s='NO BACKUP'
+        grep -q -i empty <<<"${comment}" && s='NO DATA'
+        l=False
     else
         if [[ -z "${fastMode}" ]]; then
             [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
@@ -139,18 +143,19 @@ for d in ${sections}; do
         hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv | cut -d' ' -f1)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
-        comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
         if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='Not configured for backup.'
-            row ${d} 'NO CONFIGURATION' True "${comment}" ${o}
+            s='NO CONFIGURATION'
         elif [[ "${hpss_files}" > "1" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
             [[ -z "${comment}" ]] && comment='No missing files found.'
-            row ${d} COMPLETE True "${comment}" ${o}
+            s='COMPLETE'
         else
             [[ -z "${comment}" ]] && comment='In progress.'
-            row ${d} 'IN PROGRESS' True "${comment}" ${o}
+            s='IN PROGRESS'
         fi
+        l=True
     fi
+    row ${d} "${s}" ${l} "${comment}" ${o}
 done
 #
 # Finish the HTML table.
