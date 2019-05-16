@@ -144,7 +144,7 @@
         "__exclude__":["README.html","scan_README.txt"],
         "__top__":{
             "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.tlproject[2a]\\.desi\\.txt$":"EXCLUDE",
-            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.tlproject[2a]\\.desi\\.txt\\gz$":"\\1_\\2_files.tar"
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.tlproject[2a]\\.desi\\.txt\\.gz$":"\\1_\\2_files.tar"
         }
     },
     "mocks":{
