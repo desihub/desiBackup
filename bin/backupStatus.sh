@@ -123,7 +123,7 @@ COMMENTS
 )
 for d in ${sections}; do
     if [[ "${d}" == "gsharing" ]]; then
-        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data is stored elsewhere.' ${o}
+        row ${d} 'NO BACKUP' False 'Share data via Globus. The actual data are stored elsewhere.' ${o}
     elif [[ "${d}" == "release" ]]; then
         row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
     elif [[ "${d}" == "software" ]]; then
