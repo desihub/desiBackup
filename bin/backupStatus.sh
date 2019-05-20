@@ -50,7 +50,11 @@ function row() {
         tcls='info'
     elif [[ "${s}" == "IN PROGRESS" ]]; then
         tcls='warning'
+    elif [[ "${s}" == "PARTIAL" ]]; then
+        tcls='warning'
     elif [[ "${s}" == "NO CONFIGURATION" ]]; then
+        tcls='danger'
+    elif [[ "${s}" == "NEEDS ATTENTION" ]]; then
         tcls='danger'
     else
         echo 'Unknown status!' >&2
@@ -126,14 +130,14 @@ users:The default policy is for the users directory to serve as long-term scratc
 COMMENTS
 )
 for d in ${sections}; do
-    comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
+    c=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
     if [[ "${d}" == "gsharing" || \
           "${d}" == "release" || \
           "${d}" == "software" || \
           "${d}" == "users" ]]; then
         s='NO BACKUP'
-        grep -q -i empty <<<"${comment}" && s='NO DATA'
-        l=False
+        grep -q -i empty <<<"${c}" && s='NO DATA'
+        n=False
     else
         if [[ -z "${fastMode}" ]]; then
             [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
@@ -144,18 +148,30 @@ for d in ${sections}; do
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
         if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${comment}" ]] && comment='Not configured for backup.'
+            [[ -z "${c}" ]] && c='Not configured for backup.'
             s='NO CONFIGURATION'
         elif [[ "${hpss_files}" > "1" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${comment}" ]] && comment='No missing files found.'
+            [[ -z "${c}" ]] && c='No missing files found.'
             s='COMPLETE'
+        elif grep -q '"newer": true' ${cacheDir}/missing_files_${d}.json; then
+            [[ -z "${c}" ]] && c='New data found in an existing backup. Check JSON file.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not mapped' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='Unmapped files found. Check configuration.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not described' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='New directories found. Check configuration.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not configured' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='Some subdirectories still need configuration.'
+            s='PARTIAL'
         else
-            [[ -z "${comment}" ]] && comment='In progress.'
+            [[ -z "${c}" ]] && c='Some files not yet backed up.'
             s='IN PROGRESS'
         fi
-        l=True
+        n=True
     fi
-    row ${d} "${s}" ${l} "${comment}" ${o}
+    row ${d} "${s}" ${n} "${c}" ${o}
 done
 #
 # Finish the HTML table.
