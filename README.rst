@@ -51,8 +51,10 @@ raise an exception.
 Change Log
 ----------
 
-0.2.0 (unreleased)
+0.2.0 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~
+
+This is primarily a reference tag.
 
 * Compatibility with `HPSSPy`_ version 0.5.0 (PR `#11`_).
 * Add configuration or at least placeholders for most of the DESI data tree,
