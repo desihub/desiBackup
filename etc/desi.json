@@ -1,23 +1,23 @@
 {
-    "config":{
+    "__config__":{
         "root":"/global/project/projectdirs/desi",
         "hpss_root":"/nersc/projects/desi",
         "physical_disks":["desi"]
     },
     "cmx":{
-        "exclude":["README"],
+        "__exclude__":["README"],
         "ci":{
         }
     },
     "cosmosim":{
-        "exclude":[],
+        "__exclude__":[],
         "ELG_HOD":{
         },
         "proto_sim":{
         }
     },
     "datachallenge":{
-        "exclude":[],
+        "__exclude__":[],
         "Argonne2015":{
             "Argonne2015/.*$":"Argonne2015.tar"
         },
@@ -66,9 +66,11 @@
             "dr5fiberassign/multiepoch/zcat/([0-9]+)/.*$":"dr5fiberassign/multiepoch/zcat/dr5fiberassign_multiepoch_zcat_\\1.tar"
         },
         "mockobs-18.6":{
-            "mockobs-18.6/.*$":"mockobs-18.6.tar"
+            "mockobs-18\\.6/.*$":"mockobs-18.6.tar"
         },
         "quicklook":{
+            "quicklook/review-19\\.1/redux/exposures/.*$":"quicklook/review-19.1/redux/review-19.1_redux_exposures.tar",
+            "quicklook/review-19\\.1/redux/preproc/.*$":"EXCLUDE"
         },
         "quicksurvey2016":{
             "quicksurvey2016/[^/]+$":"quicksurvey2016/quicksurvey2016_files.tar",
@@ -121,7 +123,7 @@
         }
     },
     "engineering":{
-        "exclude":[],
+        "__exclude__":[],
         "focalplane":{
         },
         "gfa":{
@@ -135,11 +137,23 @@
         "svn_export_focalplane_12302018":{
         }
     },
+    "gsharing":{
+        "__exclude__":[]
+    },
     "metadata":{
-        "exclude":["README.html","scan_README.txt"]
+        "__exclude__":["README.html","scan_README.txt"],
+        "__top__":{
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.tlproject[2a]\\.desi\\.txt$":"EXCLUDE",
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.tlproject[2a]\\.desi\\.txt\\.gz$":"\\1_\\2_files.tar"
+        }
     },
     "mocks":{
-        "exclude":[],
+        "__exclude__":["lya_forest/README.html",
+            "lya_forest/london/README",
+            "lya_forest/london/lyasim.log",
+            "lya_forest/saclay/README",
+            "lya_forest/saclay/README~"
+        ],
         "DarkSky":{
             "DarkSky/.*$":"DarkSky.tar"
         },
@@ -170,11 +184,20 @@
             "lightcone_galform/.*$":"lightcone_galform.tar"
         },
         "lya_forest":{
+            "lya_forest/develop/.*$":"EXCLUDE",
+            "lya_forest/dr11/.*$":"EXCLUDE",
+            "lya_forest/london/(colore_raw|tests|tools)/.*$":"EXCLUDE",
+            "lya_forest/london/v[23567]\\.[0-9](\\.[0-9]|)/.*$":"EXCLUDE",
+            "lya_forest/london/v4\\.0(\\.[0-9]|)/.*$":"EXCLUDE",
             "lya_forest/london/v4\\.2\\.0/[^/]+$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_files.tar",
             "lya_forest/london/v4\\.2\\.0/([0-9]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_\\1.tar",
             "lya_forest/london/v4\\.2\\.0/quick-([0-9.]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_quick-\\1.tar",
+            "lya_forest/picca/.*$":"EXCLUDE",
+            "lya_forest/saclay/v[23]\\.[0-9]/.*$":"EXCLUDE",
+            "lya_forest/saclay/v4\\.[013]/.*$":"EXCLUDE",
             "lya_forest/saclay/v4\\.2/.*$":"lya_forest/saclay/lya_forest_saclay_v4.2.tar",
-            "lya_forest/saclay/v4\\.4/v4\\.4\\.([0-9]+)/.*$":"lya_forest/saclay/v4.4/lya_forest_saclay_v4.4_v4.4.\\1.tar"
+            "lya_forest/saclay/v4\\.4/v4\\.4\\.([0-9]+)/.*$":"lya_forest/saclay/v4.4/lya_forest_saclay_v4.4_v4.4.\\1.tar",
+            "lya_forest/uncorr/.*$":"EXCLUDE"
         },
         "mws":{
             "mws/(100pc|gaiaDR1quick|small_galaxia|wd|wd100pc)/.*$":"mws/mws_\\1.tar",
@@ -192,7 +215,7 @@
         }
     },
     "protodesi":{
-        "exclude":["README.html"],
+        "__exclude__":["README.html"],
         "images":{
             "images/(fits|fpc|fpc_engineering_data|fvc|gfa|sti)/.*$":"images/protodesi_images_\\1.tar",
             "images/fpc_analysis/([0-9a-zA-Z_-]+)/.*$":"images/fpc_analysis/protodesi_images_fpc_analysis_\\1.tar"
@@ -202,10 +225,10 @@
         }
     },
     "release":{
-        "exclude":[]
+        "__exclude__":[]
     },
     "science":{
-        "exclude":["README"],
+        "__exclude__":["README"],
         "bgs":{
         },
         "c3":{
@@ -218,10 +241,10 @@
         }
     },
     "software":{
-        "exclude":[]
+        "__exclude__":[]
     },
     "spectro":{
-        "exclude":["README.html"],
+        "__exclude__":["README.html"],
         "StrayLight":{
         },
         "ZemaxSimulation":{
@@ -253,14 +276,14 @@
         }
     },
     "survey":{
-        "exclude":[],
+        "__exclude__":[],
         "planning":{
         },
         "sims":{
         }
     },
     "target":{
-        "exclude":["README.html"],
+        "__exclude__":["README.html"],
         "RF_files":{
         },
         "analysis":{
@@ -288,9 +311,9 @@
         }
     },
     "users":{
-        "exclude":[]
+        "__exclude__":[]
     },
     "www":{
-        "exclude":[]
+        "__exclude__":[]
     }
 }

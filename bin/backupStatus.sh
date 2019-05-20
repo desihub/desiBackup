@@ -50,7 +50,11 @@ function row() {
         tcls='info'
     elif [[ "${s}" == "IN PROGRESS" ]]; then
         tcls='warning'
+    elif [[ "${s}" == "PARTIAL" ]]; then
+        tcls='warning'
     elif [[ "${s}" == "NO CONFIGURATION" ]]; then
+        tcls='danger'
+    elif [[ "${s}" == "NEEDS ATTENTION" ]]; then
         tcls='danger'
     else
         echo 'Unknown status!' >&2
@@ -61,12 +65,12 @@ function row() {
     echo "${space}    <td class=\"table-${tcls}\"><strong>${s}</strong></td>" >> ${o}
     if [[ "${n}" == "False" ]]; then
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">CSV</a></td>" >> ${o}
-        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">TXT</a></td>" >> ${o}
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">JSON</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-light\" role=\"button\" href=\"#\" title=\"Status not run.\">LOG</a></td>" >> ${o}
     else
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"disk_files_${d}.csv\" title=\"disk_files_${d}.csv\">CSV</a></td>" >> ${o}
-        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.txt\" title=\"hpss_files_${d}.txt\">TXT</a></td>" >> ${o}
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.csv\" title=\"hpss_files_${d}.csv\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.json\" title=\"missing_files_${d}.json\">JSON</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.log\" title=\"missing_files_${d}.log\">LOG</a></td>" >> ${o}
     fi
@@ -116,42 +120,56 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            sed -r 's/^    "([^"]+)":\{/\1/' | \
            grep -v config)
 comments=$(cat <<COMMENTS
-datachallenge:<code>quicklook</code> is missing.
-mocks:<code>lya_forest</code> is missing.
-spectro:Only partially configured for backup.
+gsharing:Share data via Globus. The actual data are stored elsewhere.
+release:Empty directory, no results yet!
+software:Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.
 target:Only <code>cmx_files</code> is configured for backup.
+users:The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.
 COMMENTS
 )
 for d in ${sections}; do
-    if [[ "${d}" == "metadata" ]]; then
-        row ${d} 'NO BACKUP' False 'Directory tree scans provided by NERSC. It is more useful to have these backed up off-site.' ${o}
-    elif [[ "${d}" == "release" ]]; then
-        row ${d} 'NO DATA' False 'Empty directory, no results yet!' ${o}
-    elif [[ "${d}" == "software" ]]; then
-        row ${d} 'NO BACKUP' False 'Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.' ${o}
-    elif [[ "${d}" == "users" ]]; then
-        row ${d} 'NO BACKUP' False 'The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.' ${o}
+    c=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
+    if [[ "${d}" == "gsharing" || \
+          "${d}" == "release" || \
+          "${d}" == "software" || \
+          "${d}" == "users" ]]; then
+        s='NO BACKUP'
+        grep -q -i empty <<<"${c}" && s='NO DATA'
+        n=False
     else
         if [[ -z "${fastMode}" ]]; then
             [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
             [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
             missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
         fi
-        hpss_files=$(<${cacheDir}/hpss_files_${d}.txt)
+        hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv | cut -d' ' -f1)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
-        comment=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
-        if [[ -z "${hpss_files}" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${comment}" ]] && comment='Not configured for backup.'
-            row ${d} 'NO CONFIGURATION' True "${comment}" ${o}
-        elif [[ -n "${hpss_files}" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${comment}" ]] && comment='No missing files found.'
-            row ${d} COMPLETE True "${comment}" ${o}
+        if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
+            [[ -z "${c}" ]] && c='Not configured for backup.'
+            s='NO CONFIGURATION'
+        elif [[ "${hpss_files}" > "1" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
+            [[ -z "${c}" ]] && c='No missing files found.'
+            s='COMPLETE'
+        elif grep -q '"newer": true' ${cacheDir}/missing_files_${d}.json; then
+            [[ -z "${c}" ]] && c='New data found in an existing backup. Check JSON file.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not mapped' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='Unmapped files found. Check configuration.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not described' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='New directories found. Check configuration.'
+            s='NEEDS ATTENTION'
+        elif grep -q 'not configured' ${cacheDir}/missing_files_${d}.log; then
+            [[ -z "${c}" ]] && c='Some subdirectories still need configuration.'
+            s='PARTIAL'
         else
-            [[ -z "${comment}" ]] && comment='In progress.'
-            row ${d} 'IN PROGRESS' True "${comment}" ${o}
+            [[ -z "${c}" ]] && c='Some files not yet backed up.'
+            s='IN PROGRESS'
         fi
+        n=True
     fi
+    row ${d} "${s}" ${n} "${c}" ${o}
 done
 #
 # Finish the HTML table.

@@ -12,7 +12,7 @@ This product contains wrapper scripts on the `HPSSPy`_ package.
 Configuring desiBackup
 ----------------------
 
-desiBackup configuration is provided by the file ``etc/desi.json``.  
+desiBackup configuration is provided by the file ``etc/desi.json``.
 This file is fully described in the
 `HPSSPy configuration document <http://hpsspy.readthedocs.io/en/latest/configuration.html>`_.
 Please be sure to read that document before editing the configuration file.
@@ -51,11 +51,16 @@ raise an exception.
 Change Log
 ----------
 
-0.1.1 (unreleased)
+0.2.0 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
+* Compatibility with `HPSSPy`_ version 0.5.0 (PR `#11`_).
+* Add configuration or at least placeholders for most of the DESI data tree,
+  and add monitoring script (PR `#8`_).
 * Added Travis test.
-* Compatibility with `HPSSPy` version 0.4.0.
+
+.. _`#11`: https://github.com/desihub/desiBackup/pull/11
+.. _`#8`: https://github.com/desihub/desiBackup/pull/8
 
 0.1.0 (2017-01-23)
 ~~~~~~~~~~~~~~~~~~
