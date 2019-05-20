@@ -146,25 +146,25 @@ for d in ${sections}; do
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
         if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${c}" ]] && c='Not configured for backup.'
+            c="Not configured for backup. ${c}"
             s='NO CONFIGURATION'
         elif [[ "${hpss_files}" > "1" && -z "${missing_log}" && "${missing_files}" == "{}" ]]; then
-            [[ -z "${c}" ]] && c='No missing files found.'
+            c="No missing files found. ${c}"
             s='COMPLETE'
         elif grep -q '"newer": true' ${cacheDir}/missing_files_${d}.json; then
-            [[ -z "${c}" ]] && c='New data found in an existing backup. Check JSON file.'
+            c="New data found in an existing backup. Check JSON file. ${c}"
             s='NEEDS ATTENTION'
         elif grep -q 'not mapped' ${cacheDir}/missing_files_${d}.log; then
-            [[ -z "${c}" ]] && c='Unmapped files found. Check configuration.'
+            c="Unmapped files found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
         elif grep -q 'not described' ${cacheDir}/missing_files_${d}.log; then
-            [[ -z "${c}" ]] && c='New directories found. Check configuration.'
+            c="New directories found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
         elif grep -q 'not configured' ${cacheDir}/missing_files_${d}.log; then
-            [[ -z "${c}" ]] && c='Some subdirectories still need configuration.'
+            c="Some subdirectories still need configuration. ${c}"
             s='PARTIAL'
         else
-            [[ -z "${c}" ]] && c='Some files not yet backed up.'
+            c="Some files not yet backed up. ${c}"
             s='IN PROGRESS'
         fi
         n=True

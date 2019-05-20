@@ -51,6 +51,11 @@ raise an exception.
 Change Log
 ----------
 
+0.2.1 (unreleased)
+~~~~~~~~~~~~~~~~~~
+
+* Allow status comments to be concatenated.
+
 0.2.0 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~
 
