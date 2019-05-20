@@ -126,6 +126,8 @@
         "__exclude__":[],
         "focalplane":{
         },
+        "fvc":{
+        },
         "gfa":{
         },
         "pfa":{
