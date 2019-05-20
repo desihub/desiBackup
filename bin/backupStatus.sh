@@ -121,10 +121,8 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            grep -v config)
 comments=$(cat <<COMMENTS
 gsharing:Share data via Globus. The actual data are stored elsewhere.
-mocks:<code>lya_forest</code> is missing.
 release:Empty directory, no results yet!
 software:Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.
-spectro:Only partially configured for backup.
 target:Only <code>cmx_files</code> is configured for backup.
 users:The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.
 COMMENTS
