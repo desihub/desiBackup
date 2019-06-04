@@ -246,7 +246,7 @@
         "__exclude__":[]
     },
     "spectro":{
-        "__exclude__":["README.html"],
+        "__exclude__":["README.html", "data/README.html"],
         "StrayLight":{
         },
         "ZemaxSimulation":{
