@@ -55,6 +55,7 @@ Change Log
 ~~~~~~~~~~~~~~~~~~
 
 * Allow status comments to be concatenated.
+* Add configuration for ``cmx/`` directory.
 
 0.2.0 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~
