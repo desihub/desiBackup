@@ -7,6 +7,7 @@
     "cmx":{
         "__exclude__":["README"],
         "ci":{
+            "ci/tiles/v([0-9]+)/.*$":"ci/tiles/ci_tiles_v\\1.tar"
         }
     },
     "cosmosim":{
