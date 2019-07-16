@@ -115,6 +115,9 @@
         "svdc-summer2018":{
             "svdc-summer2018/.*$":"svdc-summer2018.tar"
         },
+        "svdc-summer2019":{
+            "svdc-summer2019/.*$":"svdc-summer2019.tar"
+        },
         "zdc1":{
             "zdc1/.*$":"zdc1.tar"
         },
@@ -265,7 +268,7 @@
         "quicklook":{
         },
         "redux":{
-            "redux/([^oak1]+)/.*$":"EXCLUDE",
+            "redux/(?!oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/oak1/.*$":"redux/oak1.tar"
         },
         "sim":{
