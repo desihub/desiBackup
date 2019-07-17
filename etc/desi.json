@@ -116,7 +116,10 @@
             "svdc-summer2018/.*$":"svdc-summer2018.tar"
         },
         "svdc-summer2019":{
-            "svdc-summer2019/.*$":"svdc-summer2019.tar"
+            "svdc-summer2019/svdc2019([a-z])/(docs|fiberassign|fiberassign2|survey)/.*$":"svdc-summer2019/svdc2019\\1/svdc2019\\1_\\2.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/sim/v([0-9]+)/([0-9]{8})/.*$":"svdc-summer2019/svdc2019\\1/spectro/sim/v\\2/svdc2019\\1_spectro_sim_v\\2_\\3.tar",
+            "svdc-summer2019/svdc2019([a-z])/targets/[^/]+$":"svdc-summer2019/svdc2019\\1/targets/svdc2019\\1_targets_files.tar",
+            "svdc-summer2019/svdc2019([a-z])/targets/([0-9]+)/.*$":"svdc-summer2019/svdc2019\\1/targets/svdc2019\\1_targets_\\2.tar"
         },
         "zdc1":{
             "zdc1/.*$":"zdc1.tar"
