@@ -120,7 +120,6 @@
         },
         "svdc-summer2019":{
             "svdc-summer2019/svdc2019([a-z])/(docs|fiberassign|fiberassign2|survey)/.*$":"svdc-summer2019/svdc2019\\1/svdc2019\\1_\\2.tar",
-            "svdc-summer2019/svdc2019([a-z])/spectro/redux/tiles/.*$":"svdc-summer2019/svdc2019\\1/spectro/redux/svdc2019\\1_spectro_redux_tiles.tar",
             "svdc-summer2019/svdc2019([a-z])/spectro/redux/v([0-9]+)/[^/]+$":"svdc-summer2019/svdc2019\\1/spectro/redux/v\\2/svdc2019\\1_spectro_redux_v\\2_files.tar",
             "svdc-summer2019/svdc2019([a-z])/spectro/redux/v([0-9]+)/(QA|calibnight|preproc|redrock|run)/.*$":"svdc-summer2019/svdc2019\\1/spectro/redux/v\\2/svdc2019\\1_spectro_redux_v\\2_\\3.tar",
             "svdc-summer2019/svdc2019([a-z])/spectro/redux/v([0-9]+)/(exposures|spectra-64|tiles)/[^/]+$":"svdc-summer2019/svdc2019\\1/spectro/redux/v\\2/\\3/svdc2019\\1_spectro_redux_v\\2_\\3_files.tar",
