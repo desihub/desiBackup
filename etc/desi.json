@@ -18,7 +18,7 @@
         }
     },
     "datachallenge":{
-        "__exclude__":[],
+        "__exclude__":["svdc-summer2019/svdc2019c/README"],
         "Argonne2015":{
             "Argonne2015/.*$":"Argonne2015.tar"
         },
@@ -27,6 +27,9 @@
         },
         "OSU2016":{
             "OSU2016/.*$":"OSU2016.tar"
+        },
+        "QL":{
+            "QL/([0-9a-zA-Z]+)/.*$":"QL/QL_\\1.tar"
         },
         "dc17a-lite":{
             "dc17a-lite/.*$":"dc17a-lite.tar"
