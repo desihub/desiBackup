@@ -18,7 +18,7 @@
         }
     },
     "datachallenge":{
-        "__exclude__":[],
+        "__exclude__":["svdc-summer2019/svdc2019c/README"],
         "Argonne2015":{
             "Argonne2015/.*$":"Argonne2015.tar"
         },
@@ -27,6 +27,9 @@
         },
         "OSU2016":{
             "OSU2016/.*$":"OSU2016.tar"
+        },
+        "QL":{
+            "QL/([0-9a-zA-Z]+)/.*$":"QL/QL_\\1.tar"
         },
         "dc17a-lite":{
             "dc17a-lite/.*$":"dc17a-lite.tar"
@@ -114,6 +117,16 @@
         },
         "svdc-summer2018":{
             "svdc-summer2018/.*$":"svdc-summer2018.tar"
+        },
+        "svdc-summer2019":{
+            "svdc-summer2019/svdc2019([a-z])/(docs|fiberassign|fiberassign2|survey)/.*$":"svdc-summer2019/svdc2019\\1/svdc2019\\1_\\2.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/redux/([A-Za-z0-9_-]+)/[^/]+$":"svdc-summer2019/svdc2019\\1/spectro/redux/\\2/svdc2019\\1_spectro_redux_\\2_files.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/redux/([A-Za-z0-9_-]+)/(QA|calibnight|preproc|redrock|run)/.*$":"svdc-summer2019/svdc2019\\1/spectro/redux/\\2/svdc2019\\1_spectro_redux_\\2_\\3.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/redux/([A-Za-z0-9_-]+)/(exposures|spectra-64|tiles)/[^/]+$":"svdc-summer2019/svdc2019\\1/spectro/redux/\\2/\\3/svdc2019\\1_spectro_redux_\\2_\\3_files.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/redux/([A-Za-z0-9_-]+)/(exposures|spectra-64|tiles)/([0-9]+)/.*$":"svdc-summer2019/svdc2019\\1/spectro/redux/\\2/\\3/svdc2019\\1_spectro_redux_\\2_\\3_\\4.tar",
+            "svdc-summer2019/svdc2019([a-z])/spectro/sim/([A-Za-z0-9_-]+)/([0-9]{8})/.*$":"svdc-summer2019/svdc2019\\1/spectro/sim/\\2/svdc2019\\1_spectro_sim_\\2_\\3.tar",
+            "svdc-summer2019/svdc2019([a-z])/targets/[^/]+$":"svdc-summer2019/svdc2019\\1/targets/svdc2019\\1_targets_files.tar",
+            "svdc-summer2019/svdc2019([a-z])/targets/([0-9]+)/.*$":"svdc-summer2019/svdc2019\\1/targets/svdc2019\\1_targets_\\2.tar"
         },
         "zdc1":{
             "zdc1/.*$":"zdc1.tar"
@@ -247,7 +260,7 @@
         "__exclude__":[]
     },
     "spectro":{
-        "__exclude__":["README.html", "data/README.html"],
+        "__exclude__":["README.html", "data/README.html", "redux/README.html"],
         "StrayLight":{
         },
         "ZemaxSimulation":{
@@ -264,7 +277,7 @@
         "quicklook":{
         },
         "redux":{
-            "redux/sjb/dogwood/.*$":"redux/sjb/dogwood.tar",
+            "redux/(?!oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/oak1/.*$":"redux/oak1.tar"
         },
         "sim":{
