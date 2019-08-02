@@ -202,7 +202,6 @@
         "lya_forest":{
             "lya_forest/develop/.*$":"EXCLUDE",
             "lya_forest/dr11/.*$":"EXCLUDE",
-            "lya_forest/london/(colore_raw|tests|tools)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
