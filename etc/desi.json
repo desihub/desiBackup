@@ -215,7 +215,6 @@
             "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/eboss-([0-9.]+)/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_eboss-\\2.tar",
             "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/logs/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
-            "lya_forest/saclay/.*$":"EXCLUDE",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
         "mws":{
