@@ -182,6 +182,8 @@
         "LGal_spectra":{
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
+        "UNIT":{
+        },
         "bgs":{
             "bgs/.*$":"bgs.tar"
         },
