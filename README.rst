@@ -55,9 +55,14 @@ Change Log
 ~~~~~~~~~~~~~~~~~~
 
 * Allow status comments to be concatenated.
-* Add configuration for ``cmx/`` directory.
-* Additional configuration for ``datachallenge/`` directory.
-* Backups of 'london' mocks, ``mocks/lya_forest/london/``.
+* Add configuration for ``cmx/`` directory (PR `#17`_).
+* Additional configuration for ``datachallenge/`` directory (PR `#18`_).
+* Backups of 'london' mocks, ``mocks/lya_forest/london/`` (PR `#19`_).
+
+.. _`#19`: https://github.com/desihub/desiBackup/pull/19
+.. _`#18`: https://github.com/desihub/desiBackup/pull/18
+.. _`#17`: https://github.com/desihub/desiBackup/pull/17
+
 
 0.2.0 (2019-05-20)
 ~~~~~~~~~~~~~~~~~~
