@@ -165,8 +165,8 @@
     },
     "mocks":{
         "__exclude__":["lya_forest/README.html",
-            "lya_forest/london/README",
-            "lya_forest/london/lyasim.log",
+            "lya_forest/london/v6.0/README",
+            "lya_forest/london/v6.0/lyasim.log",
             "lya_forest/saclay/README",
             "lya_forest/saclay/README~"
         ],
@@ -181,6 +181,8 @@
         },
         "LGal_spectra":{
             "LGal_spectra/.*$":"LGal_spectra.tar"
+        },
+        "UNIT":{
         },
         "bgs":{
             "bgs/.*$":"bgs.tar"
@@ -202,17 +204,21 @@
         "lya_forest":{
             "lya_forest/develop/.*$":"EXCLUDE",
             "lya_forest/dr11/.*$":"EXCLUDE",
-            "lya_forest/london/(colore_raw|tests|tools)/.*$":"EXCLUDE",
-            "lya_forest/london/v[23567]\\.[0-9](\\.[0-9]|)/.*$":"EXCLUDE",
-            "lya_forest/london/v4\\.0(\\.[0-9]|)/.*$":"EXCLUDE",
-            "lya_forest/london/v4\\.2\\.0/[^/]+$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_files.tar",
-            "lya_forest/london/v4\\.2\\.0/([0-9]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_\\1.tar",
-            "lya_forest/london/v4\\.2\\.0/quick-([0-9.]+)/.*$":"lya_forest/london/v4.2.0/lya_forest_london_v4.2.0_quick-\\1.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/tests/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_tests.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/[^/]+$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_files.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/(logs|run|test-0-0)/.*$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_\\4.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
+            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/[^/]+$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_files.tar",
+            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_\\2.tar",
+            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/eboss-([0-9.]+)/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_eboss-\\2.tar",
+            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/logs/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
-            "lya_forest/saclay/v[23]\\.[0-9]/.*$":"EXCLUDE",
-            "lya_forest/saclay/v4\\.[013]/.*$":"EXCLUDE",
-            "lya_forest/saclay/v4\\.2/.*$":"lya_forest/saclay/lya_forest_saclay_v4.2.tar",
-            "lya_forest/saclay/v4\\.4/v4\\.4\\.([0-9]+)/.*$":"lya_forest/saclay/v4.4/lya_forest_saclay_v4.4_v4.4.\\1.tar",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
         "mws":{
@@ -324,6 +330,8 @@
         "secondary":{
         },
         "stripe82-dr2":{
+        },
+        "urat_dr1":{
         }
     },
     "users":{
