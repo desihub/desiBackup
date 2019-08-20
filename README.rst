@@ -51,13 +51,14 @@ raise an exception.
 Change Log
 ----------
 
-0.2.1 (unreleased)
+0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
 
 * Allow status comments to be concatenated.
 * Add configuration for ``cmx/`` directory (PR `#17`_).
 * Additional configuration for ``datachallenge/`` directory (PR `#18`_).
-* Backups of 'london' mocks, ``mocks/lya_forest/london/`` (PR `#19`_).
+* Backups of 'london' mocks, ``mocks/lya_forest/london/``,
+  support for `HPSSPy`_ version 0.5.1 (PR `#19`_).
 
 .. _`#19`: https://github.com/desihub/desiBackup/pull/19
 .. _`#18`: https://github.com/desihub/desiBackup/pull/18
