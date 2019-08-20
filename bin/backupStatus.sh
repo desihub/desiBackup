@@ -157,6 +157,9 @@ for d in ${sections}; do
         elif grep -q 'not mapped' ${cacheDir}/missing_files_${d}.log; then
             c="Unmapped files found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
+        elif grep -q 'mapped to multiple' ${cacheDir}/missing_files_${d}.log; then
+            c="Files mapped to multiple backups. Check configuration. ${c}"
+            s='NEEDS ATTENTION'
         elif grep -q 'not described' ${cacheDir}/missing_files_${d}.log; then
             c="New directories found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
