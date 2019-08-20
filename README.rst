@@ -51,6 +51,11 @@ raise an exception.
 Change Log
 ----------
 
+0.2.2 (unreleased)
+~~~~~~~~~~~~~~~~~~
+
+* No changes yet.
+
 0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
 
