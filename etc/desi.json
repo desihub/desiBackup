@@ -187,6 +187,7 @@
             "EZmock/.*$":"EZmock.tar"
         },
         "Gadget":{
+            "Gadget/.*$":"Gadget.tar"
         },
         "GaussianRandomField":{
             "GaussianRandomField/.*$":"GaussianRandomField.tar"
@@ -195,6 +196,7 @@
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
         "UNIT":{
+            "UNIT/HOD_Shadab/(HOD_Boxes|multiple_snapshot_lightcone|single_snapshot_lightcone)/.*$":"UNIT/HOD_Shadab/UNIT_HOD_Shadab_\\1.tar"
         },
         "bgs":{
             "bgs/.*$":"bgs.tar"
@@ -223,9 +225,10 @@
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/[^/]+$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_files.tar",
-            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/(logs|run|test-0-0)/.*$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_\\4.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/(logs|run|test-0-0|DLA_cat)/.*$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_\\4.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/(v[6789]\\.[0-9])/README":"lya_forest/london/\\1/README",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
