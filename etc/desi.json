@@ -15,6 +15,8 @@
         },
         "fvc":{
         },
+        "gfa":{
+        },
         "psfstability":{
         },
         "tiles":{
@@ -152,11 +154,15 @@
         },
         "fvc":{
         },
+        "fvc_distortion":{
+        },
         "gfa":{
         },
         "pfa":{
         },
         "pfa2positioner":{
+        },
+        "platemaker":{
         },
         "spectrograph":{
         },
@@ -196,7 +202,6 @@
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
         "UNIT":{
-            "UNIT/HOD_Shadab/(HOD_Boxes|multiple_snapshot_lightcone|single_snapshot_lightcone)/.*$":"UNIT/HOD_Shadab/UNIT_HOD_Shadab_\\1.tar"
         },
         "bgs":{
             "bgs/.*$":"bgs.tar"
@@ -319,6 +324,11 @@
         "planning":{
         },
         "sims":{
+        }
+    },
+    "sv":{
+        "__exclude__":[],
+        "tiles":{
         }
     },
     "target":{
