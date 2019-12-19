@@ -6,8 +6,20 @@
     },
     "cmx":{
         "__exclude__":["README"],
+        "SkyCam":{
+        },
         "ci":{
             "ci/tiles/v([0-9]+)/.*$":"ci/tiles/ci_tiles_v\\1.tar"
+        },
+        "dithering":{
+        },
+        "fvc":{
+        },
+        "gfa":{
+        },
+        "psfstability":{
+        },
+        "tiles":{
         }
     },
     "cosmosim":{
@@ -142,11 +154,15 @@
         },
         "fvc":{
         },
+        "fvc_distortion":{
+        },
         "gfa":{
         },
         "pfa":{
         },
         "pfa2positioner":{
+        },
+        "platemaker":{
         },
         "spectrograph":{
         },
@@ -175,6 +191,9 @@
         },
         "EZmock":{
             "EZmock/.*$":"EZmock.tar"
+        },
+        "Gadget":{
+            "Gadget/.*$":"Gadget.tar"
         },
         "GaussianRandomField":{
             "GaussianRandomField/.*$":"GaussianRandomField.tar"
@@ -208,16 +227,17 @@
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/tests/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_tests.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/[^/]+$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_files.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/(logs|run|test-0-0)/.*$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_\\4.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
-            "lya_forest/london/(v4\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
-            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/[^/]+$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_files.tar",
-            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_\\2.tar",
-            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/eboss-([0-9.]+)/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_eboss-\\2.tar",
-            "lya_forest/london/v6\\.0/(v6\\.0\\.[0-9])/logs/.*$":"lya_forest/london/v6.0/\\1/lya_forest_london_v6.0_\\1_logs.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/[^/]+$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_files.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/(logs|run|test-0-0|DLA_cat)/.*$":"lya_forest/london/\\1/\\2-\\3/lya_forest_london_\\1_\\2-\\3_\\4.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
+            "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
+            "lya_forest/london/(v[6789]\\.[0-9])/README":"lya_forest/london/\\1/README",
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
@@ -276,6 +296,8 @@
         },
         "desi_spectro_calib":{
         },
+        "nightwatch":{
+        },
         "ql_calib":{
         },
         "quickcat":{
@@ -302,6 +324,11 @@
         "planning":{
         },
         "sims":{
+        }
+    },
+    "sv":{
+        "__exclude__":[],
+        "tiles":{
         }
     },
     "target":{

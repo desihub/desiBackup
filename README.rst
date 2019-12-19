@@ -54,7 +54,10 @@ Change Log
 0.2.2 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Update configuration for ``mocks/lya_forest/london``, other minor changes
+  to other top-level directories (PR `#20`_).
+
+.. _`#20`: https://github.com/desihub/desiBackup/pull/20
 
 0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
