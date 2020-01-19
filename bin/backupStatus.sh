@@ -80,7 +80,7 @@ function row() {
 #
 # Get options.
 #
-cacheDir=/global/project/projectdirs/desi/www/collab/backups
+cacheDir=/global/cfs/cdirs/desi/www/collab/backups
 fastMode=''
 verbose=''
 while getopts c:fhvV argname; do
