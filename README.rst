@@ -57,8 +57,10 @@ Change Log
 * Update configuration for ``mocks/lya_forest/london``, other minor changes
   to other top-level directories (PR `#20`_).
 * Update to new /global/cfs filesystem.
+* Other miscellaneous updates (PR `#21`_).
 
 .. _`#20`: https://github.com/desihub/desiBackup/pull/20
+.. _`#21`: https://github.com/desihub/desiBackup/pull/21
 
 0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
