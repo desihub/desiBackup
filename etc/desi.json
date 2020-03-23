@@ -13,11 +13,15 @@
         },
         "dithering":{
         },
+        "fpcalib":{
+        },
         "fvc":{
         },
         "gfa":{
         },
         "psfstability":{
+        },
+        "sky":{
         },
         "tiles":{
         }
@@ -201,6 +205,9 @@
         "LGal_spectra":{
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
+        "TNG_spectra":{
+            "TNG_spectra/.*$":"TNG_spectra.tar"
+        },
         "UNIT":{
         },
         "bgs":{
@@ -216,6 +223,9 @@
         },
         "earlyQPM":{
             "earlyQPM/.*$":"earlyQPM.tar"
+        },
+        "gqp_mini_mocha":{
+            "gqp_mini_mocha/.*$":"gqp_mini_mocha.tar"
         },
         "lightcone_galform":{
             "lightcone_galform/.*$":"lightcone_galform.tar"
@@ -304,6 +314,8 @@
         },
         "quicklook":{
         },
+        "prospect":{
+        },
         "redux":{
             "redux/(?!oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/oak1/.*$":"redux/oak1.tar"
@@ -328,7 +340,10 @@
     },
     "sv":{
         "__exclude__":[],
+        "forecasts":{
+        },
         "tiles":{
+            "tiles/.*$":"tiles.tar"
         }
     },
     "target":{
@@ -349,6 +364,8 @@
         "gaia_dr2":{
         },
         "gaia_dr2_match_dr6":{
+        },
+        "mws":{
         },
         "qso_targets_dr3":{
         },
