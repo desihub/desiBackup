@@ -344,6 +344,8 @@
         },
         "tiles":{
             "tiles/.*$":"tiles.tar"
+        },
+        "vi":{
         }
     },
     "target":{
