@@ -28,10 +28,12 @@
     },
     "cosmosim":{
         "__exclude__":[],
-        "ELG_HOD":{
-        },
-        "proto_sim":{
-        }
+        "Abacus":{},
+        "ELG_HOD":{},
+        "UNIT-BAO-RSD-challenge":{},
+        "UNITSIM":{},
+        "cov_mat_challenge":{},
+        "proto_sim":{}
     },
     "datachallenge":{
         "__exclude__":["svdc-summer2019/svdc2019c/README"],
