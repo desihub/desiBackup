@@ -80,7 +80,7 @@ function row() {
 #
 # Get options.
 #
-cacheDir=/global/cfs/cdirs/desi/www/collab/backups
+cacheDir=/global/cfs/cdirs/desi/metadata/backups
 fastMode=''
 verbose=''
 while getopts c:fhvV argname; do
@@ -183,5 +183,5 @@ mv -f ${o} ${cacheDir}/index.html
 #
 # Make sure the files are readable.
 #
-[[ -n "${verbose}" ]] && echo "chmod o+r ${cacheDir}/*" >&2
-chmod o+r ${cacheDir}/*
+# [[ -n "${verbose}" ]] && echo "chmod o+r ${cacheDir}/*" >&2
+# chmod o+r ${cacheDir}/*
