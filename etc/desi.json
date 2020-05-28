@@ -28,7 +28,13 @@
     },
     "cosmosim":{
         "__exclude__":[],
-        "Abacus":{},
+        "Abacus":{
+            "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/(halos|lightcones)/.*$":"Abacus/\\1_\\2_\\3_\\4/\\1_\\2_\\3_\\4_\\5.tar",
+            "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/slices/(z[0-9]\\.[0-9]+).*$":"Abacus/\\1_\\2_\\3_\\4/slices/\\1_\\2_\\3_\\4_slices_\\5.tar",
+            "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/(info|log)/.*$":"Abacus/\\1_\\2_\\3_\\4/\\1_\\2_\\3_\\4_aux.tar",
+            "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/[^/]+$":"Abacus/\\1_\\2_\\3_\\4/\\1_\\2_\\3_\\4_aux.tar",
+            "Abacus/(scripts|verified_checksums)/.*$":"Abacus/Abacus_aux.tar"
+        },
         "ELG_HOD":{},
         "UNIT-BAO-RSD-challenge":{},
         "UNITSIM":{},
