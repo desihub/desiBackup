@@ -204,6 +204,9 @@
         "EZmock":{
             "EZmock/.*$":"EZmock.tar"
         },
+        "GLAM":{
+            "GLAM/GLAM_LRG_([^/]+)/.*$":"GLAM/GLAM_LRG_\\1.tar"
+        },
         "Gadget":{
             "Gadget/.*$":"Gadget.tar"
         },
