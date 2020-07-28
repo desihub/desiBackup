@@ -13,6 +13,8 @@
         },
         "dithering":{
         },
+        "fiberassign":{
+        },
         "fpcalib":{
         },
         "fvc":{
@@ -96,6 +98,8 @@
         "mockobs-18.6":{
             "mockobs-18\\.6/.*$":"mockobs-18.6.tar"
         },
+        "onepercent":{
+        },
         "quicklook":{
             "quicklook/review-19\\.1/redux/exposures/.*$":"quicklook/review-19.1/redux/review-19.1_redux_exposures.tar",
             "quicklook/review-19\\.1/redux/preproc/.*$":"EXCLUDE"
@@ -170,8 +174,6 @@
         },
         "gfa":{
         },
-        "pfa":{
-        },
         "pfa2positioner":{
         },
         "platemaker":{
@@ -179,6 +181,8 @@
         "spectrograph":{
         },
         "svn_export_focalplane_12302018":{
+        },
+        "umdata":{
         }
     },
     "gsharing":{
@@ -189,6 +193,12 @@
         "__top__":{
             "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.desi\\.txt$":"EXCLUDE",
             "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.desi\\.txt\\.gz$":"\\1_\\2_files.tar"
+        },
+        "backups":{
+            "backups/.*$":"EXCLUDE"
+        },
+        "reports":{
+            "reports/.*$":"EXCLUDE"
         }
     },
     "mocks":{
@@ -287,7 +297,7 @@
             "logs/.*$":"protodesi_logs.tar"
         }
     },
-    "release":{
+    "public":{
         "__exclude__":[]
     },
     "science":{
@@ -301,6 +311,8 @@
         "lya":{
         },
         "mws":{
+        },
+        "td":{
         }
     },
     "software":{
@@ -311,6 +323,8 @@
         "StrayLight":{
         },
         "ZemaxSimulation":{
+        },
+        "dashboard":{
         },
         "data":{
             "data/([0-9]+)/.*$":"data/desi_spectro_data_\\1.tar"
@@ -382,6 +396,8 @@
         },
         "gaia_dr2_match_dr6":{
         },
+        "masks":{
+        },
         "mws":{
         },
         "qso_targets_dr3":{
@@ -392,6 +408,8 @@
         },
         "stripe82-dr2":{
         },
+        "tycho_dr2":{
+        },
         "urat_dr1":{
         }
     },
@@ -399,6 +417,9 @@
         "__exclude__":[]
     },
     "www":{
-        "__exclude__":[]
+        "__exclude__":["favicon.ico", "index.html"],
+        "users":{
+            "users/.*$":"EXCLUDE"
+        }
     }
 }

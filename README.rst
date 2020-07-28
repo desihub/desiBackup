@@ -54,6 +54,7 @@ Change Log
 0.2.2 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
+* Rename top-level ``release/`` to ``public/``.
 * Update configuration for ``mocks/lya_forest/london``, other minor changes
   to other top-level directories (PR `#20`_).
 * Update to new /global/cfs filesystem.
