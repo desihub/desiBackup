@@ -54,6 +54,8 @@ Change Log
 0.2.2 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
+* Rename top-level ``release/`` to ``public/``; other minor configuration
+  changes (PR `#23`_).
 * Update configuration for ``mocks/lya_forest/london``, other minor changes
   to other top-level directories (PR `#20`_).
 * Update to new /global/cfs filesystem.
@@ -61,6 +63,7 @@ Change Log
 
 .. _`#20`: https://github.com/desihub/desiBackup/pull/20
 .. _`#21`: https://github.com/desihub/desiBackup/pull/21
+.. _`#23`: https://github.com/desihub/desiBackup/pull/23
 
 0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
