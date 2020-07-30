@@ -38,6 +38,7 @@
             "Abacus/(scripts|verified_checksums)/.*$":"Abacus/Abacus_aux.tar"
         },
         "ELG_HOD":{},
+        "NFW_Abacus":{},
         "UNIT-BAO-RSD-challenge":{},
         "UNITSIM":{},
         "cov_mat_challenge":{},
