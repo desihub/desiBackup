@@ -299,7 +299,10 @@
         }
     },
     "public":{
-        "__exclude__":[]
+        "__exclude__":["index.html"],
+        "ets":{
+            "ets/.*$":"ets.tar"
+        }
     },
     "science":{
         "__exclude__":["README"],
