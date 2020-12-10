@@ -54,6 +54,7 @@ Change Log
 0.2.2 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
+* Migrated to GitHub Actions for testing.
 * Rename top-level ``release/`` to ``public/``; other minor configuration
   changes (PR `#23`_).
 * Update configuration for ``mocks/lya_forest/london``, other minor changes
