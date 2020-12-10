@@ -2,6 +2,12 @@
 desiBackup
 ==========
 
+|Actions Status|
+
+.. |Actions Status| image:: https://github.com/desihub/desiBackup/workflows/CI/badge.svg
+    :target: https://github.com/desihub/desiBackup/actions
+    :alt: GitHub Actions CI Status
+
 Introduction
 ------------
 
@@ -35,10 +41,6 @@ backup can be *tested* without damaging anything by using the ``-t`` option.
 
 Testing desiBackup
 ------------------
-
-.. image:: https://img.shields.io/travis/desihub/desiBackup.svg
-    :target: https://travis-ci.org/desihub/desiBackup
-    :alt: Travis Build Status
 
 Currently, desiBackup is tested by ensuring that the file ``etc/desi.json`` is
 valid.  Specifically this command is run::
