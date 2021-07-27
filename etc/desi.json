@@ -324,6 +324,8 @@
     },
     "spectro":{
         "__exclude__":["README.html", "data/README.html", "redux/README.html"],
+        "ETC":{
+        },
         "StrayLight":{
         },
         "ZemaxSimulation":{
@@ -333,9 +335,19 @@
         "data":{
             "data/([0-9]+)/.*$":"data/desi_spectro_data_\\1.tar"
         },
+        "desimeter":{
+        },
         "desi_spectro_calib":{
         },
+        "fastspecfit":{
+        },
+        "new-code-old-calib":{
+        },
         "nightwatch":{
+        },
+        "opsarchive":{
+        },
+        "prospect":{
         },
         "ql_calib":{
         },
@@ -343,12 +355,13 @@
         },
         "quicklook":{
         },
-        "prospect":{
-        },
         "redux":{
-            "redux/(?!andes|minisv2|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(?!andes|blanc|cascades|denali|minisv2|oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/andes/(calibnight|run)/.*$":"redux/andes/redux_andes_\\1.tar",
             "redux/andes/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/andes/\\1/redux_andes\\1_\\2.tar",
+            "redux/blanc/[^/]+$":"redux/blanc/redux_blanc_files.tar",
+            "redux/blanc/(calibnight|dashboard|exposure_tables|processing_tables|run)/.*$":"redux/blanc/redux_blanc_\\1.tar"",
+            "redux/blanc/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/blanc/\\1/redux_blanc_\\1_\\2.tar",
             "redux/minisv2/(alt|calibnight|run|tiles)/.*$":"redux/minisv2/redux_minisv2_\\1.tar",
             "redux/minisv2/(exposures|preproc)/([0-9]+)/.*$":"redux/minisv2/\\1/redux_minisv2_\\1_\\2.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
