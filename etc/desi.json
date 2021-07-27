@@ -360,7 +360,7 @@
             "redux/andes/(calibnight|run)/.*$":"redux/andes/redux_andes_\\1.tar",
             "redux/andes/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/andes/\\1/redux_andes\\1_\\2.tar",
             "redux/blanc/[^/]+$":"redux/blanc/redux_blanc_files.tar",
-            "redux/blanc/(calibnight|dashboard|exposure_tables|processing_tables|run)/.*$":"redux/blanc/redux_blanc_\\1.tar"",
+            "redux/blanc/(calibnight|dashboard|exposure_tables|processing_tables|run)/.*$":"redux/blanc/redux_blanc_\\1.tar",
             "redux/blanc/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/blanc/\\1/redux_blanc_\\1_\\2.tar",
             "redux/minisv2/(alt|calibnight|run|tiles)/.*$":"redux/minisv2/redux_minisv2_\\1.tar",
             "redux/minisv2/(exposures|preproc)/([0-9]+)/.*$":"redux/minisv2/\\1/redux_minisv2_\\1_\\2.tar",
