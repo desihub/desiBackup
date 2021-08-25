@@ -53,9 +53,10 @@ raise an exception.
 Change Log
 ----------
 
-0.2.2 (unreleased)
+0.3.0 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
+* Add recent spectroscopic reductions: andes, blanc, etc. (PR `#24`_).
 * Migrated to GitHub Actions for testing.
 * Rename top-level ``release/`` to ``public/``; other minor configuration
   changes (PR `#23`_).
@@ -67,6 +68,7 @@ Change Log
 .. _`#20`: https://github.com/desihub/desiBackup/pull/20
 .. _`#21`: https://github.com/desihub/desiBackup/pull/21
 .. _`#23`: https://github.com/desihub/desiBackup/pull/23
+.. _`#24`: https://github.com/desihub/desiBackup/pull/24
 
 0.2.1 (2019-08-20)
 ~~~~~~~~~~~~~~~~~~
