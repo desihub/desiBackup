@@ -357,6 +357,7 @@
         },
         "redux":{
             "redux/(?!andes|blanc|cascades|denali|everest|minisv2|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/blanctest/.*$":"EXCLUDE",
             "redux/(andes|blanc|cascades|denali|everest)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
             "redux/(andes|blanc|cascades|denali|everest)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
