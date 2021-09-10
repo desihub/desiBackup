@@ -53,6 +53,11 @@ raise an exception.
 Change Log
 ----------
 
+0.3.1 (unreleased)
+~~~~~~~~~~~~~~~~~~
+
+* No changes yet.
+
 0.3.0 (2021-09-10)
 ~~~~~~~~~~~~~~~~~~
 
