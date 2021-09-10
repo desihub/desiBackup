@@ -53,7 +53,7 @@ raise an exception.
 Change Log
 ----------
 
-0.3.0 (unreleased)
+0.3.0 (2021-09-10)
 ~~~~~~~~~~~~~~~~~~
 
 * Add recent spectroscopic reductions: andes, blanc, etc. (PR `#24`_).
