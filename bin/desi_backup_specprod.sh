@@ -221,7 +221,7 @@ for d in healpix tiles; do
                     fi
                 fi
             done
-            cd group
+            cd ${group}
             if [[ "${d}" == "healpix" ]]; then
                 for obs in *; do
                     grep -q ${SPECPROD}/${d}/${group}/${obs}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}
