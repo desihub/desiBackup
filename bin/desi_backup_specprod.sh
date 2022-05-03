@@ -63,7 +63,8 @@ grep -q ${SPECPROD}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD
 #
 # Top-level files
 #
-cd ${DESI_SPECTRO_REDUX}/${SPECPROD}
+home=${DESI_SPECTRO_REDUX}/${SPECPROD}
+cd ${home}
 if [[ -f redux_${SPECPROD}.sha256sum ]]; then
     ${verbose} && echo "redux_${SPECPROD}.sha256sum already exists."
 else
@@ -150,7 +151,7 @@ for d in processing_tables run zcatalog; do
     fi
 done
 #
-# exposures, preproc, tiles
+# exposures, preproc
 #
 for d in exposures preproc; do
     cd ${d}
@@ -216,7 +217,7 @@ for d in healpix tiles; do
                         cd ${dd}
                         ${verbose} && echo unlock_and_move ${s}
                         ${test}    || unlock_and_move ${s}
-                        cd ${SPECPROD}/${d}
+                        cd ${home}
                     fi
                 fi
             done
