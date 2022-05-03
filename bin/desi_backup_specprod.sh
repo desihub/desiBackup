@@ -150,9 +150,9 @@ for d in processing_tables run zcatalog; do
     fi
 done
 #
-# exposures, preproc
+# exposures, preproc, tiles
 #
-for d in exposures preproc tiles; do
+for d in exposures preproc; do
     cd ${d}
     grep -q ${SPECPROD}/${d}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}
     for night in *; do
@@ -166,7 +166,7 @@ for d in exposures preproc tiles; do
                 ${test}    || sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 ${verbose} && echo unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 ${test}    || unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
-                if [[ "${d}" == "tiles" ]]; then
+                if [[ "${d}" == "tiles" && -d logs ]]; then
                     if [[ -f logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum ]]; then
                         echo "${d}/${night}/${expid}/logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum already exists."
                     else
@@ -192,5 +192,31 @@ for d in exposures preproc tiles; do
     cd ..
 done
 #
-# healpix
+# healpix, tiles
 #
+for d in healpix tiles; do
+    cd ${d}
+    grep -q ${SPECPROD}/${d}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}
+    for group in *; do
+        if [[ -d ${group} ]]; then
+            grep -q ${SPECPROD}/${d}/${group}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}/${group}
+            for dd in $(find ${group} -type d); do
+                has_files=$(find ${dd} -maxdepth 1 -type f)
+                if [[ -n "${has_files}" ]]; then
+                    s=redux_${SPECPROD}_${d}_${group}_$(tr '/', '_' <<<${dd}).sha256sum
+                    if [[ -f ${dd}/${s} ]]; then
+                        echo "${d}/${group}/${dd}/${s} already exists."
+                    else
+                        ${verbose} && echo touch ${SCRATCH}/${s}
+                        ${test}    || touch ${SCRATCH}/${s}
+                        for f in ${has_files}; do
+                            ${verbose} && echo "sha256sum ${f} | sed -r 's%^([0-9a-f]+)  (.*)/([^/]+)$%\1  \3%g' >> ${SCRATCH}/${s}"
+                            ${test}    || sha256sum ${f} | sed -r 's%^([0-9a-f]+)  (.*)/([^/]+)$%\1  \3%g' >> ${SCRATCH}/${s}
+                        done
+                    fi
+                fi
+            done
+        fi
+    done
+    cd ..
+done
