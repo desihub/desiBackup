@@ -97,7 +97,7 @@ cd ..
 #
 # calibnight, exposure_tables
 #
-for d in calibnight, exposure_tables; do
+for d in calibnight exposure_tables; do
     cd ${d}
     for night in *; do
         if [[ ! -f ${night}/redux_${SPECPROD}_${d}_${night}.sha256sum ]]; then
@@ -120,7 +120,7 @@ done
 #
 # processing_tables, zcatalog
 #
-for d in processing_tables, zcatalog; do
+for d in processing_tables zcatalog; do
     if [[ ! -f ${d}/redux_${SPECPROD}_${d}.sha256sum ]]; then
         cd ${d}
         ${verbose} && echo "sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}.sha256sum"
