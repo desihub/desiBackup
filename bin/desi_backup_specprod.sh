@@ -203,9 +203,9 @@ for d in healpix tiles; do
             for dd in $(find ${group} -type d); do
                 has_files=$(find ${dd} -maxdepth 1 -type f)
                 if [[ -n "${has_files}" ]]; then
-                    s=redux_${SPECPROD}_${d}_${group}_$(tr '/', '_' <<<${dd}).sha256sum
+                    s=redux_${SPECPROD}_${d}_$(tr '/', '_' <<<${dd}).sha256sum
                     if [[ -f ${dd}/${s} ]]; then
-                        echo "${d}/${group}/${dd}/${s} already exists."
+                        echo "${d}/${dd}/${s} already exists."
                     else
                         ${verbose} && echo touch ${SCRATCH}/${s}
                         ${test}    || touch ${SCRATCH}/${s}
@@ -213,9 +213,39 @@ for d in healpix tiles; do
                             ${verbose} && echo "sha256sum ${f} | sed -r 's%^([0-9a-f]+)  (.*)/([^/]+)$%\1  \3%g' >> ${SCRATCH}/${s}"
                             ${test}    || sha256sum ${f} | sed -r 's%^([0-9a-f]+)  (.*)/([^/]+)$%\1  \3%g' >> ${SCRATCH}/${s}
                         done
+                        cd ${dd}
+                        ${verbose} && echo unlock_and_move ${s}
+                        ${test}    || unlock_and_move ${s}
+                        cd ${SPECPROD}/${d}
                     fi
                 fi
             done
+            cd group
+            if [[ "${d}" == "healpix" ]]; then
+                for obs in *; do
+                    grep -q ${SPECPROD}/${d}/${group}/${obs}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}
+                    cd ${obs}
+                    for pixgroup in *; do
+                        if (grep -q redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar.idx ${hpss_cache}); then
+                            ${verbose} && echo "redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar already exists."
+                        else
+                            ${verbose} && echo "htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}/redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar -H crc:verify=all ${pixgroup}"
+                            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}/redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar -H crc:verify=all ${pixgroup}
+                        fi
+                    done
+                    cd ..
+                done
+            else
+                for tileid in *; do
+                    if (grep -q redux_${SPECPROD}_${d}_${group}_${tileid}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${group}_${tileid}.tar.idx ${hpss_cache}); then
+                        ${verbose} && echo "redux_${SPECPROD}_${d}_${group}_${tileid}.tar already exists."
+                    else
+                        ${verbose} && echo "htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/redux_${SPECPROD}_${d}_${group}_${tileid}.tar -H crc:verify=all ${tileid}"
+                        ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/redux_${SPECPROD}_${d}_${group}_${tileid}.tar -H crc:verify=all ${tileid}
+                    fi
+                done
+            fi
+            cd ..
         fi
     done
     cd ..
