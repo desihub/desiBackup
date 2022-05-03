@@ -152,7 +152,7 @@ done
 #
 # exposures, preproc
 #
-for d in exposures preproc; do
+for d in exposures preproc tiles; do
     cd ${d}
     grep -q ${SPECPROD}/${d}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}
     for night in *; do
@@ -167,6 +167,18 @@ for d in exposures preproc; do
                 ${verbose} && echo unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 ${test}    || unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 cd ..
+                if [[ "${d}" == "tiles" ]]; then
+                    if [[ -f logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum ]]; then
+                        echo "${d}/${night}/${expid}/logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum already exists."
+                    else
+                        cd logs
+                        ${verbose} && echo "sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum"
+                        ${test}    || sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum
+                        ${verbose} && echo unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum
+                        ${test}    || unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum
+                        cd ..
+                    fi
+                fi
             fi
         done
         cd ..
@@ -179,3 +191,6 @@ for d in exposures preproc; do
     done
     cd ..
 done
+#
+# healpix
+#
