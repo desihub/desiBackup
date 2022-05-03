@@ -166,7 +166,6 @@ for d in exposures preproc tiles; do
                 ${test}    || sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 ${verbose} && echo unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
                 ${test}    || unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
-                cd ..
                 if [[ "${d}" == "tiles" ]]; then
                     if [[ -f logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum ]]; then
                         echo "${d}/${night}/${expid}/logs/redux_${SPECPROD}_${d}_${night}_${expid}_logs.sha256sum already exists."
@@ -179,6 +178,7 @@ for d in exposures preproc tiles; do
                         cd ..
                     fi
                 fi
+                cd ..
             fi
         done
         cd ..
