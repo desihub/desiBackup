@@ -217,7 +217,7 @@ for d in healpix tiles; do
                         cd ${dd}
                         ${verbose} && echo unlock_and_move ${s}
                         ${test}    || unlock_and_move ${s}
-                        cd ${home}
+                        cd ${home}/${d}
                     fi
                 fi
             done
