@@ -81,7 +81,6 @@ fi
 #
 # tilepix.* files in healpix directory
 #
-cd healpix
 if [[ -f healpix/redux_${SPECPROD}_healpix.sha256sum ]]; then
     ${verbose} && echo "healpix/redux_${SPECPROD}_healpix.sha256sum already exists."
 else
@@ -106,7 +105,7 @@ for d in calibnight exposure_tables; do
     cd ${d}
     for night in *; do
         if [[ -f ${night}/redux_${SPECPROD}_${d}_${night}.sha256sum ]]; then
-            ${verbose} && echo "${night}/redux_${SPECPROD}_${d}_${night}.sha256sum already exists."
+            ${verbose} && echo "${d}/${night}/redux_${SPECPROD}_${d}_${night}.sha256sum already exists."
         else
             cd ${night}
             ${verbose} && echo "sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}.sha256sum"
@@ -149,4 +148,34 @@ for d in processing_tables run zcatalog; do
         ${verbose} && echo "htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}"
         ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}
     fi
+done
+#
+# exposures, preproc
+#
+for d in exposures preproc; do
+    cd ${d}
+    grep -q ${SPECPROD}/${d}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}
+    for night in *; do
+        cd ${night}
+        for expid in *; do
+            if [[ -f ${expid}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum ]]; then
+                ${verbose} && echo "${d}/${night}/${expid}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum already exists."
+            else
+                cd ${expid}
+                ${verbose} && echo "sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum"
+                ${test}    || sha256sum * > ${SCRATCH}/redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
+                ${verbose} && echo unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
+                ${test}    || unlock_and_move redux_${SPECPROD}_${d}_${night}_${expid}.sha256sum
+                cd ..
+            fi
+        done
+        cd ..
+        if (grep -q redux_${SPECPROD}_${d}_${night}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${night}.tar.idx ${hpss_cache}); then
+            ${verbose} && echo "redux_${SPECPROD}_${d}_${night}.tar already exists."
+        else
+            ${verbose} && echo "htar -cvf desi/spectro/redux/${SPECPROD}/${d}/redux_${SPECPROD}_${d}_${night}.tar -H crc:verify=all ${night}"
+            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/redux_${SPECPROD}_${d}_${night}.tar -H crc:verify=all ${night}
+        fi
+    done
+    cd ..
 done
