@@ -152,8 +152,10 @@ for d in processing_tables run zcatalog; do
 done
 #
 # exposures, preproc
+# Temporarily skip exposures while issues with empty directories and symlinks are worked out
 #
-for d in exposures preproc; do
+# for d in exposures preproc; do
+for d in preproc; do
     cd ${d}
     grep -q ${SPECPROD}/${d}: ${hpss_cache} || hsi mkdir -p desi/spectro/redux/${SPECPROD}/${d}
     for night in *; do
