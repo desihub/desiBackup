@@ -55,9 +55,11 @@ function validate() {
 function generate_backup_job() {
     local directory=$1
     local d=$(dirname ${directory})
+    local b=$(basename ${directory})
     local hsi_directory=desi/spectro/redux/${SPECPROD}/${d}
     [[ "${d}" == "." ]] && hsi_directory=desi/spectro/redux/${SPECPROD}
     local tar_directory=$(basename ${directory})
+    [[ "${b}" == "files" ]] && tar_directory="$2"
     local job_name=redux_${SPECPROD}_$(tr '/', '_' <<<${directory})
     cat > ${HOME}/jobs/${job_name}.sh <<EOT
 #!/bin/bash
@@ -70,6 +72,7 @@ function generate_backup_job() {
 cd /global/cfs/cdirs/${hsi_directory}
 hsi mkdir -p ${hsi_directory}
 htar -cvf ${hsi_directory}/${job_name}.tar -H crc:verify=all ${tar_directory}
+[[ \$? == 0 ]] && mv -v ${HOME}/jobs/${job_name}.sh ${HOME}/jobs/done
 EOT
     chmod +x ${HOME}/jobs/${job_name}.sh
 }
@@ -128,8 +131,8 @@ else
         if (grep -q redux_${SPECPROD}_files.tar ${hpss_cache} && grep -q redux_${SPECPROD}_files.tar.idx ${hpss_cache}); then
             echo "INFO: redux_${SPECPROD}_files.tar already exists."
         else
-            ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_files.tar -H crc:verify=all exposures-${SPECPROD}.* tiles-${SPECPROD}.* *.sha256sum"
-            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_files.tar -H crc:verify=all exposures-${SPECPROD}.* tiles-${SPECPROD}.* *.sha256sum
+            ${verbose} && echo "DEBUG: generate_backup_job files \"exposures-${SPECPROD}.* tiles-${SPECPROD}.* *.sha256sum\""
+            ${test}    || generate_backup_job files "exposures-${SPECPROD}.* tiles-${SPECPROD}.* *.sha256sum"
         fi
     fi
 fi
@@ -153,8 +156,8 @@ else
         if (grep -q redux_${SPECPROD}_healpix_files.tar ${hpss_cache} && grep -q redux_${SPECPROD}_healpix_files.tar.idx ${hpss_cache}); then
             echo "INFO: redux_${SPECPROD}_healpix_files.tar already exists."
         else
-            ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/healpix/redux_${SPECPROD}_healpix_files.tar -H crc:verify=all tilepix.* *.sha256sum"
-            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/healpix/redux_${SPECPROD}_healpix_files.tar -H crc:verify=all tilepix.* *.sha256sum
+            ${verbose} && echo "DEBUG: generate_backup_job healpix/files 'tilepix.* *.sha256sum'"
+            ${test}    || generate_backup_job healpix/files 'tilepix.* *.sha256sum'
         fi
     fi
 fi
