@@ -50,6 +50,30 @@ function validate() {
     (( n_files == n_lines + 1 )) && sha256sum --status --check ${checksum}
 }
 #
+# Create a backup job for submission to xfer.
+#
+function generate_backup_job() {
+    local directory=$1
+    local d=$(dirname ${directory})
+    local hsi_directory=desi/spectro/redux/${SPECPROD}/${d}
+    [[ "${d}" == "." ]] && hsi_directory=desi/spectro/redux/${SPECPROD}
+    local tar_directory=$(basename ${directory})
+    local job_name=redux_${SPECPROD}_$(tr '/', '_' <<<${directory})
+    cat > ${HOME}/jobs/${job_name}.sh <<EOT
+#!/bin/bash
+#SBATCH --account=desi
+#SBATCH --qos=xfer
+#SBATCH --time=12:00:00
+#SBATCH --mem=10GB
+#SBATCH --job-name=${job_name}
+#SBATCH --licenses=cfs
+cd /global/cfs/cdirs/${hsi_directory}
+hsi mkdir -p ${hsi_directory}
+htar -cvf ${hsi_directory}/${job_name}.tar -H crc:verify=all ${tar_directory}
+EOT
+    chmod +x ${HOME}/jobs/${job_name}.sh
+}
+#
 # Get options.
 #
 backup=true
@@ -161,8 +185,8 @@ for d in calibnight exposure_tables; do
         if (grep -q redux_${SPECPROD}_${d}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}.tar.idx ${hpss_cache}); then
             ${verbose} && echo "INFO: redux_${SPECPROD}_${d}.tar already exists."
         else
-            ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}"
-            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}
+            ${verbose} && echo "DEBUG: generate_backup_job ${d}"
+            ${test}    || generate_backup_job ${d}
         fi
     fi
 done
@@ -193,8 +217,8 @@ for d in processing_tables run zcatalog; do
         if (grep -q redux_${SPECPROD}_${d}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}.tar.idx ${hpss_cache}); then
             ${verbose} && echo "INFO: redux_${SPECPROD}_${d}.tar already exists."
         else
-            ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}"
-            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/redux_${SPECPROD}_${d}.tar -H crc:verify=all ${d}
+            ${verbose} && echo "DEBUG: generate_backup_job ${d}"
+            ${test}    || generate_backup_job ${d}
         fi
     fi
 done
@@ -233,8 +257,8 @@ for d in exposures preproc; do
             if (grep -q redux_${SPECPROD}_${d}_${night}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${night}.tar.idx ${hpss_cache}); then
                 ${verbose} && echo "INFO: redux_${SPECPROD}_${d}_${night}.tar already exists."
             else
-                ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/${d}/redux_${SPECPROD}_${d}_${night}.tar -H crc:verify=all ${night}"
-                ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/redux_${SPECPROD}_${d}_${night}.tar -H crc:verify=all ${night}
+                ${verbose} && echo "DEBUG: generate_backup_job ${d}/${night}"
+                ${test}    || generate_backup_job ${d}/${night}
             fi
         fi
     done
@@ -289,8 +313,8 @@ for d in healpix tiles; do
                             if (grep -q redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar.idx ${hpss_cache}); then
                                 ${verbose} && echo "INFO: redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar already exists."
                             else
-                                ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}/redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar -H crc:verify=all ${pixgroup}"
-                                ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/${obs}/redux_${SPECPROD}_${d}_${group}_${obs}_${pixgroup}.tar -H crc:verify=all ${pixgroup}
+                                ${verbose} && echo "DEBUG: generate_backup_job ${d}/${group}/${obs}/${pixgroup}"
+                                ${test}    || generate_backup_job ${d}/${group}/${obs}/${pixgroup}
                             fi
                         done
                         cd ..
@@ -300,8 +324,8 @@ for d in healpix tiles; do
                         if (grep -q redux_${SPECPROD}_${d}_${group}_${tileid}.tar ${hpss_cache} && grep -q redux_${SPECPROD}_${d}_${group}_${tileid}.tar.idx ${hpss_cache}); then
                             ${verbose} && echo "INFO: redux_${SPECPROD}_${d}_${group}_${tileid}.tar already exists."
                         else
-                            ${verbose} && echo "DEBUG: htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/redux_${SPECPROD}_${d}_${group}_${tileid}.tar -H crc:verify=all ${tileid}"
-                            ${test}    || htar -cvf desi/spectro/redux/${SPECPROD}/${d}/${group}/redux_${SPECPROD}_${d}_${group}_${tileid}.tar -H crc:verify=all ${tileid}
+                            ${verbose} && echo "DEBUG: generate_backup_job ${d}/${group}/${tileid}"
+                            ${test}    || generate_backup_job ${d}/${group}/${tileid}
                         fi
                     done
                 fi
