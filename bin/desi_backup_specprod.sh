@@ -36,7 +36,7 @@ function unlock_and_move() {
 #
 function is_empty() {
     local directory=$1
-    [[ -z "$(/bin/ls ${directory})" ]]
+    [[ -z "$(/bin/ls -A ${directory})" ]]
 }
 #
 # Validate checksums.
