@@ -37,12 +37,26 @@
             "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/[^/]+$":"Abacus/\\1_\\2_\\3_\\4/\\1_\\2_\\3_\\4_aux.tar",
             "Abacus/(scripts|verified_checksums)/.*$":"Abacus/Abacus_aux.tar"
         },
+        "AbacusHOD_mocks":{},
         "ELG_HOD":{},
+        "EZmock_lightcones":{},
+        "FirstGenMocks":{},
+        "KP45":{},
         "NFW_Abacus":{},
+        "TNG_Rockstar":{},
+        "Uchuu":{},
         "UNIT-BAO-RSD-challenge":{},
         "UNITSIM":{},
         "cov_mat_challenge":{},
+        "mocks_SV3":{},
         "proto_sim":{}
+    },
+    "da":{
+        "__exclude__":["README.html"],
+        "edr":{
+        },
+        "ets":{
+        }
     },
     "datachallenge":{
         "__exclude__":["svdc-summer2019/svdc2019c/README"],
@@ -167,6 +181,10 @@
     },
     "engineering":{
         "__exclude__":[],
+        "2021_summer_illumination_checks":{
+        },
+        "donut":{
+        },
         "focalplane":{
         },
         "fvc":{
@@ -209,6 +227,8 @@
             "lya_forest/saclay/README",
             "lya_forest/saclay/README~"
         ],
+        "CCMD_BGS":{
+        },
         "DarkSky":{
             "DarkSky/.*$":"DarkSky.tar"
         },
@@ -227,8 +247,14 @@
         "LGal_spectra":{
             "LGal_spectra/.*$":"LGal_spectra.tar"
         },
+        "MXXL":{
+        },
+        "OIIlf_may16_comparat":{
+        },
         "TNG_spectra":{
             "TNG_spectra/.*$":"TNG_spectra.tar"
+        },
+        "Uchuu":{
         },
         "UNIT":{
         },
@@ -312,9 +338,13 @@
         },
         "gqc":{
         },
+        "gqp":{
+        },
         "lya":{
         },
         "mws":{
+        },
+        "redux":{
         },
         "td":{
         }
@@ -339,6 +369,8 @@
         },
         "desi_spectro_calib":{
         },
+        "desi_spectro_dark":{
+        },
         "fastspecfit":{
         },
         "new-code-old-calib":{
@@ -356,15 +388,15 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|denali|everest|minisv2|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(?!andes|blanc|cascades|denali|everest|fuji|guadalupe|minisv2|oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/blanctest/.*$":"EXCLUDE",
-            "redux/(andes|blanc|cascades|denali|everest)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
-            "redux/(andes|blanc|cascades|denali|everest)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(andes|blanc|cascades|denali|everest|fuji|guadalupe)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
+            "redux/(andes|blanc|cascades|denali|everest|fuji|guadalupe)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/(denali|everest)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/everest/healpix/[^/]+$":"redux/everest/healpix/redux_everest_healpix_files.tar",
-            "redux/everest/healpix/(main|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/everest/healpix/\\1/\\2/redux_everest_healpix_\\1_\\2_\\3.tar",
-            "redux/(denali|everest)/tiles/(1x_depth|4x_depth|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "redux/(denali|everest|fuji|guadalupe)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
+            "redux/(everest|fuji|guadalupe)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
+            "redux/(everest|fuji|guadalupe)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
+            "redux/(denali|everest|fuji|guadalupe)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
             "redux/minisv2/(alt|calibnight|run|tiles)/.*$":"redux/minisv2/redux_minisv2_\\1.tar",
             "redux/minisv2/(exposures|preproc)/([0-9]+)/.*$":"redux/minisv2/\\1/redux_minisv2_\\1_\\2.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
@@ -378,10 +410,24 @@
         "testdata":{
         },
         "teststand":{
+        },
+        "users":{
         }
     },
     "survey":{
         "__exclude__":[],
+        "GFA":{
+        },
+        "analysis":{
+        },
+        "catalogs":{
+        },
+        "fiberassign":{
+        },
+        "observations":{
+        },
+        "ops":{
+        },
         "planning":{
         },
         "sims":{
@@ -389,6 +435,8 @@
     },
     "sv":{
         "__exclude__":[],
+        "bgs":{
+        },
         "forecasts":{
         },
         "tiles":{
@@ -400,6 +448,8 @@
     "target":{
         "__exclude__":["README.html"],
         "RF_files":{
+        },
+        "ToO":{
         },
         "analysis":{
         },
@@ -416,9 +466,13 @@
         },
         "gaia_dr2_match_dr6":{
         },
+        "gaia_edr3":{
+        },
         "masks":{
         },
         "mws":{
+        },
+        "proposals":{
         },
         "qso_targets_dr3":{
         },
@@ -426,7 +480,13 @@
         },
         "secondary":{
         },
+        "skybricks":{
+        },
+        "skyhealpixs":{
+        },
         "stripe82-dr2":{
+        },
+        "surveyops":{
         },
         "tycho_dr2":{
         },

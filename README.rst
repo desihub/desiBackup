@@ -53,10 +53,12 @@ raise an exception.
 Change Log
 ----------
 
-0.3.1 (unreleased)
+0.3.1 (2022-06-01)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Updates for ``fuji`` and ``guadalupe`` (PR `#27`_).
+
+.. _`#27`: https://github.com/desihub/desiBackup/pull/27
 
 0.3.0 (2021-09-10)
 ~~~~~~~~~~~~~~~~~~
