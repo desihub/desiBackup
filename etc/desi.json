@@ -338,7 +338,7 @@
             "edr/spectro/redux/(fuji)/(exposures|preproc)/([0-9]+)/.*$":"edr/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "edr/spectro/redux/(fuji)/healpix/[^/]+$":"edr/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "edr/spectro/redux/(fuji)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"edr/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
-            "edr/spectro/redux/(fuji)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"edr/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "edr/spectro/redux/(fuji)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"edr/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar"
         },
         "epo":{
         },
