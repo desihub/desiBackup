@@ -1,6 +1,19 @@
 #!/bin/bash
 #
-module load esslurm
+# Example scrontab entry to submit xfer jobs:
+#
+# #SCRON --account=desi
+# #SCRON --qos=workflow
+# #SCRON --time=30-12:00:00
+# #SCRON --job-name=submit_xfer_jobs
+# #SCRON --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
+# #SCRON --open-mode=append
+# #SCRON --mail-type=ALL
+# #SCRON --mail-user=benjamin.weaver@noirlab.edu
+# 15 * * * * /bin/bash -lc "source /global/common/software/desi/desi_environment.sh main && module load desiBackup && ${DESIBACKUP}/bin/submit_xfer_jobs.sh -v ${HOME}/jobs/redux_everest_tiles"
+#
+#
+#
 function usage() {
     local execName=$(basename $0)
     (
