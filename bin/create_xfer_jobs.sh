@@ -20,11 +20,12 @@ for d in ${DESI_SPECTRO_REDUX}/${SPECPROD}/${directory}/*; do
 #SBATCH --time=12:00:00
 #SBATCH --mem=10GB
 #SBATCH --job-name=${job_name}
+#SBATCH --output=${HOME}/jobs/${job_name}-%j.log
 #SBATCH --licenses=cfs
 cd ${DESI_SPECTRO_REDUX}/${SPECPROD}/${directory}
 hsi mkdir -p desi/spectro/redux/${SPECPROD}/${directory}
 htar -cvf desi/spectro/redux/${SPECPROD}/${directory}/${job_name}.tar -H crc:verify=all ${n}
-[[ \$? == 0 ]] && mv -v /global/homes/d/desi/jobs/${job_name}.sh /global/homes/d/desi/jobs/done
+[[ \$? == 0 ]] && mv -v ${HOME}/jobs/${job_name}.sh ${HOME}/jobs/done
 EOT
     chmod +x ${job_name}.sh
 done
