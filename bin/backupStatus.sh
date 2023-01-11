@@ -131,7 +131,6 @@ COMMENTS
 for d in ${sections}; do
     c=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
     if [[ "${d}" == "gsharing" || \
-          "${d}" == "public"   || \
           "${d}" == "software" || \
           "${d}" == "users"    || \
           "${d}" == "www"      ]]; then

@@ -7,25 +7,33 @@
     "cmx":{
         "__exclude__":["README"],
         "SkyCam":{
+            "SkyCam/.*$": "SkyCam.tar"
         },
         "ci":{
-            "ci/tiles/v([0-9]+)/.*$":"ci/tiles/ci_tiles_v\\1.tar"
+            "ci/tiles/v([0-9]+)/.*$": "ci/tiles/ci_tiles_v\\1.tar"
         },
         "dithering":{
+            "dithering/.*$": "dithering.tar"
         },
         "fiberassign":{
+            "fiberassign/.*$": "fiberassign.tar"
         },
         "fpcalib":{
+            "fpcalib/.*$": "fpcalib.tar"
         },
         "fvc":{
+            "fvc/.*$": "fpcalib.tar"
         },
         "gfa":{
+            "gfa/.*$": "gfa.tar"
         },
         "psfstability":{
+            "psfstability/.*$": "psfstability.tar"
         },
         "sky":{
         },
         "tiles":{
+            "tiles/([A-Z_0-9]+)/.*$": "tiles/tiles_\\1.tar"
         }
     },
     "cosmosim":{
@@ -50,13 +58,6 @@
         "cov_mat_challenge":{},
         "mocks_SV3":{},
         "proto_sim":{}
-    },
-    "da":{
-        "__exclude__":["README.html"],
-        "edr":{
-        },
-        "ets":{
-        }
     },
     "datachallenge":{
         "__exclude__":["svdc-summer2019/svdc2019c/README"],
@@ -114,6 +115,7 @@
             "mockobs-18\\.6/.*$":"mockobs-18.6.tar"
         },
         "onepercent":{
+            "onepercent/.*$": "onepercent.tar"
         },
         "quicklook":{
             "quicklook/review-19\\.1/redux/exposures/.*$":"quicklook/review-19.1/redux/review-19.1_redux_exposures.tar",
@@ -149,8 +151,6 @@
             "reference_runs/([0-9.a]+|cptest)/[^/]+$":"reference_runs/\\1/reference_runs_\\1_files.tar",
             "reference_runs/([0-9.a]+|cptest)/(fiberassign|survey|targets)/.*$":"reference_runs/\\1/reference_runs_\\1_\\2.tar",
             "reference_runs/([0-9.a]+|cptest)/spectro/(redux|sim)/.*$":"reference_runs/\\1/spectro/reference_runs_\\1_spectro_\\2.tar"
-        },
-        "staging":{
         },
         "surveysim2017":{
             "surveysim2017/.*$":"surveysim2017.tar"
@@ -459,13 +459,16 @@
     "sv":{
         "__exclude__":[],
         "bgs":{
+            "bgs/.*$": "bgs.tar"
         },
         "forecasts":{
+            "forecasts/.*$": "forecasts.tar"
         },
         "tiles":{
-            "tiles/.*$":"tiles.tar"
+            "tiles/.*$": "tiles.tar"
         },
         "vi":{
+            "vi/.*$": "vi.tar"
         }
     },
     "target":{
@@ -477,6 +480,7 @@
         "analysis":{
         },
         "catalogs":{
+            "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar"
         },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
@@ -484,8 +488,6 @@
         "elg_targets_dr3":{
         },
         "fiberassign":{
-        },
-        "gaia_dr2":{
         },
         "gaia_dr2_match_dr6":{
         },
