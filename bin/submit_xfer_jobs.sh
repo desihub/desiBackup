@@ -52,7 +52,7 @@ if (( $# < 1 )); then
     exit 1
 fi
 prefix=$1
-available_jobs=($(ls ${prefix}*))
+available_jobs=($(ls ${prefix}*.sh))
 if [[ -n "${total_jobs}" ]]; then
     n_available=${total_jobs}
 else
