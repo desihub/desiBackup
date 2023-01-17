@@ -31,6 +31,7 @@
             "psfstability/.*$": "psfstability.tar"
         },
         "sky":{
+            "sky/.*$": "sky.tar"
         },
         "tiles":{
             "tiles/([A-Z_0-9]+)/.*$": "tiles/tiles_\\1.tar"
@@ -45,7 +46,12 @@
             "Abacus/(MiniAbacusSummit|AbacusSummit)_(base|high|highbase|huge|hugebase)_(c[0-9]+)_(ph[0-9]+)/[^/]+$":"Abacus/\\1_\\2_\\3_\\4/\\1_\\2_\\3_\\4_aux.tar",
             "Abacus/(scripts|verified_checksums)/.*$":"Abacus/Abacus_aux.tar"
         },
+        "Abacus_Env":{},
+        "Abacus_healpix":{},
         "AbacusHOD_mocks":{},
+        "AbacusLensing":{},
+        "AbacusPotential":{},
+        "CoLoRe_lensing":{},
         "ELG_HOD":{},
         "EZmock_lightcones":{},
         "FirstGenMocks":{},
@@ -272,6 +278,8 @@
         "earlyQPM":{
             "earlyQPM/.*$":"earlyQPM.tar"
         },
+        "fastpm_fnl":{
+        },
         "gqp_mini_mocha":{
             "gqp_mini_mocha/.*$":"gqp_mini_mocha.tar"
         },
@@ -331,6 +339,9 @@
         "doc":{
             "doc/.*$":"EXCLUDE"
         },
+        "dr1":{
+            "dr1/vac/([^/]+)/.*$":"dr1/vac/dr1_vac_\\1.tar"
+        },
         "edr":{
             "edr/spectro/data/([0-9]+)/.*$":"edr/spectro/data/desi_spectro_data_\\1.tar",
             "edr/spectro/redux/(fuji)/[^/]+$":"edr/spectro/redux/\\1/redux_\\1_files.tar",
@@ -346,7 +357,10 @@
         "ets":{
             "ets/target/catalogs/(dr8|dr9|gaiadr2)/([0-9.]+)/.*$":"ets/target/catalogs/\\1/ets_target_catalogs_\\1_\\2.tar",
             "ets/target/catalogs/subpriority/.*$":"ets/target/catalogs/ets_target_catalogs_subpriority.tar",
-            "ets/target/secondary/.*$":"ets/target/ets_target_secondary.tar"
+            "ets/target/secondary/.*$":"ets/target/ets_target_secondary.tar",
+            "ets/vac/(lrg_veto_mask|stellar_mass)/.*$":"ets/vac/ets_vac_\\1.tar"
+        },
+        "external":{
         },
         "papers":{
         },
@@ -359,6 +373,8 @@
         },
         "c3":{
         },
+        "cpe":{
+        },
         "gqc":{
         },
         "gqp":{
@@ -367,7 +383,7 @@
         },
         "mws":{
         },
-        "redux":{
+        "software":{
         },
         "td":{
         }
@@ -395,6 +411,8 @@
         "desi_spectro_dark":{
         },
         "fastspecfit":{
+        },
+        "fastspecfit-dev":{
         },
         "new-code-old-calib":{
         },
@@ -445,6 +463,8 @@
         "catalogs":{
         },
         "fiberassign":{
+        },
+        "fluxcalibration":{
         },
         "observations":{
         },
