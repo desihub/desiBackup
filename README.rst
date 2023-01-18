@@ -53,10 +53,13 @@ raise an exception.
 Change Log
 ----------
 
-0.3.2 (unreleased)
+0.4.0 (2023-01-18)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Update scripts for submitting specprod backup jobs; general
+  refresh of configuration (PR `#28`_).
+
+.. _`#28`: https://github.com/desihub/desiBackup/pull/28
 
 0.3.1 (2022-06-01)
 ~~~~~~~~~~~~~~~~~~
