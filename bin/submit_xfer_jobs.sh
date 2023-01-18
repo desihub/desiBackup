@@ -1,6 +1,19 @@
 #!/bin/bash
 #
-module load esslurm
+# Example scrontab entry to submit xfer jobs:
+#
+# #SCRON --account=desi
+# #SCRON --qos=workflow
+# #SCRON --time=30-12:00:00
+# #SCRON --job-name=submit_xfer_jobs
+# #SCRON --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
+# #SCRON --open-mode=append
+# #SCRON --mail-type=ALL
+# #SCRON --mail-user=benjamin.weaver@noirlab.edu
+# 15 * * * * /bin/bash -lc "source /global/common/software/desi/desi_environment.sh main && module load desiBackup && submit_xfer_jobs.sh -v /global/homes/d/desi/jobs/redux_everest_tiles"
+#
+#
+#
 function usage() {
     local execName=$(basename $0)
     (
@@ -39,18 +52,18 @@ if (( $# < 1 )); then
     exit 1
 fi
 prefix=$1
-available_jobs=($(ls ${prefix}*))
+available_jobs=($(ls ${prefix}*.sh))
 if [[ -n "${total_jobs}" ]]; then
     n_available=${total_jobs}
 else
     n_available=${#available_jobs[*]}
 fi
 j=0
+base_prefix=$(basename ${prefix})
 while true; do
     echo -n "INFO: "
     date
-    foo=$(squeue -u ${USER} | wc -l)
-    n_jobs=$(( foo - 1 ))
+    n_jobs=$(squeue -u ${USER} -o "%.10i %.9P %.40j %.8u %.8T %.10M %.10l %.6D %R" | grep -E '(RUNNING|PENDING)' | grep ${base_prefix} | wc -l)
     if (( n_jobs < max_jobs )); then
         n_submitted=0
         while (( j < n_available && n_submitted + n_jobs < max_jobs )); do
@@ -62,7 +75,7 @@ while true; do
         echo "INFO: Submitted ${n_submitted} jobs."
         ${verbose} && echo "DEBUG: Job index is ${j}."
     fi
-    if (( j == n_available)); then
+    if (( j == n_available )); then
         echo "INFO: All jobs submitted."
         break
     fi
