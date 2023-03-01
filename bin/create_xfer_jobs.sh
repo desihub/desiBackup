@@ -40,6 +40,7 @@ directory=$2
 for d in ${DESI_SPECTRO_REDUX}/${SPECPROD}/${directory}/*; do
     n=$(basename ${d})
     job_name=redux_${SPECPROD}_$(tr '/' '_' <<<${directory})_${n}
+    ${verbose} && echo "job_name=${job_name}"
     cat > ${jobs}/${job_name}.sh <<EOT
 #!/bin/bash
 #SBATCH --account=desi
@@ -54,5 +55,6 @@ hsi mkdir -p desi/spectro/redux/${SPECPROD}/${directory}
 htar -cvf desi/spectro/redux/${SPECPROD}/${directory}/${job_name}.tar -H crc:verify=all ${n}
 [[ \$? == 0 ]] && mv -v ${jobs}/${job_name}.sh ${jobs}/done
 EOT
+    ${verbose} && echo "chmod +x ${jobs}/${job_name}.sh"
     chmod +x ${jobs}/${job_name}.sh
 done
