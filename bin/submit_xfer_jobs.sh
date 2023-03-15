@@ -2,15 +2,18 @@
 #
 # Example scrontab entry to submit xfer jobs:
 #
-# #SCRON --account=desi
-# #SCRON --qos=workflow
-# #SCRON --time=30-12:00:00
-# #SCRON --job-name=submit_xfer_jobs
-# #SCRON --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
-# #SCRON --open-mode=append
-# #SCRON --mail-type=ALL
-# #SCRON --mail-user=benjamin.weaver@noirlab.edu
-# 15 * * * * /bin/bash -lc "source /global/common/software/desi/desi_environment.sh main && module load desiBackup && submit_xfer_jobs.sh -v /global/homes/d/desi/jobs/redux_everest_tiles"
+# #!/bin/bash
+# #SBATCH --account=desi
+# #SBATCH --qos=workflow
+# #SBATCH --constraint=cron
+# #SBATCH --nodes=1
+# #SBATCH --time=30-12:00:00
+# #SBATCH --job-name=submit_xfer_jobs
+# #SBATCH --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
+# #SBATCH --open-mode=append
+# #SBATCH --mail-type=ALL
+# #SBATCH --mail-user=benjamin.weaver@noirlab.edu
+# source /global/common/software/desi/desi_environment.sh main && module load desiBackup && submit_xfer_jobs.sh -v /global/homes/d/desi/jobs/iron/redux_iron_exposures
 #
 #
 #
