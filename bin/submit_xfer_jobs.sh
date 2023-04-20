@@ -20,10 +20,11 @@
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-h] [-j JOBS] [-m JOBS] [-s SECONDS] [-t] [-v] PREFIX"
+    echo "${execName} [-C CONSTRAINT] [-h] [-j JOBS] [-m JOBS] [-s SECONDS] [-t] [-v] PREFIX"
     echo ""
     echo "Submit jobs that match PREFIX."
     echo ""
+    echo "   -c CONSTRAINT = Add the '-C CONSTRAINT' option to sbatch."
     echo "    -h         = Print this message and exit."
     echo "    -j JOBS    = Fill the queue up to JOBS jobs (default 12)."
     echo "    -m JOBS    = Submit no more that JOBS jobs total (default is all matching jobs)."
@@ -33,13 +34,15 @@ function usage() {
     # echo "    -V = Version.  Print a version string and exit."
     ) >&2
 }
+constraint=''
 max_jobs=12
 total_jobs=''
 sleepy_time=60
 verbose=false
 test=false
-while getopts hj:m:s:tv argname; do
+while getopts C:hj:m:s:tv argname; do
     case ${argname} in
+        C) constraint="-C ${OPTARG}" ;;
         h) usage; exit 0 ;;
         j) max_jobs=${OPTARG} ;;
         m) total_jobs=${OPTARG} ;;
@@ -70,8 +73,8 @@ while true; do
     if (( n_jobs < max_jobs )); then
         n_submitted=0
         while (( j < n_available && n_submitted + n_jobs < max_jobs )); do
-            ${verbose} && echo "DEBUG: sbatch ${available_jobs[${j}]}"
-            ${test}    || sbatch ${available_jobs[${j}]}
+            ${verbose} && echo "DEBUG: sbatch ${constraint} ${available_jobs[${j}]}"
+            ${test}    || sbatch ${constraint} ${available_jobs[${j}]}
             n_submitted=$(( n_submitted + 1 ))
             j=$(( j + 1 ))
         done
