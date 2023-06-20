@@ -549,6 +549,9 @@
     "users":{
         "__exclude__":[]
     },
+    "vac":{
+        "__exclude__":[]
+    },
     "www":{
         "__exclude__":["favicon.ico", "index.html"],
         "users":{
