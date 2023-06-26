@@ -122,8 +122,9 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
 comments=$(cat <<COMMENTS
 gsharing:Share data via Globus. The actual data are stored elsewhere.
 software:Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.
-target:Only <code>cmx_files</code> is configured for backup.
+target:The most important targeting data is backed up with the <code>public/ets/</code> data.
 users:The default policy is for the users directory to serve as long-term scratch space, so it is not backed up.
+vac:The <code>vac/</code> directory is intended as a staging area and link farm for data that will ultimately be stored in the <code>public/</code> area.
 www:The default policy is for the www directory to serve as links to data elsewhere, so it is not backed up.
 COMMENTS
 )
@@ -132,6 +133,7 @@ for d in ${sections}; do
     if [[ "${d}" == "gsharing" || \
           "${d}" == "software" || \
           "${d}" == "users"    || \
+          "${d}" == "vac"      || \
           "${d}" == "www"      ]]; then
         s='NO BACKUP'
         grep -q -i empty <<<"${c}" && s='NO DATA'
