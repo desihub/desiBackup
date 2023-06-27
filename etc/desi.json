@@ -222,6 +222,9 @@
         "backups":{
             "backups/.*$":"EXCLUDE"
         },
+        "nginx":{
+            "nginx/.*$":"EXCLUDE"
+        },
         "reports":{
             "reports/.*$":"EXCLUDE"
         }
