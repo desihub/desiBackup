@@ -7,14 +7,13 @@ function usage() {
     local c=$1
     local execName=$(basename $0)
     (
-    echo "${execName} [-c DIR] [-f] [-h] [-v] [-V]"
+    echo "${execName} [-c DIR] [-h] [-v] [-V]"
     echo ""
     echo "Report status of DESI backups on HPSS."
     echo ""
-    echo "-c DIR = Set the location of the cache directory (default ${c})."
-    echo "    -f = Fast mode.  Regenerate status based on existing cache files."
+    echo "-c DIR = Set the location of the cache directory (default '${c}')."
     echo "    -h = Print this message and exit."
-    echo "    -v = Verbose mode. Print lots of extra information. LOTS."
+    echo "    -v = Verbose mode. Print extra information."
     echo "    -V = Version.  Print a version string and exit."
     ) >&2
 }
@@ -81,12 +80,10 @@ function row() {
 # Get options.
 #
 cacheDir=/global/cfs/cdirs/desi/metadata/backups
-fastMode=''
 verbose=''
 while getopts c:fhvV argname; do
     case ${argname} in
         c) cacheDir=${OPTARG} ;;
-        f) fastMode=True ;;
         h) usage ${cacheDir}; exit 0 ;;
         v) verbose='--verbose' ;;
         V) version; exit 0 ;;
@@ -139,11 +136,6 @@ for d in ${sections}; do
         grep -q -i empty <<<"${c}" && s='NO DATA'
         n=False
     else
-        if [[ -z "${fastMode}" ]]; then
-            [[ -f ${cacheDir}/missing_files_${d}.log ]] && rm -f ${cacheDir}/missing_files_${d}.log
-            [[ -n "${verbose}" ]] && echo missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} >&2
-            missing_from_hpss ${verbose} -D -H -c ${cacheDir} ${DESIBACKUP}/etc/desi.json ${d} > ${cacheDir}/missing_files_${d}.log 2>&1
-        fi
         hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv | cut -d' ' -f1)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
         missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
