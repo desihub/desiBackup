@@ -245,7 +245,9 @@
             "EZmock/.*$":"EZmock.tar"
         },
         "GLAM":{
-            "GLAM/GLAM_LRG_([^/]+)/.*$":"GLAM/GLAM_LRG_\\1.tar"
+            "GLAM/ABACUS/.*$":"EXCLUDE",
+            "GLAM/GLAM_(BDM|LRG)_([^/]+)/.*$":"GLAM/GLAM_\\1_\\2.tar",
+            "GLAM/JFE_files/.*$":"EXCLUDE"
         },
         "Gadget":{
             "Gadget/.*$":"Gadget.tar"
@@ -273,7 +275,9 @@
         "buzzard":{
             "buzzard/README.html":"buzzard/README.html",
             "buzzard/buzzard_v([0-9.]+)_desicut/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/\\2/buzzard_v\\1_desicut_\\2_\\3.tar",
-            "buzzard/buzzard_v([0-9.]+)_desicut/lensed/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/lensed/\\2/buzzard_v\\1_desicut_lensed_\\2_\\3.tar"
+            "buzzard/buzzard_v([0-9.]+)_desicut/lensed/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/lensed/\\2/buzzard_v\\1_desicut_lensed_\\2_\\3.tar",
+            "buzzard/buzzard_v([0-9.]+)/buzzard-([0-9]+)/.*$":"EXCLUDE",
+            "buzzard/buzzard_v([0-9.]+)/.ipynb_checkpoints/.*$":"EXCLUDE"
         },
         "desiqa":{
             "desiqa/.*$":"desiqa.tar"
@@ -295,6 +299,7 @@
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/quick-/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/tests/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_tests.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
@@ -303,11 +308,13 @@
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/README":"lya_forest/london/\\1/README",
+            "lya_forest/london/(v[6789]\\.[0-9])/.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
+            "lya_forest/saclay/.*$":"EXCLUDE",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
         "mws":{
