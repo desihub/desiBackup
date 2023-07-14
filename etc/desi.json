@@ -522,12 +522,11 @@
             "catalogs/(dr9[a-z]+)/.*$": "EXCLUDE",
             "catalogs/(examples|lya)/.*$": "EXCLUDE",
             "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar",
-            "catalogs/dr5/([0-9.]+)/.*$": "catalogs/dr5/desi_target_catalogs_dr5_\\1.tar",
+            "catalogs/(dr5|dr9|mtl)/([0-9.]+)/.*$": "catalogs/\\1/desi_target_catalogs_\\1_\\2.tar",
             "catalogs/dr5/(pixweight|randoms)-dr5\\.fits$": "catalogs/dr5/\\1-dr5.fits",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/[^/]+$": "catalogs/dr7.1/0.\\1.0/desi_target_catalogs_dr7.1_0.\\1.0_files.tar",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/randoms-dr7\\.1-0\\.(2[27])\\.0\\.fits$": "catalogs/dr7.1/\\1/randoms-dr7.1-0.\\1.0.fits",
-            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr5/desi_target_catalogs_dr7.1_\\1.tar",
-            "catalogs/mtl/([0-9.]+)/.*$": "catalogs/mtl/desi_target_catalogs_mtl_\\1.tar"
+            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar"
         },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
