@@ -11,7 +11,7 @@ function usage() {
     echo "    -s RELEASE = Use DESI software RELEASE (default 'main')."
     echo "    -t         = Test mode; do not actually submit jobs. Implies -v."
     echo "    -v         = Verbose mode; print extra information."
-    ) >&2 
+    ) >&2
 }
 testMode=/usr/bin/false
 verbMode=/usr/bin/false
@@ -31,7 +31,7 @@ shift $(( OPTIND - 1 ))
 dependency=''
 ${testMode} && job_id=0
 cd ${job_dir}
-for section in cmx cosmosim datachallenge engineering metadata mocks protodesi public science survey sv target; do 
+for section in cmx cosmosim datachallenge engineering metadata mocks protodesi public science survey sv target; do
     job_name=missing_from_hpss_${section}
     job=$(cat <<BATCHJOB
 #!/bin/bash
@@ -76,4 +76,38 @@ BATCHJOB
         dependency="${dependency},afterok:${job_id}"
     fi
 done
-echo ${dependency}
+#
+# Submit summary job.
+#
+job_name=batch_backupStatus
+job=$(cat <<BATCHJOB
+#!/bin/bash
+#SBATCH --account=desi
+#SBATCH --qos=workflow
+#SBATCH --constraint=cron
+#SBATCH --licenses=SCRATCH,cfs
+#SBATCH --nodes=1
+#SBATCH --mem=10GB
+#SBATCH --time=02:00:00
+#SBATCH --time-min=01:00:00
+#SBATCH --job-name=${job_name}
+#SBATCH --output=${job_dir}/%x-%j.log
+#SBATCH --open-mode=append
+#SBATCH --mail-type=end,fail
+#SBATCH --mail-user=benjamin.weaver@noirlab.edu
+source /global/common/software/desi/desi_environment.sh ${software}
+module load desiBackup/main
+cache=\${SCRATCH}/missing_from_hpss
+# cache=\${DESI_ROOT}/metadata/backups
+backupStatus.sh -v -c \${cache}
+BATCHJOB
+)
+${verbMode} && echo ${job}
+${verbMode} && echo rm -f ${job_name}.sh
+${testMode} || rm -f ${job_name}.sh
+${verbMode} && echo "\${job} > ${job_name}.sh"
+${testMode} || echo "${job}" > ${job_name}.sh
+${verbMode} && echo chmod +x ${job_name}.sh
+${testMode} || chmod +x ${job_name}.sh
+${verbMode} && echo sbatch ${dependency} ${job_name}.sh
+${testMode} || sbatch ${dependency} ${job_name}.sh
