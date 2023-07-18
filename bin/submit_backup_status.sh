@@ -41,15 +41,15 @@ for section in cmx cosmosim datachallenge engineering metadata mocks protodesi p
 #SBATCH --licenses=SCRATCH,cfs
 #SBATCH --nodes=1
 #SBATCH --mem=10GB
-#SBATCH --time=3-00:00:00
-#SBATCH --time-min=2-00:00:00
+#SBATCH --time=2-00:00:00
+#SBATCH --time-min=1-00:00:00
 #SBATCH --job-name=${job_name}
 #SBATCH --output=${job_dir}/%x-%j.log
 #SBATCH --open-mode=append
 #SBATCH --mail-type=end,fail
 #SBATCH --mail-user=benjamin.weaver@noirlab.edu
 source /global/common/software/desi/desi_environment.sh ${software}
-module load hpsspy/main
+# module load hpsspy/main
 module load desiBackup/main
 cache=\${SCRATCH}/missing_from_hpss
 # cache=\${DESI_ROOT}/metadata/backups
