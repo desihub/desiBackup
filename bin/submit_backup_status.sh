@@ -31,7 +31,7 @@ shift $(( OPTIND - 1 ))
 dependency=''
 ${testMode} && job_id=0
 cd ${job_dir}
-for section in cmx cosmosim datachallenge engineering metadata mocks protodesi public science survey sv target; do
+for section in cmx cosmosim datachallenge engineering metadata mocks protodesi public science spectro survey sv target; do
     job_name=missing_from_hpss_${section}
     job=$(cat <<BATCHJOB
 #!/bin/bash
