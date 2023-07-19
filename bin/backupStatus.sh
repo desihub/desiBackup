@@ -7,7 +7,7 @@ function usage() {
     local c=$1
     local execName=$(basename $0)
     (
-    echo "${execName} [-c DIR] [-h] [-v] [-V]"
+    echo "${execName} [-c DIR] [-h] [-v] [-V] JOBS"
     echo ""
     echo "Report status of DESI backups on HPSS."
     echo ""
@@ -15,6 +15,7 @@ function usage() {
     echo "    -h = Print this message and exit."
     echo "    -v = Verbose mode. Print extra information."
     echo "    -V = Version.  Print a version string and exit."
+    echo "  JOBS = A comma-separated list of batch jobs and job IDs."
     ) >&2
 }
 #
@@ -35,10 +36,11 @@ function version() {
 #
 function row() {
     local d=$1
-    local s=$2
-    local n=$3
-    local c=$4
-    local o=$5
+    local j=$2
+    local s=$3
+    local n=$4
+    local c=$5
+    local o=$6
     local space='                            '
     local tcls=''
     if [[ "${s}" == "COMPLETE" ]]; then
@@ -56,7 +58,7 @@ function row() {
     elif [[ "${s}" == "NEEDS ATTENTION" ]]; then
         tcls='danger'
     else
-        echo 'Unknown status!' >&2
+        echo 'ERROR: Unknown status!' >&2
         return
     fi
     echo "${space}<tr>" >> ${o}
@@ -71,7 +73,7 @@ function row() {
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"disk_files_${d}.csv\" title=\"disk_files_${d}.csv\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"hpss_files_${d}.csv\" title=\"hpss_files_${d}.csv\">CSV</a></td>" >> ${o}
         echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.json\" title=\"missing_files_${d}.json\">JSON</a></td>" >> ${o}
-        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_files_${d}.log\" title=\"missing_files_${d}.log\">LOG</a></td>" >> ${o}
+        echo "${space}    <td><a class=\"btn btn-sm btn-outline-primary\" role=\"button\" href=\"missing_from_hpss_${d}-${j}.log\" title=\"missing_from_hpss_${d}-${j}.log\">LOG</a></td>" >> ${o}
     fi
     echo "${space}    <td>${c}</td>" >> ${o}
     echo "${space}</tr>" >> ${o}
@@ -91,15 +93,13 @@ while getopts c:fhvV argname; do
     esac
 done
 shift $((OPTIND-1))
+job_id_map=$1
 #
-# Make sure cache directory exists.
+# The cache dir should already exist.
 #
-if [[ ! -d ${cacheDir} ]]; then
-    echo "Creating directory ${cacheDir} to hold backup cache files." >&2
-    [[ -n "${verbose}" ]] && echo mkdir -p ${cacheDir} >&2
-    mkdir -p ${cacheDir}
-    [[ -n "${verbose}" ]] && echo chmod o+rx ${cacheDir} >&2
-    chmod o+rx ${cacheDir}
+if [[ ! -d "${cacheDir}" ]]; then
+    echo "ERROR: ${cacheDir} does not exist!"
+    exit 1
 fi
 #
 # Start the HTML table.
@@ -127,6 +127,7 @@ COMMENTS
 )
 for d in ${sections}; do
     c=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
+    j=0
     if [[ "${d}" == "gsharing" || \
           "${d}" == "software" || \
           "${d}" == "users"    || \
@@ -136,9 +137,14 @@ for d in ${sections}; do
         grep -q -i empty <<<"${c}" && s='NO DATA'
         n=False
     else
+        j=$(sed -r "s/.*(${d}):([0-9]+).*/\2/" <<<${job_id_map})
+        if [[ "${j}" == "${job_id_map}" ]]; then
+            echo "ERROR: Could not find job ID for ${d}!"
+            j=0
+        fi
         hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv | cut -d' ' -f1)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
-        missing_log=$(grep -v INFO ${cacheDir}/missing_files_${d}.log)
+        missing_log=$(grep -v INFO ${cacheDir}/missing_from_hpss_${d}-${j}.log)
         if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
             c="Not configured for backup. ${c}"
             s='NO CONFIGURATION'
@@ -166,16 +172,11 @@ for d in ${sections}; do
         fi
         n=True
     fi
-    row ${d} "${s}" ${n} "${c}" ${o}
+    row ${d} ${j} "${s}" ${n} "${c}" ${o}
 done
 #
 # Finish the HTML table.
 #
 tail -n +$((cutLine + 1)) ${DESIBACKUP}/etc/backupStatus.html >> ${o}
-[[ -n "${verbose}" ]] && echo mv -f ${o} ${cacheDir}/index.html >&2
+[[ -n "${verbose}" ]] && echo "DEBUG: mv -f ${o} ${cacheDir}/index.html"
 mv -f ${o} ${cacheDir}/index.html
-#
-# Make sure the files are readable.
-#
-# [[ -n "${verbose}" ]] && echo "chmod o+r ${cacheDir}/*" >&2
-# chmod o+r ${cacheDir}/*

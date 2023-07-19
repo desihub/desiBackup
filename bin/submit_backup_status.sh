@@ -29,6 +29,9 @@ while getopts hj:s:tv argname; do
 done
 shift $(( OPTIND - 1 ))
 dependency=''
+job_id_map=''
+verbose=''
+${verbMode} && verbose='-v'
 ${testMode} && job_id=0
 cd ${job_dir}
 for section in cmx cosmosim datachallenge engineering metadata mocks protodesi public science spectro survey sv target; do
@@ -40,7 +43,7 @@ for section in cmx cosmosim datachallenge engineering metadata mocks protodesi p
 #SBATCH --constraint=cron
 #SBATCH --licenses=SCRATCH,cfs
 #SBATCH --nodes=1
-#SBATCH --mem=10GB
+#SBATCH --mem=5GB
 #SBATCH --time=2-00:00:00
 #SBATCH --time-min=1-00:00:00
 #SBATCH --job-name=${job_name}
@@ -49,15 +52,15 @@ for section in cmx cosmosim datachallenge engineering metadata mocks protodesi p
 #SBATCH --mail-type=end,fail
 #SBATCH --mail-user=benjamin.weaver@noirlab.edu
 source /global/common/software/desi/desi_environment.sh ${software}
-# module load hpsspy/main
 module load desiBackup/main
-cache=\${SCRATCH}/missing_from_hpss
+cache=\${DESI_ROOT}/users/\${USER}/backups
 # cache=\${DESI_ROOT}/metadata/backups
 [[ -d \${cache} ]] || mkdir -p \${cache}
-missing_from_hpss -c \${cache} -D -H \${DESIBACKUP}/etc/desi.json ${section}
+missing_from_hpss ${verbose} -c \${cache} -D -H \${DESIBACKUP}/etc/desi.json ${section}
+[[ \$? == 0 ]] && cp -a ${job_dir}/${job_name}-\${SLURM_JOB_ID}.log \${cache}
 BATCHJOB
 )
-    ${verbMode} && echo ${job}
+    ${verbMode} && echo "${job}"
     ${verbMode} && echo rm -f ${job_name}.sh
     ${testMode} || rm -f ${job_name}.sh
     ${verbMode} && echo "\${job} > ${job_name}.sh"
@@ -72,8 +75,10 @@ BATCHJOB
     fi
     if [[ -z "${dependency}" ]]; then
         dependency="--dependency=afterok:${job_id}"
+        job_id_map="${section}:${job_id}"
     else
         dependency="${dependency},afterok:${job_id}"
+        job_id_map="${job_id_map},${section}:${job_id}"
     fi
 done
 #
@@ -87,9 +92,8 @@ job=$(cat <<BATCHJOB
 #SBATCH --constraint=cron
 #SBATCH --licenses=SCRATCH,cfs
 #SBATCH --nodes=1
-#SBATCH --mem=10GB
-#SBATCH --time=02:00:00
-#SBATCH --time-min=01:00:00
+#SBATCH --time=01:00:00
+#SBATCH --time-min=00:30:00
 #SBATCH --job-name=${job_name}
 #SBATCH --output=${job_dir}/%x-%j.log
 #SBATCH --open-mode=append
@@ -97,12 +101,12 @@ job=$(cat <<BATCHJOB
 #SBATCH --mail-user=benjamin.weaver@noirlab.edu
 source /global/common/software/desi/desi_environment.sh ${software}
 module load desiBackup/main
-cache=\${SCRATCH}/missing_from_hpss
+cache=\${DESI_ROOT}/users/\${USER}/backups
 # cache=\${DESI_ROOT}/metadata/backups
-backupStatus.sh -v -c \${cache}
+backupStatus.sh ${verbose} -c \${cache} ${job_id_map}
 BATCHJOB
 )
-${verbMode} && echo ${job}
+${verbMode} && echo "${job}"
 ${verbMode} && echo rm -f ${job_name}.sh
 ${testMode} || rm -f ${job_name}.sh
 ${verbMode} && echo "\${job} > ${job_name}.sh"
