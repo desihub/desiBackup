@@ -57,9 +57,11 @@
         "FirstGenMocks":{},
         "KP45":{},
         "NFW_Abacus":{},
+        "SecondGenMocks":{},
         "TNG_Rockstar":{},
         "Uchuu":{},
         "UNIT-BAO-RSD-challenge":{},
+        "UNIT-SHAM":{},
         "UNITSIM":{},
         "cov_mat_challenge":{},
         "mocks_SV3":{},
@@ -187,28 +189,18 @@
     },
     "engineering":{
         "__exclude__":[],
-        "2021_summer_illumination_checks":{
-        },
-        "donut":{
-        },
-        "focalplane":{
-        },
-        "fvc":{
-        },
-        "fvc_distortion":{
-        },
-        "gfa":{
-        },
-        "pfa2positioner":{
-        },
-        "platemaker":{
-        },
-        "spectrograph":{
-        },
-        "svn_export_focalplane_12302018":{
-        },
-        "umdata":{
-        }
+        "2021_summer_illumination_checks":{},
+        "donut":{},
+        "focalplane":{},
+        "fvc":{},
+        "fvc_distortion":{},
+        "gfa":{},
+        "pfa2positioner":{},
+        "platemaker":{},
+        "skipper":{},
+        "spectrograph":{},
+        "svn_export_focalplane_12302018":{},
+        "umdata":{}
     },
     "gsharing":{
         "__exclude__":[]
@@ -398,24 +390,17 @@
     },
     "science":{
         "__exclude__":["README"],
-        "bgs":{
-        },
-        "c3":{
-        },
-        "cpe":{
-        },
-        "gqc":{
-        },
-        "gqp":{
-        },
-        "lya":{
-        },
-        "mws":{
-        },
-        "software":{
-        },
-        "td":{
-        }
+        "Y1KP":{},
+        "bgs":{},
+        "c3":{},
+        "cpe":{},
+        "engineering":{},
+        "gqc":{},
+        "gqp":{},
+        "lya":{},
+        "mws":{},
+        "software":{},
+        "td":{}
     },
     "software":{
         "__exclude__":[]
@@ -485,24 +470,15 @@
     },
     "survey":{
         "__exclude__":[],
-        "GFA":{
-        },
-        "analysis":{
-        },
-        "catalogs":{
-        },
-        "fiberassign":{
-        },
-        "fluxcalibration":{
-        },
-        "observations":{
-        },
-        "ops":{
-        },
-        "planning":{
-        },
-        "sims":{
-        }
+        "GFA":{},
+        "analysis":{},
+        "catalogs":{},
+        "fiberassign":{},
+        "fluxcalibration":{},
+        "observations":{},
+        "ops":{},
+        "planning":{},
+        "sims":{}
     },
     "sv":{
         "__exclude__":[],
