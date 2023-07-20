@@ -144,7 +144,8 @@ for d in ${sections}; do
         fi
         hpss_files=$(wc -l ${cacheDir}/hpss_files_${d}.csv | cut -d' ' -f1)
         missing_files=$(<${cacheDir}/missing_files_${d}.json)
-        missing_log=$(grep -v INFO ${cacheDir}/missing_from_hpss_${d}-${j}.log)
+        section_log="${cacheDir}/missing_from_hpss_${d}-${j}.log"
+        missing_log=$(grep -v INFO ${section_log})
         if [[ "${hpss_files}" == "1" && "${missing_files}" == "{}" ]]; then
             c="Not configured for backup. ${c}"
             s='NO CONFIGURATION'
@@ -154,16 +155,16 @@ for d in ${sections}; do
         elif grep -q '"newer": true' ${cacheDir}/missing_files_${d}.json; then
             c="New data found in an existing backup. Check JSON file. ${c}"
             s='NEEDS ATTENTION'
-        elif grep -q 'not mapped' ${cacheDir}/missing_files_${d}.log; then
+        elif grep -q 'not mapped' ${section_log}; then
             c="Unmapped files found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
-        elif grep -q 'mapped to multiple' ${cacheDir}/missing_files_${d}.log; then
+        elif grep -q 'mapped to multiple' ${section_log}; then
             c="Files mapped to multiple backups. Check configuration. ${c}"
             s='NEEDS ATTENTION'
-        elif grep -q 'not described' ${cacheDir}/missing_files_${d}.log; then
+        elif grep -q 'not described' ${section_log}; then
             c="New directories found. Check configuration. ${c}"
             s='NEEDS ATTENTION'
-        elif grep -q 'not configured' ${cacheDir}/missing_files_${d}.log; then
+        elif grep -q 'not configured' ${section_log}; then
             c="Some subdirectories still need configuration. ${c}"
             s='PARTIAL'
         else
