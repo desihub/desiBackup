@@ -2,25 +2,29 @@
 #
 # Example scrontab entry to submit xfer jobs:
 #
-# #SCRON --account=desi
-# #SCRON --qos=workflow
-# #SCRON --time=30-12:00:00
-# #SCRON --job-name=submit_xfer_jobs
-# #SCRON --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
-# #SCRON --open-mode=append
-# #SCRON --mail-type=ALL
-# #SCRON --mail-user=benjamin.weaver@noirlab.edu
-# 15 * * * * /bin/bash -lc "source /global/common/software/desi/desi_environment.sh main && module load desiBackup && submit_xfer_jobs.sh -v /global/homes/d/desi/jobs/redux_everest_tiles"
+# #!/bin/bash
+# #SBATCH --account=desi
+# #SBATCH --qos=workflow
+# #SBATCH --constraint=cron
+# #SBATCH --nodes=1
+# #SBATCH --time=30-12:00:00
+# #SBATCH --job-name=submit_xfer_jobs
+# #SBATCH --output=/global/homes/d/desi/jobs/submit_xfer_jobs-%j.log
+# #SBATCH --open-mode=append
+# #SBATCH --mail-type=ALL
+# #SBATCH --mail-user=benjamin.weaver@noirlab.edu
+# source /global/common/software/desi/desi_environment.sh main && module load desiBackup && submit_xfer_jobs.sh -v /global/homes/d/desi/jobs/iron/redux_iron_exposures
 #
 #
 #
 function usage() {
     local execName=$(basename $0)
     (
-    echo "${execName} [-h] [-j JOBS] [-m JOBS] [-s SECONDS] [-t] [-v] PREFIX"
+    echo "${execName} [-C CONSTRAINT] [-h] [-j JOBS] [-m JOBS] [-s SECONDS] [-t] [-v] PREFIX"
     echo ""
     echo "Submit jobs that match PREFIX."
     echo ""
+    echo "   -c CONSTRAINT = Add the '-C CONSTRAINT' option to sbatch."
     echo "    -h         = Print this message and exit."
     echo "    -j JOBS    = Fill the queue up to JOBS jobs (default 12)."
     echo "    -m JOBS    = Submit no more that JOBS jobs total (default is all matching jobs)."
@@ -30,13 +34,15 @@ function usage() {
     # echo "    -V = Version.  Print a version string and exit."
     ) >&2
 }
+constraint=''
 max_jobs=12
 total_jobs=''
 sleepy_time=60
 verbose=false
 test=false
-while getopts hj:m:s:tv argname; do
+while getopts C:hj:m:s:tv argname; do
     case ${argname} in
+        C) constraint="-C ${OPTARG}" ;;
         h) usage; exit 0 ;;
         j) max_jobs=${OPTARG} ;;
         m) total_jobs=${OPTARG} ;;
@@ -67,8 +73,8 @@ while true; do
     if (( n_jobs < max_jobs )); then
         n_submitted=0
         while (( j < n_available && n_submitted + n_jobs < max_jobs )); do
-            ${verbose} && echo "DEBUG: sbatch ${available_jobs[${j}]}"
-            ${test}    || sbatch ${available_jobs[${j}]}
+            ${verbose} && echo "DEBUG: sbatch ${constraint} ${available_jobs[${j}]}"
+            ${test}    || sbatch ${constraint} ${available_jobs[${j}]}
             n_submitted=$(( n_submitted + 1 ))
             j=$(( j + 1 ))
         done

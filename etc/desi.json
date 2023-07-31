@@ -2,7 +2,7 @@
     "__config__":{
         "root":"/global/cfs/cdirs/desi",
         "hpss_root":"/nersc/projects/desi",
-        "physical_disks":["desi"]
+        "physical_disks":["desi","desicollab"]
     },
     "cmx":{
         "__exclude__":["README"],
@@ -57,9 +57,11 @@
         "FirstGenMocks":{},
         "KP45":{},
         "NFW_Abacus":{},
+        "SecondGenMocks":{},
         "TNG_Rockstar":{},
         "Uchuu":{},
         "UNIT-BAO-RSD-challenge":{},
+        "UNIT-SHAM":{},
         "UNITSIM":{},
         "cov_mat_challenge":{},
         "mocks_SV3":{},
@@ -187,28 +189,18 @@
     },
     "engineering":{
         "__exclude__":[],
-        "2021_summer_illumination_checks":{
-        },
-        "donut":{
-        },
-        "focalplane":{
-        },
-        "fvc":{
-        },
-        "fvc_distortion":{
-        },
-        "gfa":{
-        },
-        "pfa2positioner":{
-        },
-        "platemaker":{
-        },
-        "spectrograph":{
-        },
-        "svn_export_focalplane_12302018":{
-        },
-        "umdata":{
-        }
+        "2021_summer_illumination_checks":{},
+        "donut":{},
+        "focalplane":{},
+        "fvc":{},
+        "fvc_distortion":{},
+        "gfa":{},
+        "pfa2positioner":{},
+        "platemaker":{},
+        "skipper":{},
+        "spectrograph":{},
+        "svn_export_focalplane_12302018":{},
+        "umdata":{}
     },
     "gsharing":{
         "__exclude__":[]
@@ -216,11 +208,14 @@
     "metadata":{
         "__exclude__":["README.html","scan_README.txt"],
         "__top__":{
-            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.desi\\.txt$":"EXCLUDE",
-            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.desi\\.txt\\.gz$":"\\1_\\2_files.tar"
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.(desi|desicollab)\\.txt$":"EXCLUDE",
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.(desi|desicollab)\\.txt\\.gz$":"\\1_\\2_files.tar"
         },
         "backups":{
             "backups/.*$":"EXCLUDE"
+        },
+        "nginx":{
+            "nginx/.*$":"EXCLUDE"
         },
         "reports":{
             "reports/.*$":"EXCLUDE"
@@ -242,7 +237,9 @@
             "EZmock/.*$":"EZmock.tar"
         },
         "GLAM":{
-            "GLAM/GLAM_LRG_([^/]+)/.*$":"GLAM/GLAM_LRG_\\1.tar"
+            "GLAM/ABACUS/.*$":"EXCLUDE",
+            "GLAM/GLAM_(BDM|LRG)_([^/]+)/.*$":"GLAM/GLAM_\\1_\\2.tar",
+            "GLAM/JFE_files/.*$":"EXCLUDE"
         },
         "Gadget":{
             "Gadget/.*$":"Gadget.tar"
@@ -270,7 +267,9 @@
         "buzzard":{
             "buzzard/README.html":"buzzard/README.html",
             "buzzard/buzzard_v([0-9.]+)_desicut/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/\\2/buzzard_v\\1_desicut_\\2_\\3.tar",
-            "buzzard/buzzard_v([0-9.]+)_desicut/lensed/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/lensed/\\2/buzzard_v\\1_desicut_lensed_\\2_\\3.tar"
+            "buzzard/buzzard_v([0-9.]+)_desicut/lensed/([0-9])/([0-9])/.*$":"buzzard/buzzard_v\\1_desicut/lensed/\\2/buzzard_v\\1_desicut_lensed_\\2_\\3.tar",
+            "buzzard/buzzard_v([0-9.]+)/buzzard-([0-9]+)/.*$":"EXCLUDE",
+            "buzzard/buzzard_v([0-9.]+)/.ipynb_checkpoints/.*$":"EXCLUDE"
         },
         "desiqa":{
             "desiqa/.*$":"desiqa.tar"
@@ -292,6 +291,7 @@
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
+            "lya_forest/london/(v[23]\\.[0-9])/quick-/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/tests/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_tests.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
@@ -300,11 +300,13 @@
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(eboss|quick)-([0-9.]+)/spectra-16/([0-9]+)/.*$":"lya_forest/london/\\1/\\2-\\3/spectra-16/lya_forest_london_\\1_\\2-\\3_spectra-16_\\4.tar",
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/README":"lya_forest/london/\\1/README",
+            "lya_forest/london/(v[6789]\\.[0-9])/.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
+            "lya_forest/saclay/.*$":"EXCLUDE",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
         "mws":{
@@ -340,23 +342,42 @@
             "doc/.*$":"EXCLUDE"
         },
         "dr1":{
-            "dr1/vac/([^/]+)/.*$":"dr1/vac/dr1_vac_\\1.tar"
+            "dr1/spectro/data/([0-9]+)/.*$":"dr1/spectro/data/desi_spectro_data_\\1.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/[^/]+$":"dr1/spectro/redux/\\1/redux_\\1_files.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/(exposures|preproc)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/healpix/[^/]+$":"dr1/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
+            "dr1/spectro/redux/(guadalupe|iron)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
+            "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
+            "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar"
         },
         "edr":{
+            "edr/[^/]+$":"edr_files.tar",
             "edr/spectro/data/([0-9]+)/.*$":"edr/spectro/data/desi_spectro_data_\\1.tar",
+            "edr/spectro/desi_spectro_calib/([v0-9.]+)/.*$":"edr/spectro/desi_spectro_calib/edr_spectro_desi_spectro_calib_\\1.tar",
             "edr/spectro/redux/(fuji)/[^/]+$":"edr/spectro/redux/\\1/redux_\\1_files.tar",
             "edr/spectro/redux/(fuji)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"edr/spectro/redux/\\1/redux_\\1_\\2.tar",
             "edr/spectro/redux/(fuji)/(exposures|preproc)/([0-9]+)/.*$":"edr/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "edr/spectro/redux/(fuji)/healpix/[^/]+$":"edr/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "edr/spectro/redux/(fuji)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"edr/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
             "edr/spectro/redux/(fuji)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"edr/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
-            "edr/vac/([^/]+)/.*$":"edr/vac/edr_vac_\\1.tar"
+            "edr/spectro/templates/basis_templates/([v0-9.]+)/.*$":"edr/spectro/templates/edr_spectro_templates_basis_templates_\\1.tar",
+            "edr/survey/fiberassign/(special|SV1|SV2|SV3)/.*$":"edr/survey/fiberassign/edr_survey_fiberassign_\\1.tar",
+            "edr/survey/(GFA|ops)/.*$":"edr/survey/edr_survey_\\1.tar",
+            "edr/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_files.tar",
+            "edr/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_\\2.tar",
+            "edr/target/(masks|skybricks|skyhealpixs)/([0-9dev.]+)/.*$":"edr/target/\\1/edr_target_\\1_\\2.tar",
+            "edr/vac/edr/(bal|lsdr9-photometry|lya|mws|zcat)/(fuji)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2_\\3.tar",
+            "edr/vac/edr/(lss|mgii-absorber|provabgs|vi)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2.tar"
         },
         "epo":{
         },
         "ets":{
             "ets/target/catalogs/(dr8|dr9|gaiadr2)/([0-9.]+)/.*$":"ets/target/catalogs/\\1/ets_target_catalogs_\\1_\\2.tar",
             "ets/target/catalogs/subpriority/.*$":"ets/target/catalogs/ets_target_catalogs_subpriority.tar",
+            "ets/target/catalogs/lya/qn_models/.*$":"ets/target/catalogs/lya/ets_target_catalogs_lya_qn_models.tar",
             "ets/target/secondary/.*$":"ets/target/ets_target_secondary.tar",
             "ets/vac/(lrg_veto_mask|stellar_mass)/.*$":"ets/vac/ets_vac_\\1.tar"
         },
@@ -369,24 +390,17 @@
     },
     "science":{
         "__exclude__":["README"],
-        "bgs":{
-        },
-        "c3":{
-        },
-        "cpe":{
-        },
-        "gqc":{
-        },
-        "gqp":{
-        },
-        "lya":{
-        },
-        "mws":{
-        },
-        "software":{
-        },
-        "td":{
-        }
+        "Y1KP":{},
+        "bgs":{},
+        "c3":{},
+        "cpe":{},
+        "engineering":{},
+        "gqc":{},
+        "gqp":{},
+        "lya":{},
+        "mws":{},
+        "software":{},
+        "td":{}
     },
     "software":{
         "__exclude__":[]
@@ -429,14 +443,14 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|denali|everest|guadalupe|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
-            "redux/(andes|blanc|cascades|denali|everest|guadalupe|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
-            "redux/(andes|blanc|cascades|denali|everest|guadalupe)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(?!andes|blanc|cascades|denali|everest|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(andes|blanc|cascades|denali|everest|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
+            "redux/(andes|blanc|cascades|denali|everest)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/(denali|everest|guadalupe)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/(everest|guadalupe)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
-            "redux/(everest|guadalupe)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
-            "redux/(denali|everest|guadalupe)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "redux/(denali|everest)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
+            "redux/(everest)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
+            "redux/(everest)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
+            "redux/(denali|everest)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
             "redux/(minisv2|month4)/(alt|calib2d|calibnight|plan|run|tiles)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(minisv2|month4)/(exposures|preproc|spectra-64)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
@@ -456,24 +470,15 @@
     },
     "survey":{
         "__exclude__":[],
-        "GFA":{
-        },
-        "analysis":{
-        },
-        "catalogs":{
-        },
-        "fiberassign":{
-        },
-        "fluxcalibration":{
-        },
-        "observations":{
-        },
-        "ops":{
-        },
-        "planning":{
-        },
-        "sims":{
-        }
+        "GFA":{},
+        "analysis":{},
+        "catalogs":{},
+        "fiberassign":{},
+        "fluxcalibration":{},
+        "observations":{},
+        "ops":{},
+        "planning":{},
+        "sims":{}
     },
     "sv":{
         "__exclude__":[],
@@ -499,7 +504,15 @@
         "analysis":{
         },
         "catalogs":{
-            "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar"
+            "catalogs/README$": "EXCLUDE",
+            "catalogs/(dr9[a-z]+)/.*$": "EXCLUDE",
+            "catalogs/(examples|lya)/.*$": "EXCLUDE",
+            "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar",
+            "catalogs/(dr5|dr9|mtl)/([0-9.]+)/.*$": "catalogs/\\1/desi_target_catalogs_\\1_\\2.tar",
+            "catalogs/dr5/(pixweight|randoms)-dr5\\.fits$": "catalogs/dr5/\\1-dr5.fits",
+            "catalogs/dr7\\.1/0\\.(2[27])\\.0/[^/]+$": "catalogs/dr7.1/0.\\1.0/desi_target_catalogs_dr7.1_0.\\1.0_files.tar",
+            "catalogs/dr7\\.1/0\\.(2[27])\\.0/randoms-dr7\\.1-0\\.(2[27])\\.0\\.fits$": "catalogs/dr7.1/\\1/randoms-dr7.1-0.\\1.0.fits",
+            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar"
         },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
@@ -530,14 +543,15 @@
         },
         "stripe82-dr2":{
         },
-        "surveyops":{
-        },
         "tycho_dr2":{
         },
         "urat_dr1":{
         }
     },
     "users":{
+        "__exclude__":[]
+    },
+    "vac":{
         "__exclude__":[]
     },
     "www":{
