@@ -53,10 +53,13 @@ raise an exception.
 Change Log
 ----------
 
-0.4.1 (unreleased)
+0.5.0 (2023-07-31)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Add configuration describing DR1 reductions, ``guadalupe``, ``iron``;
+  backup status jobs are now submitted as batch jobs (PR `#30`_).
+
+.. _`#30`: https://github.com/desihub/desiBackup/pull/30
 
 0.4.0 (2023-01-18)
 ~~~~~~~~~~~~~~~~~~
