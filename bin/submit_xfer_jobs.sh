@@ -58,23 +58,25 @@ if (( $# < 1 )); then
     exit 1
 fi
 prefix=$1
-available_jobs=($(ls ${prefix}*.sh))
+prefix_dir=$(dirname ${prefix})
+prefix_base=$(basename ${prefix})
+available_jobs=($(cd ${prefix_dir}; ls ${prefix_base}*.sh))
 if [[ -n "${total_jobs}" ]]; then
     n_available=${total_jobs}
 else
     n_available=${#available_jobs[*]}
 fi
 j=0
-base_prefix=$(basename ${prefix})
 while true; do
     echo -n "INFO: "
     date
-    n_jobs=$(squeue -u ${USER} -o "%.10i %.9P %.40j %.8u %.8T %.10M %.10l %.6D %R" | grep -E '(RUNNING|PENDING)' | grep ${base_prefix} | wc -l)
+    n_jobs=$(squeue -u ${USER} -o "%.10i %.9P %.40j %.8u %.8T %.10M %.10l %.6D %R" | grep -E '(RUNNING|PENDING)' | grep ${prefix_base} | wc -l)
     if (( n_jobs < max_jobs )); then
         n_submitted=0
         while (( j < n_available && n_submitted + n_jobs < max_jobs )); do
-            ${verbose} && echo "DEBUG: sbatch ${constraint} ${available_jobs[${j}]}"
-            ${test}    || sbatch ${constraint} ${available_jobs[${j}]}
+            job=${prefix_dir}/${available_jobs[${j}]}
+            ${verbose} && echo "DEBUG: sbatch ${constraint} ${job}"
+            ${test}    || sbatch ${constraint} ${job}
             n_submitted=$(( n_submitted + 1 ))
             j=$(( j + 1 ))
         done
