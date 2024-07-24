@@ -52,10 +52,12 @@
         "AbacusLensing":{},
         "AbacusPotential":{},
         "CoLoRe_lensing":{},
+        "DESI2_High_Density":{},
         "ELG_HOD":{},
         "EZmock_lightcones":{},
         "FirstGenMocks":{},
         "KP45":{},
+        "NeutrinoSims":{},
         "NFW_Abacus":{},
         "SecondGenMocks":{},
         "TNG_Rockstar":{},
@@ -190,6 +192,7 @@
     "engineering":{
         "__exclude__":[],
         "2021_summer_illumination_checks":{},
+        "2023_summer_restart":{},
         "donut":{},
         "focalplane":{},
         "fvc":{},
@@ -223,6 +226,7 @@
     },
     "mocks":{
         "__exclude__":["lya_forest/README.html",
+            "lya_forest/london/README",
             "lya_forest/london/v6.0/README",
             "lya_forest/london/v6.0/lyasim.log",
             "lya_forest/saclay/README",
@@ -301,6 +305,8 @@
             "lya_forest/london/(v[45]\\.[0-9]\\.[0-9])/(logs|tests)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/README":"lya_forest/london/\\1/README",
             "lya_forest/london/(v[6789]\\.[0-9])/.ipynb_checkpoints/.*$":"EXCLUDE",
+            "lya_forest/london/(v[6789]\\.[0-9])/colore_raw/.*$":"EXCLUDE",
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
@@ -512,7 +518,8 @@
             "catalogs/dr5/(pixweight|randoms)-dr5\\.fits$": "catalogs/dr5/\\1-dr5.fits",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/[^/]+$": "catalogs/dr7.1/0.\\1.0/desi_target_catalogs_dr7.1_0.\\1.0_files.tar",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/randoms-dr7\\.1-0\\.(2[27])\\.0\\.fits$": "catalogs/dr7.1/\\1/randoms-dr7.1-0.\\1.0.fits",
-            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar"
+            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar",
+            "catalogs/streamcache/.*$":"EXCLUDE"
         },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
