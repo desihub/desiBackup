@@ -449,9 +449,10 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|denali|everest|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(?!andes|blanc|cascades|denali|everest|jura|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/(andes|blanc|cascades|denali|everest|jura|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
-            "redux/(andes|blanc|cascades|denali|everest|jura)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(andes|blanc|cascades|denali|everest)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run|zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(jura)/zcatalog/(v[0-9])/.*$":"redux/\\1/redux_\\1_zcatalog_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/(denali|everest|jura)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/(everest|jura)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
