@@ -117,6 +117,7 @@ sections=$(grep -E '^    "[^"]+":\{' ${DESIBACKUP}/etc/desi.json | \
            sed -r 's/^    "([^"]+)":\{/\1/' | \
            grep -v config)
 comments=$(cat <<COMMENTS
+external:This directory provides links to non-DESI data sets. The actual data are stored elsewhere.
 gsharing:Share data via Globus. The actual data are stored elsewhere.
 software:Most DESI software is stored elsewhere, and the ultimate backups are the various git and svn repositories.
 target:The most important targeting data is backed up with the <code>public/ets/</code> data.
@@ -128,7 +129,8 @@ COMMENTS
 for d in ${sections}; do
     c=$(grep "${d}:" <<<"${comments}" | cut -d: -f2)
     j=0
-    if [[ "${d}" == "gsharing" || \
+    if [[ "${d}" == "external" || \
+          "${d}" == "gsharing" || \
           "${d}" == "software" || \
           "${d}" == "users"    || \
           "${d}" == "vac"      || \

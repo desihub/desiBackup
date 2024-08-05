@@ -205,8 +205,11 @@
         "svn_export_focalplane_12302018":{},
         "umdata":{}
     },
+    "external":{
+        "__exclude__":["README.txt"]
+    },
     "gsharing":{
-        "__exclude__":[]
+        "__exclude__":["README"]
     },
     "metadata":{
         "__exclude__":["README.html","scan_README.txt"],
@@ -348,13 +351,17 @@
             "doc/.*$":"EXCLUDE"
         },
         "dr1":{
+            "dr1/[^/]+$":"dr1_files.tar",
             "dr1/spectro/data/([0-9]+)/.*$":"dr1/spectro/data/desi_spectro_data_\\1.tar",
+            "dr1/spectro/desi_spectro_calib/([v0-9.]+)/.*$":"dr1/spectro/desi_spectro_calib/dr1_spectro_desi_spectro_calib_\\1.tar",
             "dr1/spectro/redux/(guadalupe|iron)/[^/]+$":"dr1/spectro/redux/\\1/redux_\\1_files.tar",
             "dr1/spectro/redux/(guadalupe|iron)/(calibnight|dashboard|exposure_tables|processing_tables|run|zcatalog)/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2.tar",
             "dr1/spectro/redux/(guadalupe|iron)/(exposures|preproc)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "dr1/spectro/redux/(guadalupe|iron)/healpix/[^/]+$":"dr1/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "dr1/spectro/redux/(guadalupe|iron)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
             "dr1/spectro/redux/(guadalupe|iron)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "dr1/spectro/templates/basis_templates/([v0-9.]+)/.*$":"dr1/spectro/templates/dr1_spectro_templates_basis_templates_\\1.tar",
+            "dr1/survey/(GFA|ops)/.*$":"dr1/survey/dr1_survey_\\1.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
             "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar"
@@ -375,8 +382,8 @@
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_files.tar",
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_\\2.tar",
             "edr/target/(masks|skybricks|skyhealpixs)/([0-9dev.]+)/.*$":"edr/target/\\1/edr_target_\\1_\\2.tar",
-            "edr/vac/edr/(bal|lsdr9-photometry|lya|mws|zcat)/(fuji)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2_\\3.tar",
-            "edr/vac/edr/(lss|mgii-absorber|provabgs|vi)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2.tar"
+            "edr/vac/edr/(bal|cigale|dla|fastspecfit|lsdr9-photometry|lya|mws|zcat)/(fuji)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2_\\3.tar",
+            "edr/vac/edr/(epoviz|lss|mgii-absorber|provabgs|qso|stellar-mass-emline|uchuu|vi)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2.tar"
         },
         "epo":{
         },
@@ -395,7 +402,7 @@
         }
     },
     "science":{
-        "__exclude__":["README"],
+        "__exclude__":[],
         "Y1KP":{},
         "bgs":{},
         "c3":{},
