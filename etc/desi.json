@@ -60,6 +60,7 @@
         "NeutrinoSims":{},
         "NFW_Abacus":{},
         "SecondGenMocks":{},
+        "ThirdGenMocks":{},
         "TNG_Rockstar":{},
         "Uchuu":{},
         "UNIT-BAO-RSD-challenge":{},
@@ -245,7 +246,8 @@
         },
         "GLAM":{
             "GLAM/ABACUS/.*$":"EXCLUDE",
-            "GLAM/GLAM_(BDM|LRG)_([^/]+)/.*$":"GLAM/GLAM_\\1_\\2.tar",
+            "GLAM/GLAM_BDM_MNRAS/.*$":"EXCLUDE",
+            "GLAM/GLAM_LRG_([^/]+)/.*$":"GLAM/GLAM_LRG_\\1.tar",
             "GLAM/JFE_files/.*$":"EXCLUDE"
         },
         "Gadget":{
@@ -295,6 +297,8 @@
         "lya_forest":{
             "lya_forest/develop/.*$":"EXCLUDE",
             "lya_forest/dr11/.*$":"EXCLUDE",
+            "lya_forest/london/README$":"EXCLUDE",
+            "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_eboss)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
@@ -365,6 +369,7 @@
             "dr1/survey/(GFA|ops)/.*$":"dr1/survey/dr1_survey_\\1.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
+            "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe|iron)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/fastspec-iron\\.fits":"dr1/vac/dr1/\\1/\\2/\\3/catalogs/fastspec-iron.fits",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/(?!fastspec-iron\\.fits)([^/]+)$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_catalogs.tar",
@@ -388,6 +393,7 @@
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_files.tar",
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_\\2.tar",
             "edr/target/(masks|skybricks|skyhealpixs)/([0-9dev.]+)/.*$":"edr/target/\\1/edr_target_\\1_\\2.tar",
+            "edr/vac/edr/(lsdr9-photometry)/(fuji)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "edr/vac/edr/(bal|cigale|dla|fastspecfit|lsdr9-photometry|lya|mws|zcat)/(fuji)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2_\\3.tar",
             "edr/vac/edr/(epoviz|lss|mgii-absorber|provabgs|qso|stellar-mass-emline|uchuu|vi)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2.tar"
         },
