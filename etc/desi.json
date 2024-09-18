@@ -216,7 +216,8 @@
         "__exclude__":["README.html","scan_README.txt"],
         "__top__":{
             "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.(desi|desicollab)\\.txt$":"EXCLUDE",
-            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.(desi|desicollab)\\.txt\\.gz$":"\\1_\\2_files.tar"
+            "([0-9][0-9][0-9][0-9])-([0-9][0-9])-[0-9][0-9]\\.(cfs|tlprojecta|tlproject2)\\.(desi|desicollab)\\.txt\\.gz$":"\\1_\\2_files.tar",
+            "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\\.json$":"EXCLUDE"
         },
         "backups":{
             "backups/.*$":"EXCLUDE"
@@ -295,6 +296,7 @@
             "lightcone_galform/.*$":"lightcone_galform.tar"
         },
         "lya_forest":{
+            "lya_forest/\\.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/develop/.*$":"EXCLUDE",
             "lya_forest/dr11/.*$":"EXCLUDE",
             "lya_forest/london/README$":"EXCLUDE",
@@ -319,6 +321,7 @@
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar",
             "lya_forest/picca/.*$":"EXCLUDE",
+            "lya_forest/public/.*$":"EXCLUDE",
             "lya_forest/saclay/.*$":"EXCLUDE",
             "lya_forest/uncorr/.*$":"EXCLUDE"
         },
@@ -369,7 +372,6 @@
             "dr1/survey/(GFA|ops)/.*$":"dr1/survey/dr1_survey_\\1.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
-            "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe|iron)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/fastspec-iron\\.fits":"dr1/vac/dr1/\\1/\\2/\\3/catalogs/fastspec-iron.fits",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/(?!fastspec-iron\\.fits)([^/]+)$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_catalogs.tar",
@@ -393,7 +395,6 @@
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_files.tar",
             "edr/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"edr/fiberassign/tiles/tags/\\1/edr_fiberassign_tiles_tags_\\1_\\2.tar",
             "edr/target/(masks|skybricks|skyhealpixs)/([0-9dev.]+)/.*$":"edr/target/\\1/edr_target_\\1_\\2.tar",
-            "edr/vac/edr/(lsdr9-photometry)/(fuji)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "edr/vac/edr/(bal|cigale|dla|fastspecfit|lsdr9-photometry|lya|mws|zcat)/(fuji)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2_\\3.tar",
             "edr/vac/edr/(epoviz|lss|mgii-absorber|provabgs|qso|stellar-mass-emline|uchuu|vi)/(v[0-9.]+)/.*$":"edr/vac/edr/edr_vac_edr_\\1_\\2.tar"
         },
