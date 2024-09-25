@@ -373,6 +373,7 @@
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
             "dr1/vac/dr1/(fastspecfit|lsdr9-photometry)/(guadalupe)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar",
+            "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/README\\.md$":"dr1/vac/dr1/\\1/\\2/\\3/README.md",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/fastspec-iron\\.fits":"dr1/vac/dr1/\\1/\\2/\\3/catalogs/fastspec-iron.fits",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/catalogs/(?!fastspec-iron\\.fits)([^/]+)$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_catalogs.tar",
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/logs/.*$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_logs.tar",
