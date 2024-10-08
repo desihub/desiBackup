@@ -7,7 +7,7 @@ function usage() {
     echo "Submit jobs to analyze backup status."
     echo ""
     echo "    -h         = Print help message and exit."
-    echo "    -j DIR     = Use DIR to stage jobs for submission (default '${HOME}/jobs')."
+    echo "    -j DIR     = Use DIR to stage jobs for submission (default '${DESI_ROOT}/users/${USER}/jobs')."
     echo "    -s RELEASE = Use DESI software RELEASE (default 'main')."
     echo "    -t         = Test mode; do not actually submit jobs. Implies -v."
     echo "    -v         = Verbose mode; print extra information."
@@ -16,7 +16,7 @@ function usage() {
 testMode=/usr/bin/false
 verbMode=/usr/bin/false
 software=main
-job_dir=${HOME}/jobs
+job_dir=${DESI_ROOT}/users/${USER}/jobs
 while getopts hj:s:tv argname; do
     case ${argname} in
         h) usage; exit 0 ;;
