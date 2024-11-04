@@ -499,8 +499,11 @@
         }
     },
     "survey":{
-        "__exclude__":[],
-        "GFA":{},
+        "__exclude__":["GFA.KPNO.log"],
+        "GFA.KPNO":{
+            "GFA\\.KPNO/.*$": "GFA.KPNO.tar"
+        },
+        "GFA.NERSC":{},
         "analysis":{},
         "catalogs":{},
         "fiberassign":{},
@@ -508,7 +511,8 @@
         "observations":{},
         "ops":{},
         "planning":{},
-        "sims":{}
+        "sims":{},
+        "sv":{}
     },
     "sv":{
         "__exclude__":[],
