@@ -380,6 +380,7 @@
             "dr1/vac/dr1/(fastspecfit)/(iron)/(v[0-9.]+)/healpix/(cmx|main|special|sv1|sv2|sv3)/.*$":"dr1/vac/dr1/\\1/\\2/\\3/healpix/dr1_vac_dr1_\\1_\\2_\\3_healpix_\\4.tar",
             "dr1/vac/dr1/(lsdr9-photometry)/(iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar"
         },
+        "dr2":{},
         "edr":{
             "edr/[^/]+$":"edr_files.tar",
             "edr/spectro/data/([0-9]+)/.*$":"edr/spectro/data/desi_spectro_data_\\1.tar",
@@ -470,16 +471,16 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|denali|everest|jura|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
-            "redux/(andes|blanc|cascades|denali|everest|jura|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
-            "redux/(andes|blanc|cascades|denali|everest|jura)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(?!andes|blanc|cascades|denali|everest|jura|kibo|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(andes|blanc|cascades|denali|everest|jura|kibo|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
+            "redux/(andes|blanc|cascades|denali|everest|jura|kibo)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades|denali|everest)/(zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
-            "redux/(jura)/zcatalog/(v[0-9])/.*$":"redux/\\1/redux_\\1_zcatalog_\\2.tar",
+            "redux/(jura|kibo)/zcatalog/(v[0-9])/.*$":"redux/\\1/redux_\\1_zcatalog_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/(denali|everest|jura)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
-            "redux/(everest|jura)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
-            "redux/(everest|jura)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
-            "redux/(denali|everest|jura)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "redux/(denali|everest|jura|kibo)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
+            "redux/(everest|jura|kibo)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
+            "redux/(everest|jura|kibo)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
+            "redux/(denali|everest|jura|kibo)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
             "redux/(minisv2|month4)/(alt|calib2d|calibnight|plan|run|tiles)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(minisv2|month4)/(exposures|preproc|spectra-64)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
