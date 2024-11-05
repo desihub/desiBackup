@@ -471,7 +471,10 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|denali|everest|jura|kibo|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(?!andes|blanc|cascades|daily|denali|everest|jura|kibo|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/daily/[^/]+$":"EXCLUDE",
+            "redux/daily/(?!tiles)([^/]+)/.*$":"EXCLUDE",
+            "redux/daily/tiles/archive/([0-9]+)/([0-9]+)/.*$":"redux/daily/tiles/archive/redux_daily_tiles_archive_\\1_\\2.tar",
             "redux/(andes|blanc|cascades|denali|everest|jura|kibo|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
             "redux/(andes|blanc|cascades|denali|everest|jura|kibo)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades|denali|everest)/(zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
