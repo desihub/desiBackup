@@ -58,6 +58,8 @@ Change Log
 
 * Add configuration describing DR2 reductions, ``jura``, ``kibo`` (PR `#31`_).
 
+.. _`#31`: https://github.com/desihub/desiBackup/pull/31
+
 0.5.0 (2023-07-31)
 ~~~~~~~~~~~~~~~~~~
 
