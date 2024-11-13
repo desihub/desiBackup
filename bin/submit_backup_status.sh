@@ -50,14 +50,12 @@ for section in cmx cosmosim datachallenge engineering metadata mocks protodesi p
 #SBATCH --output=${job_dir}/%x-%j.log
 #SBATCH --open-mode=append
 #SBATCH --mail-type=end,fail
-#SBATCH --mail-user=benjamin.weaver@noirlab.edu
+#SBATCH --mail-user=bweaver@nersc.gov
 source /global/common/software/desi/desi_environment.sh ${software}
 module load desiBackup/main
-# cache=\${DESI_ROOT}/users/\${USER}/backups
 cache=\${DESI_ROOT}/metadata/backups
-[[ -d \${cache} ]] || mkdir -p \${cache}
-missing_from_hpss ${verbose} -c \${cache} -D -H \${DESIBACKUP}/etc/desi.json ${section}
-[[ \$? == 0 ]] && cp -a ${job_dir}/${job_name}-\${SLURM_JOB_ID}.log \${cache}
+missing_from_hpss ${verbose} --cache-dir=\${cache} --overwrite-hpss \${DESIBACKUP}/etc/desi.json ${section}
+cp -a ${job_dir}/${job_name}-\${SLURM_JOB_ID}.log \${cache}
 BATCHJOB
 )
     ${verbMode} && echo "${job}"
@@ -98,10 +96,9 @@ job=$(cat <<BATCHJOB
 #SBATCH --output=${job_dir}/%x-%j.log
 #SBATCH --open-mode=append
 #SBATCH --mail-type=end,fail
-#SBATCH --mail-user=benjamin.weaver@noirlab.edu
+#SBATCH --mail-user=bweaver@nersc.gov
 source /global/common/software/desi/desi_environment.sh ${software}
 module load desiBackup/main
-# cache=\${DESI_ROOT}/users/\${USER}/backups
 cache=\${DESI_ROOT}/metadata/backups
 backupStatus.sh ${verbose} -c \${cache} ${job_id_map}
 BATCHJOB
