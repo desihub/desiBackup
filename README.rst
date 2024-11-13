@@ -56,7 +56,7 @@ Change Log
 0.5.1 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
-* No changes yet.
+* Add configuration describing DR2 reductions, ``jura``, ``kibo`` (PR `#31`_).
 
 0.5.0 (2023-07-31)
 ~~~~~~~~~~~~~~~~~~
