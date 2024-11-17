@@ -49,7 +49,7 @@ for section in cmx cosmosim datachallenge engineering metadata mocks protodesi p
 #SBATCH --job-name=${job_name}
 #SBATCH --output=${job_dir}/%x-%j.log
 #SBATCH --open-mode=append
-#SBATCH --mail-type=end,fail
+#SBATCH --mail-type=fail
 #SBATCH --mail-user=bweaver@nersc.gov
 source /global/common/software/desi/desi_environment.sh ${software}
 module load desiBackup/main
