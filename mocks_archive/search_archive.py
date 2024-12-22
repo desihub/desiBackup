@@ -127,10 +127,9 @@ def main():
                 else:
                     match_large[ii][1]['archive'] = search_archives(fname , file_index_dic)
                 ii=ii+1
-
-        #print_matches(match_large,ftype='large')
+    else:
+        match_large=[]
         
-
     #if split file exists then search in split dic
     # search split file
     split_file=f"{args.docs_dir}/split_file.json"
@@ -144,10 +143,8 @@ def main():
                     fname=tfile.split('/')[-1]
                     match_split[ii][1]['archive%d'%tt] = search_archives(fname, file_index_dic)
                 ii=ii+1
-
-
-        #print_matches(match_split,ftype='split')
-
+    else:
+        match_split=[]
 
 
     nmatch=np.array([len(matches),len(match_large),len(match_split)])
@@ -156,16 +153,22 @@ def main():
         print(f"No files found matching pattern: {args.pattern}")
         return
     else:
+        all_comms_dic=[]
         print(f"Found {nmatch.sum()} matching files: (regular:{nmatch[0]}, large: {nmatch[1]}, split: {nmatch[2]})")
         if(nmatch[0]>0):
-            print_matches(matches,ftype='regular')
+            comms_dic=print_matches(matches,ftype='regular')
+            all_comms_dic.append(comms_dic)
         
         if(nmatch[1]>0):
-            print_matches(match_large,ftype='large')
+            comms_dic=print_matches(match_large,ftype='large')
+            all_comms_dic.append(comms_dic)
         
         if(nmatch[2]>0):
-            print_matches(match_split,ftype='split')
+            comms_dic=print_matches(match_split,ftype='split')
+            all_comms_dic.append(comms_dic)
 
+        print_commands_extract(all_comms_dic,outfile='extract_comms.sh')
+            
     return 
 
 def print_matches(matches,ftype='regular'):
@@ -173,33 +176,108 @@ def print_matches(matches,ftype='regular'):
              'large': 'File (large path):',
              'split': 'File (split_files):'
              }
+    comms_dic={'regular':[],'large_split':[],'large':[],'split':[]}
     for file_path, archive_info in matches:
         print(f"\n{tag_dic[ftype]} {file_path}")
         #print('\n\n',archive_info)
 #        print('\n\n',archive_info['archive']['split_dic'][1])
         if(ftype=='regular'):
             print(f"Archive: {archive_info['archive']}")
+            comms_dic['regular'].append(generate_extract_command(archive_info['archive'],file_path))
         elif(ftype=='large'):
+            comm_this=[]
             print('\t This file has large file_path, given below is shorten_path')
             print(f"\t short_path: {archive_info['short_path']}")
             if('split_dic' in archive_info['archive']):
+                sub_file_list=''
                 print(f"\t\t This file was split in {archive_info['archive']['split_dic'][1]['num_chunks']} subfiles due to its size")
                 for tfile_path, tinfo in archive_info['archive']['split_files']:
                     print(f"\t\t sub_File: {tfile_path}")
                     print(f"\t\t Archive: {tinfo['archive']}")
+                    comm_this.append(generate_extract_command(tinfo['archive'],tfile_path))
+                    abs_file=get_absolute_path(tinfo['archive'],tfile_path)
+                    sub_file_list='%s %s'%(sub_file_list,abs_file[1:])
                 print('\t\t Extract each of the subfile, join them and then you can rename it:\n\t\t\t %s'%(file_path))
+                #create the output directory if doesnot exists along with any parent
+                out_dir='/'.join(file_path[1:].split('/')[:-1])
+                Path(out_dir).mkdir(parents=True, exist_ok=True)
+                comm_this.append('cat %s | dd of=%s bs=1M'%(sub_file_list,file_path[1:]))
+                comms_dic['large_split'].append(comm_this)
             else:
                 #print(archive_info)
                 print(f"\t Archive: {archive_info['archive'][0][1]['archive']}")
+                comm_this.append(generate_extract_command(archive_info['archive'][0][1]['archive'],archive_info['short_path']))
+                #create the output directory if doesnot exists along with any parent
+                out_dir='/'.join(file_path[1:].split('/')[:-1])
+                Path(out_dir).mkdir(parents=True, exist_ok=True)
+                comm_this.append(f"mv {archive_info['short_path'][1:]} {file_path[1:]}")
+                comms_dic['large'].append(comm_this)
         elif(ftype=='split'):
             print(f"\t This file was split in {archive_info['num_chunks']} subfiles due to its size")
+            sub_file_list=''
+            comm_this
             for tt in range(0,archive_info['num_chunks']):
                 tfile_path=archive_info['archive%d'%tt][0][0]
                 tinfo=archive_info['archive%d'%tt][0][1]
                 print(f"\t sub_File: {tfile_path}")
                 print(f"\t Archive: {tinfo['archive']}")
+                abs_file=get_absolute_path(tinfo['archive'],tfile_path)
+                sub_file_list='%s %s'%(sub_file_list,abs_file[1:])
+                comm_this.append(generate_extract_command(tinfo['archive'],tfile_path[1:]))
             print('\t Extract each of the subfile, join them and then you can rename it:\n\t\t %s'%(file_path))
+            #create the output directory if doesnot exists along with any parent
+            out_dir='/'.join(file_path[1:].split('/')[:-1])
+            Path(out_dir).mkdir(parents=True, exist_ok=True)
+            comm_this.append('cat %s | dd of=%s bs=1M'%(sub_file_list,file_path))
+            comms_dic['split'].append(comm_this)
+            
+    
+    return comms_dic
+
+def generate_extract_command(archive,file):
+    abs_file=get_absolute_path(archive,file)
+    #command to exract a file
+    comm='htar -xvf %s %s'%(archive,abs_file)
+    
+    return comm
+
+def get_absolute_path(archive,file):
+    #first we need to find prefix on cfs and tape
+    prefix_cfs='/global/cfs/cdirs/desicollab/'
+    prefix_tape='/nersc/projects/desi/'
+    #path to the directory
+    tspl=archive[len(prefix_tape):].split('/')
+    tdir=prefix_cfs+'/'.join(tspl[:-1])+'/'
+    
+    return tdir+file
+
+def print_commands_extract(comms_dic_list,outfile=None):
+    '''prints the command to the output for extraction'''
+    
+    comm_str=''
+    for tt,tdic in enumerate(comms_dic_list):
+        for ii,ikey in enumerate(tdic.keys()):
+            if(tdic[ikey]!=[]):
+                comm_str=comm_str+'\n\n#### %s files ####\n'%(ikey)
+                for cc,comm in enumerate(tdic[ikey]):
+                    if(ikey=='regular'):
+                        comm_str=comm_str+comm+'\n'
+                    else:
+                        for ci,comm_i in enumerate(tdic[ikey][cc]):
+                            comm_str=comm_str+comm_i+'\n'
+                        comm_str=comm_str+'#\n#\n'
+      
+    if(outfile is not None):
+        with open(outfile,'w') as fout:
+            fout.write(comm_str)
+        print('\n\n\n ****************\nThe command to extract found file is written in %s'%(outfile))
+        print('You can simply execute this file from this directory to actually extract all the files\n ****************\n\n')
+    else:
+        print('**** all comms_dic ***')
+        print(comm_str)
+    
     return
+    
 
 if __name__ == '__main__':
     main()
