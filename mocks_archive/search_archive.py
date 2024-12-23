@@ -248,8 +248,10 @@ def get_absolute_path(archive,file):
     #path to the directory
     tspl=archive[len(prefix_tape):].split('/')
     tdir=prefix_cfs+'/'.join(tspl[:-1])+'/'
-    
-    return tdir+file
+    if(prefix_cfs[1:] in file):
+        return file
+    else:
+        return tdir+file
 
 def print_commands_extract(comms_dic_list,outfile=None):
     '''prints the command to the output for extraction'''
