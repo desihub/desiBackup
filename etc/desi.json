@@ -373,6 +373,8 @@
             "dr1/spectro/redux/(guadalupe|iron)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
             "dr1/spectro/redux/(guadalupe|iron)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
             "dr1/spectro/templates/basis_templates/([v0-9.]+)/.*$":"dr1/spectro/templates/dr1_spectro_templates_basis_templates_\\1.tar",
+            "dr1/survey/fiberassign/(special)/.*$":"dr1/survey/fiberassign/dr1_survey_fiberassign_\\1.tar",
+            "dr1/survey/fiberassign/(main)/([0-9]+)/.*$":"dr1/survey/fiberassign/\\1/dr1_survey_fiberassign_\\1_\\2.tar",
             "dr1/survey/(GFA|ops)/.*$":"dr1/survey/dr1_survey_\\1.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/[^/]+$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_files.tar",
             "dr1/target/fiberassign/tiles/tags/([0-9.]+)/([0-9]{3})/.*$":"dr1/fiberassign/tiles/tags/\\1/dr1_fiberassign_tiles_tags_\\1_\\2.tar",
