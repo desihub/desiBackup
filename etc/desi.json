@@ -392,6 +392,7 @@
         },
         "dr2":{
             "dr2/spectro/data/([0-9]+)/.*$":"dr2/spectro/data/desi_spectro_data_\\1.tar",
+            "dr2/survey/(GFA|ops)/.*$":"dr2/survey/dr2_survey_\\1.tar",
             "dr2/vac/dr2/(lsdr9-photometry)/(loa)/(v[0-9.]+)/.*$":"dr2/vac/dr2/\\1/\\2/dr2_vac_dr2_\\1_\\2_\\3.tar"
         },
         "edr":{
