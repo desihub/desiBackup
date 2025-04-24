@@ -373,6 +373,13 @@
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
             "dr1/spectro/templates/basis_templates/([v0-9.]+)/.*$":"dr1/spectro/templates/dr1_spectro_templates_basis_templates_\\1.tar",
+            "dr1/survey/catalogs/dr1/LSS/[^/]+$":"dr1_survey_catalogs_dr1_LSS_files.tar",
+            "dr1/survey/catalogs/dr1/LSS/(random[0-9]+)/.*$":"dr1_survey_catalogs_dr1_LSS_\\1.tar",
+            "dr1/survey/catalogs/dr1/LSS/iron/[^/]+$":"dr1_survey_catalogs_dr1_LSS_iron_files.tar",
+            "dr1/survey/catalogs/dr1/LSS/iron/LSScats/([v0-9.]+)/(BGS_ANY|BGS_BRIGHT|ELG|LRG|QSO)[^/]+$":"dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_\\2.tar",
+            "dr1/survey/catalogs/dr1/LSS/iron/LSScats/([v0-9.]+)/.*\\.sha256sum$":"dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_QSO.tar",
+            "dr1/survey/catalogs/dr1/LSS/iron/LSScats/([v0-9.]+)/hpmaps/.*$":"dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_hpmaps.tar",
+            "dr1/survey/catalogs/dr1/QSO/.*$":"dr1_survey_catalogs_dr1_QSO.tar",
             "dr1/survey/fiberassign/(special)/.*$":"dr1/survey/fiberassign/dr1_survey_fiberassign_\\1.tar",
             "dr1/survey/fiberassign/(main)/([0-9]+)/.*$":"dr1/survey/fiberassign/\\1/dr1_survey_fiberassign_\\1_\\2.tar",
             "dr1/survey/(GFA|ops)/.*$":"dr1/survey/dr1_survey_\\1.tar",
@@ -388,7 +395,7 @@
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/[^/]+$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_files.tar",
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/(rv_output|sp_output)/([0-9]+)/.*$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_\\4_\\5.tar",
             "dr1/vac/dr1/(cigale|lss)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2_\\3.tar",
-            "dr1/vac/dr1/(agnqso|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
+            "dr1/vac/dr1/(agnqso|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
         },
         "dr2":{
             "dr2/spectro/data/([0-9]+)/.*$":"dr2/spectro/data/desi_spectro_data_\\1.tar",
