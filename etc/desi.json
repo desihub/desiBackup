@@ -366,7 +366,7 @@
             "dr1/spectro/data/([0-9]+)/.*$":"dr1/spectro/data/desi_spectro_data_\\1.tar",
             "dr1/spectro/desi_spectro_calib/([v0-9.]+)/.*$":"dr1/spectro/desi_spectro_calib/dr1_spectro_desi_spectro_calib_\\1.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/[^/]+$":"dr1/spectro/redux/\\1/redux_\\1_files.tar",
-            "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(calibnight|dashboard|exposure_tables|processing_tables|run)/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2.tar",
+            "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(zcatalog)/(v[0-9])/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(exposures|preproc)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/healpix/[^/]+$":"dr1/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
@@ -493,6 +493,7 @@
         },
         "redux":{
             "redux/(?!andes|blanc|cascades|daily|denali|everest|jura|kibo|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/daily[^/]+/.*$":"EXCLUDE",
             "redux/daily/[^/]+$":"EXCLUDE",
             "redux/daily/(?!tiles)([^/]+)/.*$":"EXCLUDE",
             "redux/daily/tiles/(?!archive)([^/]+)/.*$":"EXCLUDE",
@@ -588,6 +589,8 @@
         "masks":{
         },
         "mws":{
+        },
+        "newsecondary":{
         },
         "proposals":{
         },
