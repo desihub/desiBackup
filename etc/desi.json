@@ -378,6 +378,7 @@
             "dr1/survey/catalogs/dr1/LSS/(random[0-9]+)/.*$":"dr1/survey/catalogs/dr1/LSS/dr1_survey_catalogs_dr1_LSS_\\1.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/[^/]+$":"dr1/survey/catalogs/dr1/LSS/iron/dr1_survey_catalogs_dr1_LSS_iron_files.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/(BGS_ANY|BGS_BRIGHT|ELG|LRG|QSO)[^/]+$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_\\2.tar",
+            "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/(BRIGHT|DARK)_bitweights\\.fits$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_BGS_BRIGHT.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/[^/]+\\.sha256sum$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_QSO.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/hpmaps/.*$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_hpmaps.tar",
             "dr1/survey/catalogs/dr1/QSO/.*$":"dr1/survey/catalogs/dr1/dr1_survey_catalogs_dr1_QSO.tar",
