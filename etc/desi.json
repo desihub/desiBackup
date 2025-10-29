@@ -381,6 +381,8 @@
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/(BRIGHT|DARK)_bitweights\\.fits$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_BGS_BRIGHT.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/[^/]+\\.sha256sum$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_QSO.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/hpmaps/.*$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_hpmaps.tar",
+            "dr1/survey/catalogs/dr1/mocks/(AbacusSummit|EZmock)/(bright|dark)/(v[0-9.]+)/[^/]+$":"dr1/survey/catalogs/dr1/mocks/\\1/\\2/\\3/dr1_survey_catalogs_dr1_mocks_\\1_\\2_\\3_files.tar",
+            "dr1/survey/catalogs/dr1/mocks/(AbacusSummit|EZmock)/(bright|dark)/(v[0-9.]+)/(altmtl[0-9]+|mock[0-9]+)/.*$":"dr1/survey/catalogs/dr1/mocks/\\1/\\2/\\3/dr1_survey_catalogs_dr1_mocks_\\1_\\2_\\3_\\4.tar",
             "dr1/survey/catalogs/dr1/QSO/.*$":"dr1/survey/catalogs/dr1/dr1_survey_catalogs_dr1_QSO.tar",
             "dr1/survey/fiberassign/(special)/.*$":"dr1/survey/fiberassign/dr1_survey_fiberassign_\\1.tar",
             "dr1/survey/fiberassign/(main)/([0-9]+)/.*$":"dr1/survey/fiberassign/\\1/dr1_survey_fiberassign_\\1_\\2.tar",
