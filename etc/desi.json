@@ -301,10 +301,9 @@
         },
         "lya_forest":{
             "lya_forest/\\.ipynb_checkpoints/.*$":"EXCLUDE",
-            "lya_forest/develop/.*$":"EXCLUDE",
-            "lya_forest/dr11/.*$":"EXCLUDE",
+            "lya_forest/(colore-2lpt|develop|dr11|picca|public|saclay|uncorr)/.*$":"EXCLUDE",
             "lya_forest/london/README$":"EXCLUDE",
-            "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_eboss)/.*$":"EXCLUDE",
+            "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_desi_y3|qq_eboss)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
             "lya_forest/london/(v[23]\\.[0-9])/quick-([0-9.]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_quick-\\2.tar",
@@ -323,11 +322,7 @@
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/[^/]+$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_files.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/([0-9]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_\\3.tar",
             "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/eboss-([0-9.]+)/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_eboss-\\3.tar",
-            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar",
-            "lya_forest/picca/.*$":"EXCLUDE",
-            "lya_forest/public/.*$":"EXCLUDE",
-            "lya_forest/saclay/.*$":"EXCLUDE",
-            "lya_forest/uncorr/.*$":"EXCLUDE"
+            "lya_forest/london/(v[6789]\\.[0-9])/(v[6789]\\.[0-9]\\.[0-9]+)/logs/.*$":"lya_forest/london/\\1/\\2/lya_forest_london_\\1_\\2_logs.tar"
         },
         "mws":{
             "mws/(100pc|gaiaDR1quick|small_galaxia|wd|wd100pc)/.*$":"mws/mws_\\1.tar",
@@ -381,6 +376,7 @@
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/(BRIGHT|DARK)_bitweights\\.fits$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_BGS_BRIGHT.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/[^/]+\\.sha256sum$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_QSO.tar",
             "dr1/survey/catalogs/dr1/LSS/iron/LSScats/(v[0-9.pi]+)/hpmaps/.*$":"dr1/survey/catalogs/dr1/LSS/iron/LSScats/\\1/dr1_survey_catalogs_dr1_LSS_iron_LSScats_\\1_hpmaps.tar",
+            "dr1/survey/catalogs/dr1/mocks/README\\.md": "EXCLUDE",
             "dr1/survey/catalogs/dr1/mocks/(AbacusSummit|EZmock)/(bright|dark)/(v[0-9.]+)/[^/]+$":"dr1/survey/catalogs/dr1/mocks/\\1/\\2/\\3/dr1_survey_catalogs_dr1_mocks_\\1_\\2_\\3_files.tar",
             "dr1/survey/catalogs/dr1/mocks/(AbacusSummit|EZmock)/(bright|dark)/(v[0-9.]+)/(altmtl[0-9]+|mock[0-9]+)/.*$":"dr1/survey/catalogs/dr1/mocks/\\1/\\2/\\3/dr1_survey_catalogs_dr1_mocks_\\1_\\2_\\3_\\4.tar",
             "dr1/survey/catalogs/dr1/QSO/.*$":"dr1/survey/catalogs/dr1/dr1_survey_catalogs_dr1_QSO.tar",
@@ -399,11 +395,12 @@
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/[^/]+$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_files.tar",
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/(rv_output|sp_output)/([0-9]+)/.*$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_\\4_\\5.tar",
             "dr1/vac/dr1/(cigale|lss)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2_\\3.tar",
-            "dr1/vac/dr1/(agnqso|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
+            "dr1/vac/dr1/(agnqso|civ-absorber|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
         },
         "dr2":{
             "dr2/[^/]+$":"dr2_files.tar",
             "dr2/spectro/data/([0-9]+)/.*$":"dr2/spectro/data/desi_spectro_data_\\1.tar",
+            "dr2/spectro/desi_spectro_calib/([v0-9.]+)/.*$":"dr2/spectro/desi_spectro_calib/dr2_spectro_desi_spectro_calib_\\1.tar",
             "dr2/spectro/redux/(kibo|loa)/[^/]+$":"dr2/spectro/redux/\\1/redux_\\1_files.tar",
             "dr2/spectro/redux/(kibo|loa)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2.tar",
             "dr2/spectro/redux/(kibo|loa)/(zcatalog)/(v[0-9])/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
@@ -578,7 +575,7 @@
         "catalogs":{
             "catalogs/README$": "EXCLUDE",
             "catalogs/(dr9[a-z]+)/.*$": "EXCLUDE",
-            "catalogs/(examples|lya)/.*$": "EXCLUDE",
+            "catalogs/(examples|lya|drX)/.*$": "EXCLUDE",
             "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar",
             "catalogs/(dr5|dr9|mtl)/([0-9.]+)/.*$": "catalogs/\\1/desi_target_catalogs_\\1_\\2.tar",
             "catalogs/dr5/(pixweight|randoms)-dr5\\.fits$": "catalogs/dr5/\\1-dr5.fits",
@@ -611,6 +608,8 @@
         "qso_training":{
         },
         "secondary":{
+        },
+        "sergey_m31":{
         },
         "skybricks":{
         },
