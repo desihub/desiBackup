@@ -301,7 +301,7 @@
         },
         "lya_forest":{
             "lya_forest/\\.ipynb_checkpoints/.*$":"EXCLUDE",
-            "lya_forest/(colore-2lpt|develop|dr11|picca|public|saclay|uncorr)/.*$":"EXCLUDE",
+            "lya_forest/(colore-2lpt|develop|dr11|ifae-ql|picca|public|saclay|uncorr)/.*$":"EXCLUDE",
             "lya_forest/london/README$":"EXCLUDE",
             "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_desi_y3|qq_eboss)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
@@ -395,7 +395,7 @@
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/[^/]+$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_files.tar",
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/(rv_output|sp_output)/([0-9]+)/.*$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_\\4_\\5.tar",
             "dr1/vac/dr1/(cigale|lss)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2_\\3.tar",
-            "dr1/vac/dr1/(agnqso|civ-absorber|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
+            "dr1/vac/dr1/(agnqso|bao-cosmo-params|civ-absorber|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|full-shape-cosmo-params|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
         },
         "dr2":{
             "dr2/[^/]+$":"dr2_files.tar",
