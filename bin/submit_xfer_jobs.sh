@@ -70,7 +70,7 @@ j=0
 while true; do
     echo -n "INFO: "
     date
-    n_jobs=$(squeue -u ${USER} -o "%.10i %.9P %.40j %.8u %.8T %.10M %.10l %.6D %R" | grep -E '(RUNNING|PENDING)' | grep ${prefix_base} | wc -l)
+    n_jobs=$(squeue -u ${USER} -o "%.10i %.9P %.80j %.8u %.8T %.10M %.10l %.6D %R" | grep -E '(RUNNING|PENDING)' | grep ${prefix_base} | wc -l)
     if (( n_jobs < max_jobs )); then
         n_submitted=0
         while (( j < n_available && n_submitted + n_jobs < max_jobs )); do
