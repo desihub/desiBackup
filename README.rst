@@ -53,16 +53,18 @@ raise an exception.
 Change Log
 ----------
 
-0.6.0 (unreleased)
+0.6.0 (2026-09-15)
 ~~~~~~~~~~~~~~~~~~
 
 * Add configuration describing DR2 reductions, ``jura``, ``kibo`` (PR `#31`_).
 * Add scripts for archiving mocks (PR `#32`_).
 * Add support for post-DR1 and pre-DR2 backups (PR `#33`_).
+* Add support for ``matterhorn`` pre-DR3 specprod (PR `#37`_).
 
 .. _`#31`: https://github.com/desihub/desiBackup/pull/31
 .. _`#32`: https://github.com/desihub/desiBackup/pull/32
 .. _`#33`: https://github.com/desihub/desiBackup/pull/33
+.. _`#37`: https://github.com/desihub/desiBackup/pull/37
 
 0.5.0 (2023-07-31)
 ~~~~~~~~~~~~~~~~~~

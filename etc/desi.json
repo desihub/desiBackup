@@ -49,6 +49,7 @@
         "Abacus_Env":{},
         "Abacus_healpix":{},
         "AbacusHOD_mocks":{},
+        "Abacus_cubic_HODs":{},
         "AbacusLensing":{},
         "AbacusPotential":{},
         "CoLoRe_lensing":{},
@@ -291,6 +292,8 @@
         "earlyQPM":{
             "earlyQPM/.*$":"earlyQPM.tar"
         },
+        "fa4acm":{
+        },
         "fastpm_fnl":{
         },
         "gqp_mini_mocha":{
@@ -303,6 +306,7 @@
             "lya_forest/\\.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/(colore-2lpt|develop|dr11|ifae-ql|picca|public|saclay|uncorr)/.*$":"EXCLUDE",
             "lya_forest/london/README$":"EXCLUDE",
+            "lya_forest/london/move_(readme|)to_tape.*$":"EXCLUDE",
             "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_desi_y3|qq_eboss)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
@@ -362,7 +366,8 @@
             "dr1/spectro/desi_spectro_calib/([v0-9.]+)/.*$":"dr1/spectro/desi_spectro_calib/dr1_spectro_desi_spectro_calib_\\1.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/[^/]+$":"dr1/spectro/redux/\\1/redux_\\1_files.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2.tar",
-            "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(zcatalog)/(v[0-9])/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
+            "dr1/spectro/redux/(guadalupe|reproc_20211212_iron)/(zcatalog)/(v[0-9])/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
+            "dr1/spectro/redux/(iron)/(zcatalog)/(v[0-9])/.*$":"dr1/spectro/redux/\\1/redux_\\1_\\2_\\3.2.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/(exposures|preproc)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/healpix/[^/]+$":"dr1/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "dr1/spectro/redux/(guadalupe|iron|reproc_20211212_iron)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr1/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
@@ -394,8 +399,8 @@
             "dr1/vac/dr1/(lsdr9-photometry)/(iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/\\1/\\2/dr1_vac_dr1_\\1_\\2_\\3.tar",
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/[^/]+$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_files.tar",
             "dr1/vac/dr1/(mws)/(iron)/(v[0-9.]+)/(rv_output|sp_output)/([0-9]+)/.*$":"dr1/vac/dr1/\\1/\\2/\\3/dr1_vac_dr1_\\1_\\2_\\3_\\4_\\5.tar",
-            "dr1/vac/dr1/(cigale|lss)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2_\\3.tar",
-            "dr1/vac/dr1/(agnqso|bao-cosmo-params|civ-absorber|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|full-shape-cosmo-params|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
+            "dr1/vac/dr1/(cigale|fastphot|lss)/(guadalupe|iron)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2_\\3.tar",
+            "dr1/vac/dr1/(agngal|agnqso|bao-cosmo-params|civ-absorber|desivast|dla-cnn-gp|dla-toolkit|emfit|extragalactic-dwarfs|full-shape-cosmo-params|full-shape-bao-clustering|gfinder|hetdex|lya-correlations|lya-deltas|mgii-absorber|mws-bhb|mws-spdist|mws-specdis|qmassiron|skyspec|stellar-mass-emline|stellar-reddening|strong-lensing|zlya)/(v[0-9.]+)/.*$":"dr1/vac/dr1/dr1_vac_dr1_\\1_\\2.tar"
         },
         "dr2":{
             "dr2/[^/]+$":"dr2_files.tar",
@@ -404,6 +409,7 @@
             "dr2/spectro/redux/(kibo|loa)/[^/]+$":"dr2/spectro/redux/\\1/redux_\\1_files.tar",
             "dr2/spectro/redux/(kibo|loa)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2.tar",
             "dr2/spectro/redux/(kibo|loa)/(zcatalog)/(v[0-9])/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
+            "dr2/spectro/redux/(kibo|loa)/(zcatalog)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "dr2/spectro/redux/(kibo|loa)/(exposures|preproc)/([0-9]+)/.*$":"dr2/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "dr2/spectro/redux/(kibo|loa)/healpix/[^/]+$":"dr2/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "dr2/spectro/redux/(kibo|loa)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr2/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
@@ -451,6 +457,7 @@
         "Y1KP":{},
         "bgs":{},
         "c3":{},
+        "cai":{},
         "cpe":{},
         "engineering":{},
         "gqc":{},
@@ -501,21 +508,24 @@
         "quicklook":{
         },
         "redux":{
-            "redux/(?!andes|blanc|cascades|daily|denali|everest|jura|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
+            "redux/(?!andes|blanc|cascades|daily|denali|everest|jura|matterhorn|minisv2|month4|oak1)([^/]+)/.*$":"EXCLUDE",
             "redux/daily[^/]+/.*$":"EXCLUDE",
             "redux/daily/[^/]+$":"EXCLUDE",
             "redux/daily/(?!tiles)([^/]+)/.*$":"EXCLUDE",
             "redux/daily/tiles/(?!archive)([^/]+)/.*$":"EXCLUDE",
             "redux/daily/tiles/archive/([0-9]+)/([0-9]+)/.*$":"redux/daily/tiles/archive/redux_daily_tiles_archive_\\1_\\2.tar",
-            "redux/(andes|blanc|cascades|denali|everest|jura|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
+            "redux/(andes|blanc|cascades|denali|everest|jura|matterhorn|month4)/[^/]+$":"redux/\\1/redux_\\1_files.tar",
             "redux/(andes|blanc|cascades|denali|everest|jura)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(andes|blanc|cascades|denali|everest)/(zcatalog)/.*$":"redux/\\1/redux_\\1_\\2.tar",
-            "redux/(jura)/zcatalog/(v[0-9])/.*$":"redux/\\1/redux_\\1_zcatalog_\\2.tar",
+            "redux/(jura|matterhorn)/zcatalog/(v[0-9])/.*$":"redux/\\1/redux_\\1_zcatalog_\\2.tar",
             "redux/(andes|blanc|cascades)/(exposures|preproc|tiles)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/(denali|everest|jura)/(exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/(everest|jura)/healpix/[^/]+$":"redux/\\1/healpix/redux_\\1_healpix_files.tar",
-            "redux/(everest|jura)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
-            "redux/(denali|everest|jura)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "redux/(everest|jura|matterhorn)/(healpix|spectra)/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"redux/\\1/\\2/\\3/\\4/redux_\\1_\\2_\\3_\\4_\\5.tar",
+            "redux/(denali|everest|jura|matterhorn)/tiles/(1x_depth|4x_depth|lowspeed|cumulative|perexp|pernight)/([0-9]+)/.*$":"redux/\\1/tiles/\\2/redux_\\1_tiles_\\2_\\3.tar",
+            "redux/(matterhorn)/(exposure_tables|nightqa|processing_tables|run)/.*$":"redux/\\1/redux_\\1_\\2.tar",
+            "redux/(matterhorn)/(calibnight|dark_preproc|exposures|preproc)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
+            "redux/(matterhorn)/spectra/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/[^/]+$":"redux/\\1/spectra/\\2/\\3/redux_\\1_spectra_\\2_\\3_files.tar",
             "redux/(minisv2|month4)/(alt|calib2d|calibnight|plan|run|tiles)/.*$":"redux/\\1/redux_\\1_\\2.tar",
             "redux/(minisv2|month4)/(exposures|preproc|spectra-64)/([0-9]+)/.*$":"redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "redux/oak1/.*$":"redux/oak1.tar"
@@ -574,15 +584,13 @@
         },
         "catalogs":{
             "catalogs/README$": "EXCLUDE",
-            "catalogs/(dr9[a-z]+)/.*$": "EXCLUDE",
-            "catalogs/(examples|lya|drX)/.*$": "EXCLUDE",
+            "catalogs/(delete\\.me|examples|lya)/.*$": "EXCLUDE",
             "catalogs/(dr2|dr3\\.1|dr4|dr6|dr8b|dr8c)/.*$": "catalogs/desi_target_catalogs_\\1.tar",
-            "catalogs/(dr5|dr9|mtl)/([0-9.]+)/.*$": "catalogs/\\1/desi_target_catalogs_\\1_\\2.tar",
+            "catalogs/(dr5|dr9|dr9m|dr9sv|dr11|drX|mtl|gaiadr2|gaiadr3)/([0-9.]+)/.*$": "catalogs/\\1/desi_target_catalogs_\\1_\\2.tar",
             "catalogs/dr5/(pixweight|randoms)-dr5\\.fits$": "catalogs/dr5/\\1-dr5.fits",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/[^/]+$": "catalogs/dr7.1/0.\\1.0/desi_target_catalogs_dr7.1_0.\\1.0_files.tar",
             "catalogs/dr7\\.1/0\\.(2[27])\\.0/randoms-dr7\\.1-0\\.(2[27])\\.0\\.fits$": "catalogs/dr7.1/\\1/randoms-dr7.1-0.\\1.0.fits",
-            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar",
-            "catalogs/streamcache/.*$":"EXCLUDE"
+            "catalogs/dr7\\.1/([0-9.]+|PR[0-9]+)/.*$": "catalogs/dr7.1/desi_target_catalogs_dr7.1_\\1.tar"
         },
         "cmx_files":{
             "cmx_files/.*$":"cmx_files.tar"
@@ -594,6 +602,10 @@
         "gaia_dr2_match_dr6":{
         },
         "gaia_edr3":{
+            "gaia_edr3/.*$":"gaia_edr3.tar"
+        },
+        "gaia_dr3":{
+            "gaia_dr3/.*$":"gaia_dr3.tar"
         },
         "masks":{
         },
@@ -608,6 +620,7 @@
         "qso_training":{
         },
         "secondary":{
+            "secondary/(main3|main4)/.*$":"secondary/target_secondary_\\1.tar"
         },
         "sergey_m31":{
         },
@@ -618,8 +631,10 @@
         "stripe82-dr2":{
         },
         "tycho_dr2":{
+            "tycho_dr2/.*$":"tycho_dr2.tar"
         },
         "urat_dr1":{
+            "urat_dr1/.*$":"urat_dr1.tar"
         }
     },
     "users":{
