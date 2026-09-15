@@ -409,6 +409,7 @@
             "dr2/spectro/redux/(kibo|loa)/[^/]+$":"dr2/spectro/redux/\\1/redux_\\1_files.tar",
             "dr2/spectro/redux/(kibo|loa)/(calibnight|dashboard|exposure_tables|nightqa|processing_tables|run)/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2.tar",
             "dr2/spectro/redux/(kibo|loa)/(zcatalog)/(v[0-9])/.*$":"dr2/spectro/redux/\\1/redux_\\1_\\2_\\3.1.tar",
+            "dr2/spectro/redux/(kibo|loa)/(zcatalog)/(v[0-9.]+)/README\\.md$":"EXCLUDE",
             "dr2/spectro/redux/(kibo|loa)/(exposures|preproc)/([0-9]+)/.*$":"dr2/spectro/redux/\\1/\\2/redux_\\1_\\2_\\3.tar",
             "dr2/spectro/redux/(kibo|loa)/healpix/[^/]+$":"dr2/spectro/redux/\\1/healpix/redux_\\1_healpix_files.tar",
             "dr2/spectro/redux/(kibo|loa)/healpix/(cmx|main|special|sv1|sv2|sv3)/(backup|bright|dark|other)/([0-9]+)/.*$":"dr2/spectro/redux/\\1/healpix/\\2/\\3/redux_\\1_healpix_\\2_\\3_\\4.tar",
