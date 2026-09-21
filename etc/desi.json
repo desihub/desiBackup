@@ -306,7 +306,7 @@
             "lya_forest/\\.ipynb_checkpoints/.*$":"EXCLUDE",
             "lya_forest/(colore-2lpt|develop|dr11|ifae-ql|picca|public|saclay|uncorr)/.*$":"EXCLUDE",
             "lya_forest/london/README$":"EXCLUDE",
-            "lya_forest/london/move_(readme|)to_tape.*$":"EXCLUDE",
+            "lya_forest/london/move_(readme_|)to_tape.*$":"EXCLUDE",
             "lya_forest/london/(colore_boxes|lyacolore_skewers|qq_desi_y1|qq_desi_y3|qq_eboss)/.*$":"EXCLUDE",
             "lya_forest/london/(v[23]\\.[0-9])/[^/]+$":"lya_forest/london/\\1/lya_forest_london_\\1_files.tar",
             "lya_forest/london/(v[23]\\.[0-9])/([0-9]+)/.*$":"lya_forest/london/\\1/lya_forest_london_\\1_\\2.tar",
